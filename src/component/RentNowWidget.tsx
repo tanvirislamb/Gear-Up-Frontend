@@ -180,7 +180,7 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
       {/* Rent Now Action Button */}
       {isAvailable ? (
         <Link
-          href={`/login?redirect=/gear/${gear.id}&startDate=${startDate}&endDate=${endDate}&qty=${quantity}`}
+          href={`/login?redirect=${encodeURIComponent(`/checkout?gearId=${gear.id}&startDate=${startDate}&endDate=${endDate}&qty=${quantity}`)}`}
           className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl font-extrabold text-sm bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-200 active:scale-[0.99] group"
         >
           <span>Proceed to Book Rental</span>

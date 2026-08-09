@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState, useState } from "react"
+import { useActionState, useState, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link"
 import { loginAction, FormState } from "./actions"
 
@@ -11,6 +12,23 @@ const initialState: FormState = {
 const LogInPage = () => {
     const [state, formAction, isPending] = useActionState(loginAction, initialState)
     const [showPassword, setShowPassword] = useState(false)
+    const searchParams = useSearchParams();
+    const router = useRouter();
+
+    useEffect(()=>{
+      const redirect = searchParams.get('redirect');
+      if(state.success){
+        if(redirect){
+          try{
+            router.push(decodeURIComponent(redirect));
+          }catch(e){
+            router.push(redirect);
+          }
+        } else {
+          router.push('/');
+        }
+      }
+    }, [state.success, searchParams, router])
 
     return (
         <div className="min-h-[calc(100vh-65px)] flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-slate-50 text-slate-900 relative overflow-hidden">

@@ -83,29 +83,35 @@ export default async function HomePage() {
             </div>
 
             {/* Right Hero Feature Card Stack */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-slate-800 shadow-2xl group">
-                <Image
-                  src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=1200&q=80"
-                  alt="Outdoor Camping Gear"
-                  fill
-                  priority
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-                
-                <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-slate-950/80 backdrop-blur-md border border-slate-800/80 space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Featured Gear</span>
-                    <span className="text-xs font-bold text-slate-200 bg-slate-900 px-2.5 py-1 rounded-full border border-slate-800">
-                      $32 / day
-                    </span>
+            {featuredGear[0] && (
+              <div className="lg:col-span-5 relative">
+                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-slate-800 shadow-2xl group">
+                  {featuredGear[0].image ? (
+                    <Image
+                      src={featuredGear[0].image}
+                      alt={featuredGear[0].name}
+                      fill
+                      priority
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-slate-800 flex items-center justify-center text-slate-600 text-sm">{featuredGear[0].name}</div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+
+                  <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-slate-950/80 backdrop-blur-md border border-slate-800/80 space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Featured Gear</span>
+                      <span className="text-xs font-bold text-slate-200 bg-slate-900 px-2.5 py-1 rounded-full border border-slate-800">
+                        ${featuredGear[0].rentalPrice} / day
+                      </span>
+                    </div>
+                    <h3 className="font-bold text-lg text-white">{featuredGear[0].name}</h3>
+                    <p className="text-xs text-slate-400 line-clamp-1">{featuredGear[0].description}</p>
                   </div>
-                  <h3 className="font-bold text-lg text-white">Wilderness 4-Person All-Season Tent</h3>
-                  <p className="text-xs text-slate-400 line-clamp-1">Alpine rated double-wall tent with aluminum alloy poles.</p>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>
