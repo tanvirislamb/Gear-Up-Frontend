@@ -4,8 +4,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { Mountain, Search, Menu, X, ShoppingBag, ShieldCheck } from "lucide-react";
 
+import { useAuth } from "@/context/AuthProvider";
+
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const auth = (() => { try { return useAuth(); } catch (e) { return null; } })();
+  const user = auth?.user || null;
+  const loading = auth?.loading || false;
+  const logout = auth?.logout;
 
   const navLinks = [
     { title: "Home", href: "/" },
@@ -56,19 +62,31 @@ const Navbar = () => {
 
             <div className="h-4 w-px bg-slate-800" />
 
-            <Link
-              href="/login"
-              className="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors"
-            >
-              Sign In
-            </Link>
+            {user ? (
+              <div className="flex items-center gap-3">
+                <div className="text-sm text-slate-200 mr-2">
+                  <div className="font-semibold">{user.name}</div>
+                  <div className="text-xs text-slate-400">{user.email}</div>
+                </div>
+                <button onClick={async ()=>{ if(logout) await logout(); }} className="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors">Logout</button>
+              </div>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors"
+                >
+                  Sign In
+                </Link>
 
-            <Link
-              href="/login"
-              className="px-4 py-2 rounded-lg text-sm font-semibold bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all duration-200 active:scale-[0.98]"
-            >
-              Get Started
-            </Link>
+                <Link
+                  href="/login"
+                  className="px-4 py-2 rounded-lg text-sm font-semibold bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all duration-200 active:scale-[0.98]"
+                >
+                  Get Started
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -101,20 +119,30 @@ const Navbar = () => {
           </div>
 
           <div className="pt-4 border-t border-slate-800/80 flex flex-col gap-2">
-            <Link
-              href="/login"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center px-4 py-2.5 rounded-lg text-sm font-semibold border border-slate-700 text-slate-200 hover:bg-slate-900"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/login"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center px-4 py-2.5 rounded-lg text-sm font-semibold bg-emerald-500 text-slate-950 hover:bg-emerald-400"
-            >
-              Get Started
-            </Link>
+            {user ? (
+              <div className="p-3 rounded-lg bg-slate-900/50">
+                <div className="font-semibold text-sm">{user.name}</div>
+                <div className="text-xs text-slate-400">{user.email}</div>
+                <button onClick={async ()=>{ if(logout) await logout(); setMobileMenuOpen(false); }} className="mt-3 w-full text-center px-4 py-2.5 rounded-lg text-sm font-semibold border border-slate-700 text-slate-200 hover:bg-slate-900">Logout</button>
+              </div>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full text-center px-4 py-2.5 rounded-lg text-sm font-semibold border border-slate-700 text-slate-200 hover:bg-slate-900"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full text-center px-4 py-2.5 rounded-lg text-sm font-semibold bg-emerald-500 text-slate-950 hover:bg-emerald-400"
+                >
+                  Get Started
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

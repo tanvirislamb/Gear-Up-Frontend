@@ -4,6 +4,7 @@ import { useActionState, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link"
 import { loginAction, FormState } from "./actions"
+import { useAuth } from "@/context/AuthProvider";
 
 const initialState: FormState = {
     success: false,
@@ -15,20 +16,25 @@ const LogInPage = () => {
     const searchParams = useSearchParams();
     const router = useRouter();
 
+    const auth = (()=>{ try{ return useAuth(); }catch(e){ return null;} })();
     useEffect(()=>{
       const redirect = searchParams.get('redirect');
       if(state.success){
-        if(redirect){
-          try{
-            router.push(decodeURIComponent(redirect));
-          }catch(e){
-            router.push(redirect);
+        // Refresh client auth state before navigation so navbar updates
+        (async ()=>{
+          try{ if(auth && auth.refreshUser) await auth.refreshUser(); }catch(e){}
+          if(redirect){
+            try{
+              router.push(decodeURIComponent(redirect));
+            }catch(e){
+              router.push(redirect);
+            }
+          } else {
+            router.push('/');
           }
-        } else {
-          router.push('/');
-        }
+        })();
       }
-    }, [state.success, searchParams, router])
+    }, [state.success, searchParams, router]);
 
     return (
         <div className="min-h-[calc(100vh-65px)] flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-slate-50 text-slate-900 relative overflow-hidden">

@@ -24,14 +24,14 @@ export async function loginAction(
   }
 
   try {
-    const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://gearup-sooty-one.vercel.app/api";
-    const res = await fetch(`${API_BASE}/auth/login`, {
-      method: "POST",
+    // Use local proxy so the backend Set-Cookie header is forwarded to the browser
+    const res = await fetch(`/api/auth/login`, {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({ email, password }),
-      cache: "no-store",
+      cache: 'no-store'
     });
 
     const result = await res.json();
@@ -43,8 +43,9 @@ export async function loginAction(
       };
     }
 
-    // Store auth token in cookies if provided
+    // Store auth token or forward Set-Cookie from backend to the browser
     const cookieStore = await cookies();
+    // If backend returned a token in JSON, set it as a cookie
     const token = result.token || result.data?.accessToken || result.data?.token;
     if (token) {
       cookieStore.set("token", token, {
@@ -53,6 +54,23 @@ export async function loginAction(
         secure: process.env.NODE_ENV === "production",
         sameSite: "lax",
       });
+    } else {
+      // If backend set a Set-Cookie header and proxy forwarded it, parse it and set cookie locally
+      const setCookieHeader = res.headers.get('set-cookie');
+      if (setCookieHeader) {
+        // Extract name and value before first ;
+        const first = setCookieHeader.split(';')[0];
+        const eq = first.indexOf('=');
+        if (eq > -1) {
+          const name = first.substring(0, eq).trim();
+          const value = first.substring(eq + 1).trim();
+          try {
+            cookieStore.set(name, value, { httpOnly: true, path: '/', secure: process.env.NODE_ENV === 'production', sameSite: 'lax' });
+          } catch (e) {
+            // ignore cookie set errors
+          }
+        }
+      }
     }
 
     return {
