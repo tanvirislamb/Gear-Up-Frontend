@@ -53,7 +53,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
   if (loading) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-emerald-400" />
+        <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
       </div>
     );
   }
@@ -61,7 +61,10 @@ export default function DashboardShell({ children }: { children: React.ReactNode
   if (!user) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center">
-        <Link href="/login" className="text-emerald-400 font-semibold text-sm">
+        <Link
+          href={`/login?redirect=${encodeURIComponent(pathname)}`}
+          className="text-emerald-600 font-semibold text-sm"
+        >
           Please sign in to view your dashboard.
         </Link>
       </div>
@@ -80,7 +83,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {denied && (
-        <div className="mb-6 bg-rose-500/10 border border-rose-500/30 rounded-2xl p-4 text-sm text-rose-300 flex items-center gap-3">
+        <div className="mb-6 bg-rose-50 border border-rose-200 rounded-2xl p-4 text-sm text-rose-600 flex items-center gap-3">
           <AlertTriangle className="w-5 h-5" />
           <span>You don&apos;t have access to this section. Redirecting…</span>
         </div>
@@ -89,14 +92,14 @@ export default function DashboardShell({ children }: { children: React.ReactNode
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Sidebar */}
         <aside className="lg:w-60 shrink-0">
-          <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 lg:sticky lg:top-24">
-            <div className="flex items-center gap-3 px-2 pb-4 mb-4 border-b border-slate-800">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-emerald-500 to-teal-400 text-slate-950 flex items-center justify-center font-bold">
+          <div className="bg-white border border-slate-200 rounded-2xl p-4 lg:sticky lg:top-24">
+            <div className="flex items-center gap-3 px-2 pb-4 mb-4 border-b border-slate-200">
+              <div className="w-9 h-9 rounded-lg bg-emerald-500 text-slate-950 flex items-center justify-center font-bold">
                 <Mountain className="w-5 h-5" />
               </div>
               <div className="min-w-0">
-                <div className="text-sm font-bold text-white truncate">{user.name}</div>
-                <div className="text-[11px] text-emerald-400 font-semibold uppercase">
+                <div className="text-sm font-bold text-slate-900 truncate">{user.name}</div>
+                <div className="text-[11px] text-emerald-600 font-semibold uppercase">
                   {role}
                 </div>
               </div>
@@ -115,8 +118,8 @@ export default function DashboardShell({ children }: { children: React.ReactNode
                     href={item.href}
                     className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                       active
-                        ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"
-                        : "text-slate-400 hover:text-white hover:bg-slate-800/60 border border-transparent"
+                        ? "bg-emerald-50 text-emerald-600 border border-emerald-200"
+                        : "text-slate-500 hover:text-slate-900 hover:bg-slate-100 border border-transparent"
                     }`}
                   >
                     <Icon className="w-4 h-4" />
@@ -126,10 +129,10 @@ export default function DashboardShell({ children }: { children: React.ReactNode
               })}
             </nav>
 
-            <div className="mt-4 pt-4 border-t border-slate-800 space-y-1">
+            <div className="mt-4 pt-4 border-t border-slate-200 space-y-1">
               <Link
                 href="/"
-                className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/60"
+                className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-100"
               >
                 <Package className="w-4 h-4" /> Browse Gear
               </Link>
@@ -137,7 +140,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
                 onClick={async () => {
                   await logout();
                 }}
-                className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-rose-300 hover:bg-rose-500/10"
+                className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-500 hover:text-rose-600 hover:bg-rose-50"
               >
                 <LogOut className="w-4 h-4" /> Logout
               </button>

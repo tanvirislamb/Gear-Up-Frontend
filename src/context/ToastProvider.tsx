@@ -55,22 +55,22 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
         {toasts.map((t) => {
           const border =
             t.type === "success"
-              ? "border-emerald-500/40"
+              ? "border-emerald-200"
               : t.type === "error"
-                ? "border-rose-500/40"
-                : "border-slate-600/40";
+                ? "border-rose-200"
+                : "border-slate-200";
           const iconColor =
             t.type === "success"
-              ? "text-emerald-400"
+              ? "text-emerald-600"
               : t.type === "error"
-                ? "text-rose-400"
-                : "text-slate-300";
+                ? "text-rose-600"
+                : "text-slate-700";
           const textColor =
             t.type === "success"
-              ? "text-emerald-200"
+              ? "text-slate-800"
               : t.type === "error"
-                ? "text-rose-200"
-                : "text-slate-200";
+                ? "text-slate-800"
+                : "text-slate-800";
           const Icon =
             t.type === "success" ? CheckCircle2 : t.type === "error" ? XCircle : Info;
           return (
@@ -78,7 +78,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               key={t.id}
               type="button"
               onClick={() => dismiss(t.id)}
-              className={`pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-xl border ${border} bg-slate-900/95 shadow-2xl backdrop-blur text-sm font-medium`}
+              className={`pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-xl border ${border} bg-white shadow-2xl backdrop-blur text-sm font-medium`}
             >
               <Icon className={`w-4 h-4 ${iconColor}`} />
               <span className={textColor}>{t.message}</span>

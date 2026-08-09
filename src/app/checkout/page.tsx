@@ -38,13 +38,13 @@ function CheckoutContent() {
 
   return (
     <div className="min-h-[60vh] flex items-center justify-center p-6">
-      <div className="max-w-2xl w-full bg-slate-900/80 border border-slate-800 rounded-3xl p-8 text-slate-200">
-        <h1 className="text-xl font-extrabold text-white mb-2">Confirm Rental</h1>
-        <p className="text-sm text-slate-400">Gear: {gearId || 'N/A'}</p>
-        <p className="text-sm text-slate-400 mt-1">From: {startDate || 'N/A'} — To: {endDate || 'N/A'}</p>
-        <p className="text-sm text-slate-400 mt-1">Quantity: {qty}</p>
+      <div className="max-w-2xl w-full bg-white border border-slate-200 rounded-3xl p-8 text-slate-800">
+        <h1 className="text-xl font-extrabold text-slate-900 mb-2">Confirm Rental</h1>
+        <p className="text-sm text-slate-500">Gear: {gearId || 'N/A'}</p>
+        <p className="text-sm text-slate-500 mt-1">From: {startDate || 'N/A'} — To: {endDate || 'N/A'}</p>
+        <p className="text-sm text-slate-500 mt-1">Quantity: {qty}</p>
 
-        {error && <div className="mt-4 text-xs text-rose-400">{error}</div>}
+        {error && <div className="mt-4 text-xs text-rose-600">{error}</div>}
 
         <div className="mt-6 flex items-center gap-3">
           <button onClick={handlePlaceOrder} disabled={loading} className="px-4 py-2 bg-emerald-500 text-slate-900 rounded-xl font-semibold">
@@ -58,7 +58,7 @@ function CheckoutContent() {
 
 export default function CheckoutPage() {
   return (
-    <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center text-slate-400">Loading…</div>}>
+    <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center text-slate-500">Loading…</div>}>
       <CheckoutContent />
     </Suspense>
   );

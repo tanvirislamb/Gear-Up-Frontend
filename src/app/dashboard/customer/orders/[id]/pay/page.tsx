@@ -44,7 +44,7 @@ export default function PayOrderPage() {
   if (loading) {
     return (
       <div className="flex justify-center py-20">
-        <Loader2 className="w-8 h-8 animate-spin text-emerald-400" />
+        <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
       </div>
     );
   }
@@ -52,8 +52,8 @@ export default function PayOrderPage() {
   if (!order) {
     return (
       <div className="text-center py-20 space-y-3">
-        <p className="text-slate-400">Order not found.</p>
-        <Link href="/dashboard/customer" className="text-emerald-400 font-semibold text-sm">
+        <p className="text-slate-500">Order not found.</p>
+        <Link href="/dashboard/customer" className="text-emerald-600 font-semibold text-sm">
           Back to dashboard
         </Link>
       </div>
@@ -72,44 +72,44 @@ export default function PayOrderPage() {
     <div className="max-w-2xl mx-auto space-y-6">
       <Link
         href="/dashboard/customer"
-        className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-emerald-400"
+        className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-emerald-600"
       >
         <ArrowLeft className="w-4 h-4" /> Back to Dashboard
       </Link>
 
-      <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-5">
+      <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-5">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-extrabold text-white">Confirm & Pay</h1>
+          <h1 className="text-xl font-extrabold text-slate-900">Confirm & Pay</h1>
           <StatusBadge status={order.status} />
         </div>
 
-        <div className="space-y-3 border-t border-slate-800 pt-4">
+        <div className="space-y-3 border-t border-slate-200 pt-4">
           <div className="flex justify-between text-sm">
-            <span className="text-slate-400">Gear</span>
-            <span className="text-white font-semibold">{order.gearItem?.name || "Gear item"}</span>
+            <span className="text-slate-500">Gear</span>
+            <span className="text-slate-900 font-semibold">{order.gearItem?.name || "Gear item"}</span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-slate-400 flex items-center gap-1.5">
+            <span className="text-slate-500 flex items-center gap-1.5">
               <Calendar className="w-4 h-4" /> Rental period
             </span>
-            <span className="text-white font-semibold">
+            <span className="text-slate-900 font-semibold">
               {new Date(order.startDate).toLocaleDateString()} →{" "}
               {new Date(order.endDate).toLocaleDateString()} ({days} day{days > 1 ? "s" : ""})
             </span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-slate-400">Quantity</span>
-            <span className="text-white font-semibold">{order.quantity}</span>
+            <span className="text-slate-500">Quantity</span>
+            <span className="text-slate-900 font-semibold">{order.quantity}</span>
           </div>
-          <div className="flex justify-between text-sm border-t border-slate-800 pt-3">
-            <span className="text-slate-400 flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" /> Equipment insurance
+          <div className="flex justify-between text-sm border-t border-slate-200 pt-3">
+            <span className="text-slate-500 flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-600" /> Equipment insurance
             </span>
-            <span className="text-emerald-400 font-semibold">Included</span>
+            <span className="text-emerald-600 font-semibold">Included</span>
           </div>
           <div className="flex justify-between items-baseline">
-            <span className="text-base font-bold text-slate-200">Total due</span>
-            <span className="text-2xl font-black text-white">
+            <span className="text-base font-bold text-slate-800">Total due</span>
+            <span className="text-2xl font-black text-slate-900">
               ${Number(order.totalAmount).toFixed(2)}
             </span>
           </div>
@@ -119,13 +119,13 @@ export default function PayOrderPage() {
           <button
             onClick={handlePay}
             disabled={paying}
-            className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-bold text-sm flex items-center justify-center gap-2 hover:from-emerald-400 hover:to-teal-300 disabled:opacity-60 shadow-lg shadow-emerald-500/20"
+            className="w-full py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-60 shadow-lg shadow-emerald-500/20"
           >
             <CreditCard className="w-4 h-4" />
             {paying ? "Creating secure checkout…" : "Pay with Stripe"}
           </button>
         ) : (
-          <div className="text-center text-sm text-amber-300/90 bg-amber-500/10 border border-amber-500/30 rounded-2xl py-3">
+          <div className="text-center text-sm text-amber-600 bg-amber-50 border border-amber-200 rounded-2xl py-3">
             Payment is only available once the provider confirms your order.
           </div>
         )}

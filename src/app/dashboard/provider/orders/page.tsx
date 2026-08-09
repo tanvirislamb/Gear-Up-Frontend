@@ -24,13 +24,13 @@ function actionsFor(status: string): Action[] {
           status: "CONFIRMED",
           label: "Confirm",
           icon: Check,
-          style: `${base} bg-blue-500/15 text-blue-300 hover:bg-blue-500/25`,
+          style: `${base} bg-blue-50 text-blue-600 hover:bg-blue-500/25`,
         },
         {
           status: "CANCELLED",
           label: "Cancel",
           icon: XCircle,
-          style: `${base} bg-rose-500/15 text-rose-300 hover:bg-rose-500/25`,
+          style: `${base} bg-rose-50 text-rose-600 hover:bg-rose-500/25`,
         },
       ];
     case "PAID":
@@ -39,7 +39,7 @@ function actionsFor(status: string): Action[] {
           status: "PICKED_UP",
           label: "Mark Picked Up",
           icon: Truck,
-          style: `${base} bg-emerald-500/15 text-emerald-300 hover:bg-emerald-500/25`,
+          style: `${base} bg-emerald-50 text-emerald-600 hover:bg-emerald-100`,
         },
       ];
     case "PICKED_UP":
@@ -48,7 +48,7 @@ function actionsFor(status: string): Action[] {
           status: "RETURNED",
           label: "Mark Returned",
           icon: PackageCheck,
-          style: `${base} bg-slate-500/15 text-slate-300 hover:bg-slate-500/25`,
+          style: `${base} bg-slate-100 text-slate-700 hover:bg-slate-100`,
         },
       ];
     default:
@@ -95,29 +95,29 @@ export default function ProviderOrdersPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
           <ShoppingCart className="w-5 h-5" />
         </div>
         <div>
-          <h1 className="text-xl font-extrabold text-white">Incoming Orders</h1>
-          <p className="text-xs text-slate-400">Confirm, pick up, and return rentals</p>
+          <h1 className="text-xl font-extrabold text-slate-900">Incoming Orders</h1>
+          <p className="text-xs text-slate-500">Confirm, pick up, and return rentals</p>
         </div>
       </div>
 
       {loading ? (
         <div className="flex justify-center py-20">
-          <Loader2 className="w-8 h-8 animate-spin text-emerald-400" />
+          <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
         </div>
       ) : orders.length === 0 ? (
-        <div className="bg-slate-900/40 border border-slate-800 rounded-2xl p-10 text-center">
+        <div className="bg-white border border-slate-200 rounded-2xl p-10 text-center">
           <ShoppingCart className="w-10 h-10 text-slate-600 mx-auto mb-3" />
-          <p className="text-sm text-slate-400">No orders for your gear yet.</p>
+          <p className="text-sm text-slate-500">No orders for your gear yet.</p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-slate-800">
+        <div className="overflow-x-auto rounded-2xl border border-slate-200">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-slate-900/80 text-left text-[11px] uppercase tracking-wide text-slate-400">
+              <tr className="bg-white text-left text-[11px] uppercase tracking-wide text-slate-500">
                 <th className="px-4 py-3 font-semibold">Customer</th>
                 <th className="px-4 py-3 font-semibold">Gear</th>
                 <th className="px-4 py-3 font-semibold">Dates</th>
@@ -126,26 +126,26 @@ export default function ProviderOrdersPage() {
                 <th className="px-4 py-3 font-semibold text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800">
+            <tbody className="divide-y divide-slate-200">
               {orders.map((order) => {
                 const actions = actionsFor(order.status);
                 return (
-                  <tr key={order.id} className="bg-slate-900/40 hover:bg-slate-900/70 transition-colors">
+                  <tr key={order.id} className="bg-white hover:bg-slate-50 transition-colors">
                     <td className="px-4 py-3">
-                      <div className="font-semibold text-white">{order.customer?.name || "Customer"}</div>
+                      <div className="font-semibold text-slate-900">{order.customer?.name || "Customer"}</div>
                       <div className="text-[11px] text-slate-500">{order.customer?.email || ""}</div>
                     </td>
                     <td className="px-4 py-3">
-                      <div className="text-slate-200 font-medium">{order.gearItem?.name || "Gear"}</div>
+                      <div className="text-slate-800 font-medium">{order.gearItem?.name || "Gear"}</div>
                       <div className="text-[11px] text-slate-500">
                         {order.gearItem?.brand || ""} · Qty {order.quantity}
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-slate-300">
+                    <td className="px-4 py-3 text-slate-700">
                       <div>{formatDate(order.startDate)}</div>
                       <div className="text-[11px] text-slate-500">→ {formatDate(order.endDate)}</div>
                     </td>
-                    <td className="px-4 py-3 text-slate-200 font-semibold">
+                    <td className="px-4 py-3 text-slate-800 font-semibold">
                       ${Number(order.totalAmount).toFixed(2)}
                     </td>
                     <td className="px-4 py-3">
@@ -154,7 +154,7 @@ export default function ProviderOrdersPage() {
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-end gap-2">
                         {busyId === order.id ? (
-                          <Loader2 className="w-4 h-4 animate-spin text-emerald-400" />
+                          <Loader2 className="w-4 h-4 animate-spin text-emerald-600" />
                         ) : (
                           actions.map((a) => (
                             <button

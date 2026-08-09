@@ -79,19 +79,19 @@ export default function GearCatalogPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       {/* Breadcrumb & Header */}
-      <div className="space-y-2 border-b border-slate-900 pb-6">
-        <nav className="flex items-center gap-2 text-xs text-slate-400">
-          <Link href="/" className="hover:text-emerald-400 transition-colors">Home</Link>
+      <div className="space-y-2 border-b border-slate-200 pb-6">
+        <nav className="flex items-center gap-2 text-xs text-slate-500">
+          <Link href="/" className="hover:text-emerald-600 transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-emerald-400 font-semibold">Gear Catalog</span>
+          <span className="text-emerald-600 font-semibold">Gear Catalog</span>
         </nav>
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
               Sports & Outdoor Gear Catalog
             </h1>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               Browse available equipment, filter by category, brand, and daily pricing rates.
             </p>
           </div>
@@ -99,9 +99,9 @@ export default function GearCatalogPage() {
           {/* Mobile Filter Drawer Toggle Button */}
           <button
             onClick={() => setMobileFilterOpen(true)}
-            className="lg:hidden inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-200 hover:text-emerald-400 transition-colors"
+            className="lg:hidden inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-800 hover:text-emerald-600 transition-colors"
           >
-            <SlidersHorizontal className="w-4 h-4 text-emerald-400" />
+            <SlidersHorizontal className="w-4 h-4 text-emerald-600" />
             <span>Filters</span>
           </button>
         </div>
@@ -122,15 +122,15 @@ export default function GearCatalogPage() {
         {mobileFilterOpen && (
           <div className="fixed inset-0 z-50 lg:hidden flex">
             <div
-              className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm"
+              className="fixed inset-0 bg-slate-900/40"
               onClick={() => setMobileFilterOpen(false)}
             />
-            <div className="relative ml-auto w-full max-w-xs bg-slate-950 h-full p-6 overflow-y-auto shadow-2xl space-y-6">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-                <h3 className="font-bold text-base text-white">Filter Gear</h3>
+            <div className="relative ml-auto w-full max-w-xs bg-slate-50 h-full p-6 overflow-y-auto shadow-2xl space-y-6">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+                <h3 className="font-bold text-base text-slate-900">Filter Gear</h3>
                 <button
                   onClick={() => setMobileFilterOpen(false)}
-                  className="p-1 rounded-lg text-slate-400 hover:text-white"
+                  className="p-1 rounded-lg text-slate-500 hover:text-slate-900"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -150,17 +150,17 @@ export default function GearCatalogPage() {
         {/* Main Content Area */}
         <div className="lg:col-span-3 space-y-6">
           {/* Results Summary Bar */}
-          <div className="flex items-center justify-between bg-slate-900/40 border border-slate-800/80 rounded-2xl px-5 py-3 text-xs text-slate-300">
+          <div className="flex items-center justify-between bg-white border border-slate-200 rounded-2xl px-5 py-3 text-xs text-slate-700">
             <span className="font-semibold">
-              Showing <span className="text-emerald-400 font-bold">{gearItems.length}</span> of{" "}
-              <span className="text-white font-bold">{meta.total}</span> gear items
+              Showing <span className="text-emerald-600 font-bold">{gearItems.length}</span> of{" "}
+              <span className="text-slate-900 font-bold">{meta.total}</span> gear items
             </span>
 
             {/* Active Filters Indicators */}
             {(filters.search || filters.catagory || filters.brand) && (
               <button
                 onClick={() => handleFilterChange({ search: "", catagory: "", brand: "", price: "100", page: "1" })}
-                className="text-slate-400 hover:text-emerald-400 flex items-center gap-1 text-[11px] font-medium"
+                className="text-slate-500 hover:text-emerald-600 flex items-center gap-1 text-[11px] font-medium"
               >
                 <RotateCcw className="w-3 h-3" /> Clear Active Filters
               </button>
@@ -178,12 +178,12 @@ export default function GearCatalogPage() {
             </div>
           ) : (
             /* Empty State */
-            <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-12 text-center space-y-4">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto">
+            <div className="bg-white border border-slate-200 rounded-3xl p-12 text-center space-y-4">
+              <div className="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto">
                 <PackageSearch className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-bold text-white">No Equipment Found</h3>
-              <p className="text-xs text-slate-400 max-w-sm mx-auto">
+              <h3 className="text-lg font-bold text-slate-900">No Equipment Found</h3>
+              <p className="text-xs text-slate-500 max-w-sm mx-auto">
                 We couldn&apos;t find any gear matching your search or active filter criteria. Try adjusting your filters or price range.
               </p>
               <button
@@ -202,7 +202,7 @@ export default function GearCatalogPage() {
               <button
                 onClick={() => handlePageChange(meta.page - 1)}
                 disabled={meta.page <= 1}
-                className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                className="p-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-slate-900 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                 title="Previous Page"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -218,7 +218,7 @@ export default function GearCatalogPage() {
                     className={`w-10 h-10 rounded-xl text-xs font-bold transition-all ${
                       isActive
                         ? "bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20"
-                        : "bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-800"
+                        : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-100"
                     }`}
                   >
                     {pageNum}
@@ -229,7 +229,7 @@ export default function GearCatalogPage() {
               <button
                 onClick={() => handlePageChange(meta.page + 1)}
                 disabled={meta.page >= meta.totalPages}
-                className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                className="p-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-slate-900 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                 title="Next Page"
               >
                 <ChevronRight className="w-4 h-4" />
