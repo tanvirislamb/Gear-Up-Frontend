@@ -55,12 +55,7 @@ const Navbar = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className={
-                  link.title === "Dashboard"
-                    ? "ml-1 px-4 py-2 rounded-lg text-sm font-semibold bg-emerald-50 text-emerald-600 border border-emerald-200 hover:bg-emerald-100 transition-colors"
-                    : "px-4 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors"
-                }
-              >
+                className={"px-4 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors"}>
                 {link.title}
               </Link>
             ))}

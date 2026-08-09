@@ -68,6 +68,13 @@ export default function PayOrderPage() {
     )
   );
 
+  const paid = ["PAID", "PICKED_UP", "RETURNED"].includes(order.status);
+  const title = paid
+    ? "Order Details"
+    : order.status === "CANCELLED"
+      ? "Order Details"
+      : "Confirm & Pay";
+
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <Link
@@ -79,7 +86,7 @@ export default function PayOrderPage() {
 
       <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-5">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-extrabold text-slate-900">Confirm & Pay</h1>
+          <h1 className="text-xl font-extrabold text-slate-900">{title}</h1>
           <StatusBadge status={order.status} />
         </div>
 
@@ -108,7 +115,7 @@ export default function PayOrderPage() {
             <span className="text-emerald-600 font-semibold">Included</span>
           </div>
           <div className="flex justify-between items-baseline">
-            <span className="text-base font-bold text-slate-800">Total due</span>
+            <span className="text-base font-bold text-slate-800">{paid ? "Amount paid" : "Total due"}</span>
             <span className="text-2xl font-black text-slate-900">
               ${Number(order.totalAmount).toFixed(2)}
             </span>
@@ -124,15 +131,25 @@ export default function PayOrderPage() {
             <CreditCard className="w-4 h-4" />
             {paying ? "Creating secure checkout…" : "Pay with Stripe"}
           </button>
-        ) : (
+        ) : order.status === "PLACED" ? (
           <div className="text-center text-sm text-amber-600 bg-amber-50 border border-amber-200 rounded-2xl py-3">
             Payment is only available once the provider confirms your order.
           </div>
-        )}
+        ) : paid ? (
+          <div className="text-center text-sm text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-2xl py-3 flex items-center justify-center gap-2">
+            <ShieldCheck className="w-4 h-4" /> Payment received — thank you!
+          </div>
+        ) : order.status === "CANCELLED" ? (
+          <div className="text-center text-sm text-rose-600 bg-rose-50 border border-rose-200 rounded-2xl py-3">
+            This order has been cancelled.
+          </div>
+        ) : null}
 
-        <p className="text-[11px] text-slate-500 text-center">
-          You&apos;ll be redirected to Stripe's secure checkout. Cancel anytime.
-        </p>
+        {order.status === "CONFIRMED" && (
+          <p className="text-[11px] text-slate-500 text-center">
+            You&apos;ll be redirected to Stripe's secure checkout. Cancel anytime.
+          </p>
+        )}
       </div>
     </div>
   );
