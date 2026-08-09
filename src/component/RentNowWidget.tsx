@@ -3,13 +3,16 @@
 import { useState } from "react";
 import { Calendar, DollarSign, ShieldCheck, Clock, ArrowRight, Minus, Plus, AlertCircle } from "lucide-react";
 import { GearItem } from "@/types/gear";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthProvider";
 
 interface RentNowWidgetProps {
   gear: GearItem;
 }
 
 export default function RentNowWidget({ gear }: RentNowWidgetProps) {
+  const router = useRouter();
+  const { user } = useAuth();
   const todayStr = new Date().toISOString().split("T")[0];
   
   // Default start date = today, end date = +3 days
@@ -179,13 +182,20 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
 
       {/* Rent Now Action Button */}
       {isAvailable ? (
-        <Link
-          href={`/login?redirect=${encodeURIComponent(`/checkout?gearId=${gear.id}&startDate=${startDate}&endDate=${endDate}&qty=${quantity}`)}`}
+        <button
+          onClick={() => {
+            const checkoutUrl = `/checkout?gearId=${gear.id}&startDate=${startDate}&endDate=${endDate}&qty=${quantity}`;
+            if (user) {
+              router.push(checkoutUrl);
+            } else {
+              router.push(`/login?redirect=${encodeURIComponent(checkoutUrl)}`);
+            }
+          }}
           className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl font-extrabold text-sm bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-200 active:scale-[0.99] group"
         >
-          <span>Proceed to Book Rental</span>
+          <span>{user ? "Proceed to Book Rental" : "Login to Book Rental"}</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </Link>
+        </button>
       ) : (
         <button
           disabled

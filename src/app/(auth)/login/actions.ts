@@ -1,13 +1,20 @@
 "use server";
 
-import { cookies } from "next/headers";
+import { z } from "zod";
+import { persistCookiesFromResponse } from "@/lib/server-cookies";
+import { getBase } from "@/lib/proxy";
 
 export type FormState = {
   success: boolean;
   message?: string;
-  error?: string;
+  errors?: { email?: string; password?: string; form?: string };
   data?: any;
 };
+
+const loginSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
 
 export async function loginAction(
   prevState: FormState,
@@ -16,22 +23,24 @@ export async function loginAction(
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
 
-  if (!email || !password) {
+  const parsed = loginSchema.safeParse({ email, password });
+  if (!parsed.success) {
+    const fieldErrors = parsed.error.flatten().fieldErrors;
     return {
       success: false,
-      error: "Email and password are required.",
+      errors: {
+        email: fieldErrors.email?.[0],
+        password: fieldErrors.password?.[0],
+      },
     };
   }
 
   try {
-    // Use local proxy so the backend Set-Cookie header is forwarded to the browser
-    const res = await fetch(`/api/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+    const res = await fetch(`${getBase()}/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
-      cache: 'no-store'
+      cache: "no-store",
     });
 
     const result = await res.json();
@@ -39,39 +48,13 @@ export async function loginAction(
     if (!res.ok || result.success === false) {
       return {
         success: false,
-        error: result.message || "Invalid credentials or login failed.",
+        errors: {
+          form: result.message || "Invalid credentials or login failed.",
+        },
       };
     }
 
-    // Store auth token or forward Set-Cookie from backend to the browser
-    const cookieStore = await cookies();
-    // If backend returned a token in JSON, set it as a cookie
-    const token = result.token || result.data?.accessToken || result.data?.token;
-    if (token) {
-      cookieStore.set("token", token, {
-        httpOnly: true,
-        path: "/",
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
-      });
-    } else {
-      // If backend set a Set-Cookie header and proxy forwarded it, parse it and set cookie locally
-      const setCookieHeader = res.headers.get('set-cookie');
-      if (setCookieHeader) {
-        // Extract name and value before first ;
-        const first = setCookieHeader.split(';')[0];
-        const eq = first.indexOf('=');
-        if (eq > -1) {
-          const name = first.substring(0, eq).trim();
-          const value = first.substring(eq + 1).trim();
-          try {
-            cookieStore.set(name, value, { httpOnly: true, path: '/', secure: process.env.NODE_ENV === 'production', sameSite: 'lax' });
-          } catch (e) {
-            // ignore cookie set errors
-          }
-        }
-      }
-    }
+    await persistCookiesFromResponse(res);
 
     return {
       success: true,
@@ -81,7 +64,9 @@ export async function loginAction(
   } catch (err: any) {
     return {
       success: false,
-      error: err.message || "An unexpected error occurred during login.",
+      errors: {
+        form: err?.message || "An unexpected error occurred during login.",
+      },
     };
   }
 }

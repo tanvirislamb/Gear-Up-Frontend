@@ -1,14 +1,12 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 
-export default function CheckoutPage(){
+function CheckoutContent() {
   const params = useSearchParams();
   const router = useRouter();
   const gearId = params.get('redirect')?.split('/gear/')[1] || params.get('gearId') || '';
-  // In RentNowWidget, redirect uses: /login?redirect=/gear/{id}&startDate=...&endDate=...&qty=
-  // After login, user could be sent to this route manually; also support direct /checkout?gearId=&startDate=&endDate=&qty=
   const startDate = params.get('startDate') || '';
   const endDate = params.get('endDate') || '';
   const qty = parseInt(params.get('qty') || params.get('quantity') || '1', 10) || 1;
@@ -19,21 +17,20 @@ export default function CheckoutPage(){
   const handlePlaceOrder = async () => {
     setLoading(true);
     setError('');
-    try{
+    try {
       const res = await fetch('/api/rentals', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ gearItemId: gearId, quantity: qty, startDate, endDate })
       });
       const json = await res.json();
-      if(!res.ok){
+      if (!res.ok) {
         setError(json.message || 'Failed to place order');
         setLoading(false);
         return;
       }
-      // success — redirect to dashboard to show order
       router.push('/dashboard/customer');
-    }catch(err:any){
+    } catch (err: any) {
       setError(err.message || 'Network error');
       setLoading(false);
     }
@@ -56,5 +53,13 @@ export default function CheckoutPage(){
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center text-slate-400">Loading…</div>}>
+      <CheckoutContent />
+    </Suspense>
   );
 }

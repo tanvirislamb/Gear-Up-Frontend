@@ -64,6 +64,18 @@ const Navbar = () => {
 
             {user ? (
               <div className="flex items-center gap-3">
+                <Link
+                  href={
+                    user.role === "PROVIDER"
+                      ? "/dashboard/provider"
+                      : user.role === "ADMIN"
+                        ? "/dashboard/admin"
+                        : "/dashboard/customer"
+                  }
+                  className="px-3 py-2 rounded-lg text-sm font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 transition-colors"
+                >
+                  Dashboard
+                </Link>
                 <div className="text-sm text-slate-200 mr-2">
                   <div className="font-semibold">{user.name}</div>
                   <div className="text-xs text-slate-400">{user.email}</div>
@@ -123,6 +135,19 @@ const Navbar = () => {
               <div className="p-3 rounded-lg bg-slate-900/50">
                 <div className="font-semibold text-sm">{user.name}</div>
                 <div className="text-xs text-slate-400">{user.email}</div>
+                <Link
+                  href={
+                    user.role === "PROVIDER"
+                      ? "/dashboard/provider"
+                      : user.role === "ADMIN"
+                        ? "/dashboard/admin"
+                        : "/dashboard/customer"
+                  }
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="mt-3 w-full text-center px-4 py-2.5 rounded-lg text-sm font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25"
+                >
+                  Dashboard
+                </Link>
                 <button onClick={async ()=>{ if(logout) await logout(); setMobileMenuOpen(false); }} className="mt-3 w-full text-center px-4 py-2.5 rounded-lg text-sm font-semibold border border-slate-700 text-slate-200 hover:bg-slate-900">Logout</button>
               </div>
             ) : (

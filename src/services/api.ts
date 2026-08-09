@@ -1,28 +1,51 @@
-import { GearItem, Category, GearQueryFilters, PaginatedMeta } from "@/types/gear";
+import {
+  GearItem,
+  Category,
+  GearQueryFilters,
+  PaginatedMeta,
+  RentalOrder,
+  Payment,
+  User,
+  UserStatus,
+  ApiEnvelope,
+} from "@/types/gear";
 
-// Server components call the real backend directly (no CORS issue).
 // Client components call local Next.js proxy routes (/api/...) to avoid CORS.
+// Server components call the real backend directly (no CORS issue).
 const EXTERNAL_API = process.env.NEXT_PUBLIC_API_URL || "https://gearup-sooty-one.vercel.app/api";
 
 function getBase() {
-  // In the browser (client component), call our own Next.js proxy routes.
-  // On the server, call the external Vercel API directly.
   if (typeof window !== "undefined") {
     return "/api";
   }
   return EXTERNAL_API;
 }
 
-export async function fetchCategories(): Promise<Category[]> {
+async function request<T>(path: string, init?: RequestInit): Promise<ApiEnvelope<T> | null> {
   try {
-    const res = await fetch(`${getBase()}/categories`, { cache: "no-store" });
-    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    const res = await fetch(`${getBase()}${path}`, {
+      ...init,
+      cache: "no-store",
+    });
     const json = await res.json();
-    return json.data || [];
+    return json;
   } catch (error) {
-    console.error("Error fetching categories:", error);
-    return [];
+    console.error(`API error ${path}:`, error);
+    return null;
   }
+}
+
+function post<T>(path: string, body: unknown): Promise<ApiEnvelope<T> | null> {
+  return request<T>(path, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+}
+
+export async function fetchCategories(): Promise<Category[]> {
+  const json = await request<Category[]>("/categories");
+  return json?.data || [];
 }
 
 export async function fetchGearList(
@@ -46,7 +69,6 @@ export async function fetchGearList(
 
     const json = await res.json();
 
-    // Shape: { success, message, data: { meta: {...}, data: [...] } }
     if (json.data) {
       if (Array.isArray(json.data)) {
         return {
@@ -69,13 +91,146 @@ export async function fetchGearList(
 }
 
 export async function fetchGearById(id: string): Promise<GearItem | null> {
-  try {
-    const res = await fetch(`${getBase()}/gear/${id}`, { cache: "no-store" });
-    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-    const json = await res.json();
-    return json.data || null;
-  } catch (error) {
-    console.error(`Error fetching gear ${id}:`, error);
-    return null;
+  const json = await request<GearItem>(`/gear/${id}`);
+  return json?.data || null;
+}
+
+// ---- Auth ----
+export async function loginUser(body: { email: string; password: string }) {
+  return post<User>("/auth/login", body);
+}
+
+export async function registerUser(body: {
+  name: string;
+  email: string;
+  password: string;
+  role?: string;
+}) {
+  return post<User>("/auth/register", body);
+}
+
+export async function logoutUser() {
+  return request<null>("/auth/logout", { method: "POST" });
+}
+
+// ---- Rentals ----
+export async function createRental(body: {
+  gearItemId: string;
+  quantity: number;
+  startDate: string;
+  endDate: string;
+}) {
+  return post<RentalOrder>("/rentals", body);
+}
+
+export async function fetchMyOrders(): Promise<RentalOrder[]> {
+  const json = await request<RentalOrder[]>("/rentals");
+  return json?.data || [];
+}
+
+export async function fetchOrderById(id: string): Promise<RentalOrder | null> {
+  const json = await request<RentalOrder>(`/rentals/${id}`);
+  return json?.data || null;
+}
+
+// ---- Payments ----
+export async function createPayment(rentalOrderId: string) {
+  return post<{ sessionUrl?: string; sessionId?: string }>("/payments", {
+    rentalOrderId,
+    method: "STRIPE",
+  });
+}
+
+export async function fetchMyPayments(): Promise<Payment[]> {
+  const json = await request<Payment[]>("/payments");
+  return json?.data || [];
+}
+
+export async function fetchPaymentById(id: string): Promise<Payment | null> {
+  const json = await request<Payment>(`/payments/${id}`);
+  return json?.data || null;
+}
+
+// ---- Reviews ----
+export async function submitReview(body: {
+  gearItemId: string;
+  rating: number;
+  comment?: string;
+}) {
+  return post<{ id: string }>("/reviews", body);
+}
+
+// ---- Provider ----
+export async function fetchProviderOrders(): Promise<RentalOrder[]> {
+  const json = await request<RentalOrder[]>("/provider/orders");
+  return json?.data || [];
+}
+
+export async function updateOrderStatus(id: string, status: string) {
+  return request<RentalOrder>(`/provider/orders/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ status }),
+  });
+}
+
+export async function createGear(body: {
+  name: string;
+  description: string;
+  brand: string;
+  image?: string | null;
+  rentalPrice: number;
+  stock: number;
+  availableQty: number;
+  categoryId: string;
+}) {
+  return post<GearItem>("/provider/gear", body);
+}
+
+export async function updateGear(
+  id: string,
+  body: {
+    name: string;
+    description: string;
+    brand: string;
+    image?: string | null;
+    rentalPrice: number;
+    stock: number;
+    availableQty: number;
+    categoryId: string;
   }
+) {
+  return request<GearItem>(`/provider/gear/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+}
+
+export async function deleteGear(id: string) {
+  return request<null>(`/provider/gear/${id}`, { method: "DELETE" });
+}
+
+// ---- Admin ----
+export async function fetchAdminUsers(): Promise<User[]> {
+  const json = await request<User[]>("/admin/users");
+  return json?.data || [];
+}
+
+export async function updateUserStatus(id: string, status: UserStatus) {
+  return request<User>(`/admin/users/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ status }),
+  });
+}
+
+export async function fetchAdminGear(): Promise<GearItem[]> {
+  const json = await request<GearItem[]>("/admin/gear");
+  return json?.data || [];
+}
+
+export async function fetchAdminRentals(): Promise<RentalOrder[]> {
+  const json = await request<RentalOrder[]>("/admin/rentals");
+  return json?.data || [];
 }

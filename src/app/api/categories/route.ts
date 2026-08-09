@@ -1,9 +1,6 @@
-import { NextResponse } from "next/server";
+import { NextRequest } from "next/server";
+import { forward } from "@/lib/proxy";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://gearup-sooty-one.vercel.app/api";
-
-export async function GET() {
-  const res = await fetch(`${API_BASE}/categories`, { cache: "no-store" });
-  const data = await res.json();
-  return NextResponse.json(data, { status: res.status });
+export async function GET(req: NextRequest) {
+  return forward("categories", req, { method: "GET" });
 }

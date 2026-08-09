@@ -1,24 +1,27 @@
-import { NextRequest, NextResponse } from "next/server";
-
-// Proxy logout if backend supports, otherwise clear cookie
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api";
+import { NextRequest } from "next/server";
+import { forward } from "@/lib/proxy";
 
 export async function POST(req: NextRequest) {
+  const headers = new Headers({ "Content-Type": "application/json" });
+  // Clear local auth cookies; backend has no logout endpoint.
+  headers.append(
+    "set-cookie",
+    "accessToken=; Path=/; HttpOnly; Max-Age=0; SameSite=Lax"
+  );
+  headers.append(
+    "set-cookie",
+    "refreshToken=; Path=/; HttpOnly; Max-Age=0; SameSite=Lax"
+  );
+  headers.append("set-cookie", "token=; Path=/; HttpOnly; Max-Age=0; SameSite=Lax");
+
   try {
-    // Attempt to call backend logout if available
-    try {
-      await fetch(`${API_BASE.replace(/\/$/, '')}/auth/logout`, { method: 'POST', headers: { cookie: req.headers.get('cookie') || '' }, cache: 'no-store' });
-    } catch (e) {
-      // ignore
-    }
-
-    // Clear cookie by setting expired cookie
-    const headers: Record<string,string> = {
-      'set-cookie': `token=; Path=/; HttpOnly; Max-Age=0; SameSite=Lax;`,
-    };
-
-    return NextResponse.json({ success: true, message: 'Logged out' }, { status: 200, headers });
-  } catch (err:any) {
-    return NextResponse.json({ success: false, message: err.message || 'Logout failed' }, { status: 500 });
+    await forward("auth/logout", req, { method: "POST" });
+  } catch {
+    // ignore backend logout errors
   }
+
+  return new Response(JSON.stringify({ success: true, message: "Logged out" }), {
+    status: 200,
+    headers,
+  });
 }

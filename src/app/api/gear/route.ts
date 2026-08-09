@@ -1,13 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
-
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://gearup-sooty-one.vercel.app/api";
+import { NextRequest } from "next/server";
+import { forward } from "@/lib/proxy";
 
 export async function GET(req: NextRequest) {
-  const { searchParams } = req.nextUrl;
-  const query = searchParams.toString();
-  const url = `${API_BASE}/gear${query ? `?${query}` : ""}`;
-
-  const res = await fetch(url, { cache: "no-store" });
-  const data = await res.json();
-  return NextResponse.json(data, { status: res.status });
+  const query = req.nextUrl.search;
+  return forward(`gear${query}`, req, { method: "GET" });
 }

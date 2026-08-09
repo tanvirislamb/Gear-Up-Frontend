@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/component/navbar";
 import Footer from "@/component/Footer";
 import { AuthProvider } from "@/context/AuthProvider";
+import { ToastProvider } from "@/context/ToastProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,9 +26,11 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} h-full dark antialiased`}>
       <body className="min-h-full bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-emerald-500/30 selection:text-emerald-300">
         <AuthProvider>
-          <Navbar />
-          <main className="flex-grow">{children}</main>
-          <Footer />
+          <ToastProvider>
+            <Navbar />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </ToastProvider>
         </AuthProvider>
       </body>
     </html>

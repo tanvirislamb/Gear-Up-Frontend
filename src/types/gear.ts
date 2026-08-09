@@ -69,3 +69,59 @@ export interface GearApiResponse {
   data: GearItem[] | { meta: PaginatedMeta; data: GearItem[] };
   meta?: PaginatedMeta;
 }
+
+export type Role = "CUSTOMER" | "PROVIDER" | "ADMIN";
+export type UserStatus = "ACTIVE" | "SUSPENDED";
+
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  role: Role;
+  status: UserStatus;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export type RentalStatus =
+  | "PLACED"
+  | "CONFIRMED"
+  | "PAID"
+  | "PICKED_UP"
+  | "RETURNED"
+  | "CANCELLED";
+
+export interface RentalOrder {
+  id: string;
+  customerId: string;
+  gearItemId: string;
+  quantity: number;
+  status: RentalStatus;
+  startDate: string;
+  endDate: string;
+  totalAmount: number;
+  customer?: { name: string; email: string } | null;
+  gearItem?: GearItem | null;
+}
+
+export type PaymentStatus = "PENDING" | "COMPLETED" | "FAILED";
+
+export interface Payment {
+  id: string;
+  customerId: string;
+  rentalOrderId: string;
+  transactionId?: string | null;
+  amount: number;
+  method: "STRIPE" | "SSLCOMMERZ";
+  status: PaymentStatus;
+  paidAt?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
+  rentalOrder?: RentalOrder | null;
+}
+
+export interface ApiEnvelope<T> {
+  success?: boolean;
+  message?: string;
+  data: T;
+}
