@@ -17,19 +17,16 @@ export default async function HomePage() {
     "Winter Sports": Snowflake,
     "Fitness & Training": Dumbbell,
     "Climbing": Compass,
-  };
+  }
 
   return (
     <div className="space-y-20 pt-10 pb-20">
-      {/* Hero Section */}
       <section className="relative overflow-hidden pt-12 pb-24 md:pt-20 md:pb-32 border-b border-black/5">
-        {/* Background Gradients */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[#dad8f9]/60 blur-3xl rounded-full pointer-events-none" />
         <div className="absolute top-20 right-10 w-[300px] h-[300px] bg-[#dad8f9]/20 blur-2xl rounded-full pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Content */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-black/5 text-black/60 text-xs font-semibold">
                 <Sparkles className="w-4 h-4" />
@@ -47,7 +44,6 @@ export default async function HomePage() {
                 Unlock top-tier mountain bikes, 4-season tents, kayaks, skis, and climbing gear without the high upfront cost. Rent from verified local providers with instant booking and damage protection.
               </p>
 
-              {/* Action CTAs */}
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <Link
                   href="/gear"
@@ -65,7 +61,6 @@ export default async function HomePage() {
                 </Link>
               </div>
 
-              {/* Trust badges */}
               <div className="pt-6 border-t border-black/5 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-black/60">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-black/60" />
@@ -82,7 +77,6 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* Right Hero Feature Card Stack */}
             {featuredGear[0] && (
               <div className="lg:col-span-5 relative">
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-black/5 shadow-2xl group">
@@ -114,7 +108,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Category Explorer */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
@@ -134,12 +127,12 @@ export default async function HomePage() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {categories.map((cat) => {
-            const IconComp = categoryIcons[cat.name] || Mountain;
+            const IconComp = categoryIcons[cat.name] || Mountain
             return (
               <Link
                 key={cat.id}
                 href={`/gear?catagory=${encodeURIComponent(cat.name)}`}
-                className="group p-5 rounded-2xl bg-white border border-black/5 hover:border-[#dad8f9] hover:shadow-xl hover:shadow-[#dad8f9]/10 transition-all duration-300 flex flex-col items-center text-center space-y-3"
+                className="group p-5 rounded-2xl bg-white border border-black/5 hover:shadow-xl hover:shadow-[#dad8f9]/10 transition-all duration-300 flex flex-col items-center text-center space-y-3"
               >
                 <div className="w-12 h-12 rounded-xl bg-black/5 text-black/60 group-hover:bg-[#dad8f9] group-hover:text-black flex items-center justify-center transition-colors duration-300">
                   <IconComp className="w-6 h-6" />
@@ -148,12 +141,11 @@ export default async function HomePage() {
                   {cat.name}
                 </h3>
               </Link>
-            );
+            )
           })}
         </div>
       </section>
 
-      {/* Featured Gear Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
@@ -178,9 +170,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* How It Works Guide */}
       <section id="how-it-works" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-        <div className="bg-white border border-black/5 rounded-2xl p-8 sm:p-12 text-center space-y-12">
+        <div className="bg-white border border-black/5 rounded-3xl p-8 sm:p-12 text-center space-y-12">
           <div className="max-w-2xl mx-auto space-y-3">
             <span className="text-xs font-bold text-black/60 uppercase tracking-wider">Simple Process</span>
             <h2 className="text-3xl font-extrabold text-black tracking-tight">How GearUp Works</h2>
@@ -227,9 +218,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Provider Call to Action Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-2xl bg-[#dad8f9] border border-black/5 p-8 sm:p-12">
+        <div className="relative overflow-hidden rounded-3xl bg-[#dad8f9] p-8 sm:p-12">
           <div className="relative z-10 max-w-2xl space-y-4">
             <span className="text-xs font-extrabold text-black/60 uppercase tracking-widest">For Shop Owners & Gear Owners</span>
             <h2 className="text-3xl font-black text-black">Have Outdoor Gear Sitting Idle?</h2>
@@ -239,7 +229,7 @@ export default async function HomePage() {
             <div className="pt-2">
               <Link
                 href={`/login?redirect=${encodeURIComponent("/dashboard/provider")}`}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-xs font-extrabold bg-black hover:bg-black/80 text-white transition-all shadow-lg shadow-black/20"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl text-xs font-extrabold bg-black hover:bg-black/80 text-white transition-all"
               >
                 <span>Become a Gear Provider</span>
                 <ArrowRight className="w-4 h-4" />
@@ -249,5 +239,5 @@ export default async function HomePage() {
         </div>
       </section>
     </div>
-  );
+  )
 }
