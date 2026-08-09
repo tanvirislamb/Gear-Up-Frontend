@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "GearUp 🏋️ | Rent Sports & Outdoor Gear Instantly",
+  title: "GearUp",
   description: "GearUp is a modern platform to rent sports equipment, outdoor gear, bikes, tents, kayaks, skis, and climbing tools from verified local providers.",
   keywords: ["outdoor gear rental", "sports equipment rental", "bike rental", "tent rental", "kayak rental", "GearUp"],
 };
@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full bg-slate-50 text-slate-900 flex flex-col font-sans selection:bg-emerald-500/30 selection:text-emerald-600">
+      <body className="min-h-full flex flex-col font-sans selection:bg-emerald-500/30 selection:text-emerald-600">
         <AuthProvider>
           <ToastProvider>
             <Navbar />

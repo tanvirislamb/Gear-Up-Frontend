@@ -3,7 +3,7 @@ import { Mountain, ShieldCheck, Truck, Clock, HeartHandshake } from "lucide-reac
 
 export default function Footer() {
   return (
-    <footer className="bg-black/5 text-black/60 border-t border-black/5 mt-auto">
+    <footer className="bg-black/1 text-black/60 border-t border-black/2 mt-auto">
       <div className="border-b border-black/5 bg-white py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="flex items-center gap-3.5 p-4 rounded-xl bg-white border border-black/5">
