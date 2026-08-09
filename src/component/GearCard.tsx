@@ -1,25 +1,24 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import Link from "next/link";
-import { Star, Shield, ArrowRight, Tag, ImageOff } from "lucide-react";
-import { GearItem } from "@/types/gear";
-import { useState } from "react";
+import Image from "next/image"
+import Link from "next/link"
+import { Star, Shield, ArrowRight, Tag, ImageOff } from "lucide-react"
+import { GearItem } from "@/types/gear"
+import { useState } from "react"
 
 interface GearCardProps {
-  gear: GearItem;
+  gear: GearItem
 }
 
 export default function GearCard({ gear }: GearCardProps) {
-  const [imgError, setImgError] = useState(false);
-  const categoryName = gear.catagory?.name || gear.category?.name || "Outdoor Gear";
-  const isAvailable = gear.availableQty > 0;
-  const isLowStock = isAvailable && gear.availableQty <= 3;
-  const hasImage = gear.image && !imgError;
+  const [imgError, setImgError] = useState(false)
+  const categoryName = gear.catagory?.name || gear.category?.name || "Outdoor Gear"
+  const isAvailable = gear.availableQty > 0
+  const isLowStock = isAvailable && gear.availableQty <= 3
+  const hasImage = gear.image && !imgError
 
   return (
-    <div className="group relative bg-white border border-black/5 rounded-2xl overflow-hidden shadow-lg flex flex-col h-full">
-      {/* Image Container */}
+    <div className="group relative bg-white rounded-3xl overflow-hidden shadow-md flex flex-col h-full">
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-white">
         {hasImage ? (
           <Image
@@ -37,7 +36,6 @@ export default function GearCard({ gear }: GearCardProps) {
           </div>
         )}
 
-        {/* Category Pill */}
         <div className="absolute top-3 left-3">
           <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-semibold bg-white text-black/60 border border-black/5 backdrop-blur-md">
             <Tag className="w-3 h-3" />
@@ -45,34 +43,30 @@ export default function GearCard({ gear }: GearCardProps) {
           </span>
         </div>
 
-        {/* Availability Badge */}
         <div className="absolute top-3 right-3">
           {isAvailable ? (
             <span
-              className={`inline-flex items-center px-2.5 py-1 rounded-xl text-xs font-bold backdrop-blur-md border ${
-                isLowStock
-                  ? "bg-[#dad8f9] text-black border-black/5"
-                  : "bg-black/5 text-black/60 border-black/5"
-              }`}
+              className={`inline-flex items-center px-2.5 py-1 rounded-xl text-xs font-bold backdrop-blur-md border ${isLowStock
+                ? "bg-[#dad8f9] text-black border-black/5"
+                : "bg-white/50 text-black/60 border-black/5"
+                }`}
             >
               <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${isLowStock ? "bg-black" : "bg-black/60"}`} />
               {isLowStock ? `Only ${gear.availableQty} Left` : "Available"}
             </span>
           ) : (
-            <span className="inline-flex items-center px-2.5 py-1 rounded-xl text-xs font-bold bg-black/5 text-black/40 border border-black/5 backdrop-blur-md">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-xl text-xs font-bold bg-black/50 text-black/40 border border-black/5 backdrop-blur-md">
               <span className="w-1.5 h-1.5 rounded-full bg-black/40 mr-1.5" />
               Out of Stock
             </span>
           )}
         </div>
 
-        {/* Brand Tag */}
         <div className="absolute bottom-3 left-3 text-xs font-medium text-black/60 bg-white px-2.5 py-0.5 rounded-xl border border-black/5 backdrop-blur-sm">
           {gear.brand}
         </div>
       </div>
 
-      {/* Content Body */}
       <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
         <div>
           <div className="flex items-center justify-between gap-2 mb-1.5">
@@ -114,5 +108,5 @@ export default function GearCard({ gear }: GearCardProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }
