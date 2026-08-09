@@ -20,7 +20,7 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="space-y-20 pt-10 pb-20">
+    <div className="space-y-20 pt-10 pb-20 bg-white">
       <section className="relative overflow-hidden pt-12 pb-24 md:pt-20 md:pb-32 border-b border-black/5">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[#dad8f9]/60 blur-3xl rounded-full pointer-events-none" />
         <div className="absolute top-20 right-10 w-[300px] h-[300px] bg-[#dad8f9]/20 blur-2xl rounded-full pointer-events-none" />
