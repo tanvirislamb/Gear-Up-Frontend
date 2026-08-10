@@ -191,7 +191,7 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
               router.push(`/login?redirect=${encodeURIComponent(checkoutUrl)}`);
             }
           }}
-          className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl font-extrabold text-sm bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black shadow-lg shadow-[#dad8f9]/30 hover:shadow-[#dad8f9]/50 transition-all duration-200 active:scale-[0.99] group"
+          className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl font-extrabold text-sm bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black transition-all duration-200 active:scale-[0.99] group"
         >
           <span>{user ? "Proceed to Book Rental" : "Login to Book Rental"}</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
