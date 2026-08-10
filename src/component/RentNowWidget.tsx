@@ -14,7 +14,7 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
   const router = useRouter();
   const { user } = useAuth();
   const todayStr = new Date().toISOString().split("T")[0];
-  
+
   // Default start date = today, end date = +3 days
   const defaultEnd = new Date();
   defaultEnd.setDate(defaultEnd.getDate() + 3);
@@ -60,7 +60,7 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
   };
 
   return (
-    <div className="bg-white border border-black/5 rounded-3xl p-6 shadow-2xl space-y-6 backdrop-blur-xl text-black">
+    <div className="bg-white border border-black/5 rounded-3xl p-6 space-y-6 text-black">
       {/* Rate Header */}
       <div className="flex items-baseline justify-between border-b border-black/5 pb-5">
         <div>
