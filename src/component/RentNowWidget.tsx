@@ -60,21 +60,21 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
   };
 
   return (
-    <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-2xl space-y-6 backdrop-blur-xl text-slate-800">
+    <div className="bg-white border border-black/5 rounded-3xl p-6 shadow-2xl space-y-6 backdrop-blur-xl text-black">
       {/* Rate Header */}
-      <div className="flex items-baseline justify-between border-b border-slate-200 pb-5">
+      <div className="flex items-baseline justify-between border-b border-black/5 pb-5">
         <div>
-          <span className="text-xs uppercase tracking-wider text-slate-500 font-medium">Daily Rental Rate</span>
+          <span className="text-xs uppercase tracking-wider text-black/60 font-medium">Daily Rental Rate</span>
           <div className="flex items-baseline gap-1 mt-0.5">
-            <span className="text-3xl font-extrabold text-slate-900">${gear.rentalPrice}</span>
-            <span className="text-sm text-slate-500">/ day</span>
+            <span className="text-3xl font-extrabold text-black">${gear.rentalPrice}</span>
+            <span className="text-sm text-black/60">/ day</span>
           </div>
         </div>
         <div className="text-right">
-          <span className="text-xs text-slate-500 block mb-1">Availability</span>
+          <span className="text-xs text-black/60 block mb-1">Availability</span>
           {isAvailable ? (
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-600 border border-emerald-200">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5" />
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-[#dad8f9] text-black border border-black/5">
+              <span className="w-1.5 h-1.5 rounded-full bg-black mr-1.5" />
               {gear.availableQty} Units In Stock
             </span>
           ) : (
@@ -87,32 +87,32 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
 
       {/* Date Range Picker */}
       <div className="space-y-4">
-        <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-          <Calendar className="w-4 h-4 text-emerald-600" /> Select Rental Duration
+        <h4 className="text-xs font-bold uppercase tracking-wider text-black/60 flex items-center gap-1.5">
+          <Calendar className="w-4 h-4 text-black/60" /> Select Rental Duration
         </h4>
 
         <div className="grid grid-cols-2 gap-3">
           <div className="space-y-1.5">
-            <label className="text-[11px] text-slate-500 font-medium block">Start Date</label>
+            <label className="text-[11px] text-black/60 font-medium block">Start Date</label>
             <input
               type="date"
               min={todayStr}
               value={startDate}
               onChange={(e) => handleStartDateChange(e.target.value)}
               disabled={!isAvailable}
-              className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-emerald-500 transition-colors disabled:opacity-50"
+              className="w-full px-3 py-2 bg-white border border-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-[#dad8f9] transition-colors disabled:opacity-50"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-[11px] text-slate-500 font-medium block">End Date</label>
+            <label className="text-[11px] text-black/60 font-medium block">End Date</label>
             <input
               type="date"
               min={startDate || todayStr}
               value={endDate}
               onChange={(e) => handleEndDateChange(e.target.value)}
               disabled={!isAvailable}
-              className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-emerald-500 transition-colors disabled:opacity-50"
+              className="w-full px-3 py-2 bg-white border border-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-[#dad8f9] transition-colors disabled:opacity-50"
             />
           </div>
         </div>
@@ -127,24 +127,24 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
 
       {/* Quantity Counter */}
       {isAvailable && (
-        <div className="flex items-center justify-between pt-4 border-t border-slate-200">
+        <div className="flex items-center justify-between pt-4 border-t border-black/5">
           <div>
-            <span className="text-xs font-semibold text-slate-700 block">Quantity</span>
-            <span className="text-[11px] text-slate-500">Max {gear.availableQty} available</span>
+            <span className="text-xs font-semibold text-black/60 block">Quantity</span>
+            <span className="text-[11px] text-black/60">Max {gear.availableQty} available</span>
           </div>
-          <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-xl p-1">
+          <div className="flex items-center gap-3 bg-white border border-black/5 rounded-xl p-1">
             <button
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
               disabled={quantity <= 1}
-              className="w-7 h-7 rounded-lg bg-white text-slate-700 hover:text-slate-900 flex items-center justify-center disabled:opacity-40 transition-colors"
+              className="w-7 h-7 rounded-lg bg-white text-black/60 hover:text-black flex items-center justify-center disabled:opacity-40 transition-colors"
             >
               <Minus className="w-3.5 h-3.5" />
             </button>
-            <span className="text-sm font-bold text-slate-900 px-1">{quantity}</span>
+            <span className="text-sm font-bold text-black px-1">{quantity}</span>
             <button
               onClick={() => setQuantity(Math.min(gear.availableQty, quantity + 1))}
               disabled={quantity >= gear.availableQty}
-              className="w-7 h-7 rounded-lg bg-white text-slate-700 hover:text-slate-900 flex items-center justify-center disabled:opacity-40 transition-colors"
+              className="w-7 h-7 rounded-lg bg-white text-black/60 hover:text-black flex items-center justify-center disabled:opacity-40 transition-colors"
             >
               <Plus className="w-3.5 h-3.5" />
             </button>
@@ -153,27 +153,27 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
       )}
 
       {/* Price Summary Breakdown */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-4 space-y-2.5">
-        <div className="flex justify-between text-xs text-slate-500">
+      <div className="bg-white border border-black/5 rounded-2xl p-4 space-y-2.5">
+        <div className="flex justify-between text-xs text-black/60">
           <span>${gear.rentalPrice} × {rentalDays} {rentalDays === 1 ? "day" : "days"}</span>
           <span>${gear.rentalPrice * rentalDays}</span>
         </div>
         {quantity > 1 && (
-          <div className="flex justify-between text-xs text-slate-500">
+          <div className="flex justify-between text-xs text-black/60">
             <span>Quantity ({quantity} items)</span>
             <span>× {quantity}</span>
           </div>
         )}
-        <div className="flex justify-between text-xs text-slate-500">
+        <div className="flex justify-between text-xs text-black/60">
           <span className="flex items-center gap-1">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> Equipment Insurance
+            <ShieldCheck className="w-3.5 h-3.5 text-black/60" /> Equipment Insurance
           </span>
-          <span className="text-emerald-600 font-semibold">Included</span>
+          <span className="text-black/60 font-semibold">Included</span>
         </div>
-        <div className="pt-2 border-t border-slate-200 flex justify-between items-baseline">
-          <span className="text-sm font-bold text-slate-800">Estimated Total</span>
+        <div className="pt-2 border-t border-black/5 flex justify-between items-baseline">
+          <span className="text-sm font-bold text-black">Estimated Total</span>
           <div className="text-right">
-            <span className="text-2xl font-black text-emerald-600">
+            <span className="text-2xl font-black text-black">
               ${totalPrice}
             </span>
           </div>
@@ -191,7 +191,7 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
               router.push(`/login?redirect=${encodeURIComponent(checkoutUrl)}`);
             }
           }}
-          className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl font-extrabold text-sm bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-200 active:scale-[0.99] group"
+          className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl font-extrabold text-sm bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black shadow-lg shadow-[#dad8f9]/30 hover:shadow-[#dad8f9]/50 transition-all duration-200 active:scale-[0.99] group"
         >
           <span>{user ? "Proceed to Book Rental" : "Login to Book Rental"}</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -199,20 +199,20 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
       ) : (
         <button
           disabled
-          className="w-full py-4 px-6 rounded-2xl font-bold text-sm bg-slate-100 text-slate-500 cursor-not-allowed text-center"
+          className="w-full py-4 px-6 rounded-2xl font-bold text-sm bg-black/5 text-black/60 cursor-not-allowed text-center"
         >
           Currently Out of Stock
         </button>
       )}
 
       {/* Trust & Guarantee */}
-      <div className="text-center text-[11px] text-slate-500 flex items-center justify-center gap-4 pt-1">
+      <div className="text-center text-[11px] text-black/60 flex items-center justify-center gap-4 pt-1">
         <span className="flex items-center gap-1">
-          <Clock className="w-3 h-3 text-slate-500" /> Instant confirmation
+          <Clock className="w-3 h-3 text-black/60" /> Instant confirmation
         </span>
         <span>•</span>
         <span className="flex items-center gap-1">
-          <ShieldCheck className="w-3 h-3 text-emerald-600" /> Fully refundable
+          <ShieldCheck className="w-3 h-3 text-black/60" /> Fully refundable
         </span>
       </div>
     </div>

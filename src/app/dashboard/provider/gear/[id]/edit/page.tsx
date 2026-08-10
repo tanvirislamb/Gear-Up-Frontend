@@ -24,7 +24,7 @@ export default function EditGearPage() {
   if (loading) {
     return (
       <div className="flex justify-center py-20">
-        <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-black/60" />
       </div>
     );
   }
@@ -32,8 +32,8 @@ export default function EditGearPage() {
   if (!gear) {
     return (
       <div className="text-center py-20 space-y-3">
-        <p className="text-slate-500">Gear not found.</p>
-        <Link href="/dashboard/provider" className="text-emerald-600 font-semibold text-sm">
+        <p className="text-black/60">Gear not found.</p>
+        <Link href="/dashboard/provider" className="text-black/60 font-semibold text-sm">
           Back to inventory
         </Link>
       </div>
@@ -45,20 +45,20 @@ export default function EditGearPage() {
       <div className="flex items-center gap-3">
         <Link
           href="/dashboard/provider"
-          className="p-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200"
+          className="p-2 rounded-xl bg-black/5 text-black/60 hover:bg-black/5"
         >
           <ArrowLeft className="w-4 h-4" />
         </Link>
-        <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-[#dad8f9] text-black flex items-center justify-center">
           <Pencil className="w-5 h-5" />
         </div>
         <div>
-          <h1 className="text-xl font-extrabold text-slate-900">Edit Gear</h1>
-          <p className="text-xs text-slate-500">{gear.name}</p>
+          <h1 className="text-xl font-extrabold text-black">Edit Gear</h1>
+          <p className="text-xs text-black/60">{gear.name}</p>
         </div>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8">
+      <div className="bg-white border border-black/5 rounded-3xl p-6 sm:p-8">
         <GearForm mode="edit" initial={gear} />
       </div>
     </div>

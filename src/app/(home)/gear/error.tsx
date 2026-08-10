@@ -22,8 +22,8 @@ export default function GearError({
       </div>
 
       <div className="space-y-2">
-        <h2 className="text-2xl font-bold text-slate-900">Something went wrong!</h2>
-        <p className="text-xs text-slate-500">
+        <h2 className="text-2xl font-bold text-black">Something went wrong!</h2>
+        <p className="text-xs text-black/60">
           We encountered an unexpected error while loading the gear catalog. Please try again or return to the homepage.
         </p>
       </div>
@@ -31,7 +31,7 @@ export default function GearError({
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
         <button
           onClick={() => reset()}
-          className="w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-500 text-slate-950 hover:bg-emerald-400 transition-colors inline-flex items-center justify-center gap-2"
+          className="w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-bold bg-[#dad8f9] text-black hover:bg-[#dad8f9]/70 transition-colors inline-flex items-center justify-center gap-2"
         >
           <RotateCcw className="w-4 h-4" />
           <span>Try Again</span>
@@ -39,7 +39,7 @@ export default function GearError({
 
         <Link
           href="/"
-          className="w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-800 hover:bg-slate-100 transition-colors inline-flex items-center justify-center gap-2"
+          className="w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-semibold bg-white border border-black/5 text-black hover:bg-black/5 transition-colors inline-flex items-center justify-center gap-2"
         >
           <Home className="w-4 h-4" />
           <span>Return Home</span>

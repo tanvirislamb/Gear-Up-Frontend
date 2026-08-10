@@ -53,7 +53,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
   if (loading) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-black/60" />
       </div>
     );
   }
@@ -63,7 +63,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
       <div className="min-h-[70vh] flex items-center justify-center">
         <Link
           href={`/login?redirect=${encodeURIComponent(pathname)}`}
-          className="text-emerald-600 font-semibold text-sm"
+          className="text-black font-semibold text-sm hover:text-black/60"
         >
           Please sign in to view your dashboard.
         </Link>
@@ -92,14 +92,14 @@ export default function DashboardShell({ children }: { children: React.ReactNode
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Sidebar */}
         <aside className="lg:w-60 shrink-0">
-          <div className="bg-white border border-slate-200 rounded-2xl p-4 lg:sticky lg:top-24">
-            <div className="flex items-center gap-3 px-2 pb-4 mb-4 border-b border-slate-200">
-              <div className="w-9 h-9 rounded-lg bg-emerald-500 text-slate-950 flex items-center justify-center font-bold">
+          <div className="bg-white border border-black/5 rounded-2xl p-4 lg:sticky lg:top-24">
+            <div className="flex items-center gap-3 px-2 pb-4 mb-4 border-b border-black/5">
+              <div className="w-9 h-9 rounded-lg bg-[#dad8f9] text-black flex items-center justify-center font-bold">
                 <Mountain className="w-5 h-5" />
               </div>
               <div className="min-w-0">
-                <div className="text-sm font-bold text-slate-900 truncate">{user.name}</div>
-                <div className="text-[11px] text-emerald-600 font-semibold uppercase">
+                <div className="text-sm font-bold text-black truncate">{user.name}</div>
+                <div className="text-[11px] text-black/60 font-semibold uppercase">
                   {role}
                 </div>
               </div>
@@ -118,8 +118,8 @@ export default function DashboardShell({ children }: { children: React.ReactNode
                     href={item.href}
                     className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                       active
-                        ? "bg-emerald-50 text-emerald-600 border border-emerald-200"
-                        : "text-slate-500 hover:text-slate-900 hover:bg-slate-100 border border-transparent"
+                        ? "bg-[#dad8f9] text-black border border-black/5"
+                        : "text-black/60 hover:text-black hover:bg-black/5 border border-transparent"
                     }`}
                   >
                     <Icon className="w-4 h-4" />
@@ -129,10 +129,10 @@ export default function DashboardShell({ children }: { children: React.ReactNode
               })}
             </nav>
 
-            <div className="mt-4 pt-4 border-t border-slate-200 space-y-1">
+            <div className="mt-4 pt-4 border-t border-black/5 space-y-1">
               <Link
                 href="/"
-                className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-100"
+                className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-black/60 hover:text-black hover:bg-black/5"
               >
                 <Package className="w-4 h-4" /> Browse Gear
               </Link>
@@ -140,7 +140,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
                 onClick={async () => {
                   await logout();
                 }}
-                className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-500 hover:text-rose-600 hover:bg-rose-50"
+                className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-black/60 hover:text-rose-600 hover:bg-rose-50"
               >
                 <LogOut className="w-4 h-4" /> Logout
               </button>

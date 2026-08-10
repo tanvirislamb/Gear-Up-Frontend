@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans selection:bg-emerald-500/30 selection:text-emerald-600">
+      <body className="min-h-full flex flex-col font-sans selection:bg-[#dad8f9]/60 selection:text-black">
         <AuthProvider>
           <ToastProvider>
             <Navbar />

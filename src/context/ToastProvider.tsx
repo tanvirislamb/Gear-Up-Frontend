@@ -55,22 +55,22 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
         {toasts.map((t) => {
           const border =
             t.type === "success"
-              ? "border-emerald-200"
+              ? "border-black/5"
               : t.type === "error"
                 ? "border-rose-200"
-                : "border-slate-200";
+                : "border-black/5";
           const iconColor =
             t.type === "success"
-              ? "text-emerald-600"
+              ? "text-black/60"
               : t.type === "error"
                 ? "text-rose-600"
-                : "text-slate-700";
+                : "text-black/60";
           const textColor =
             t.type === "success"
-              ? "text-slate-800"
+              ? "text-black"
               : t.type === "error"
-                ? "text-slate-800"
-                : "text-slate-800";
+                ? "text-black"
+                : "text-black";
           const Icon =
             t.type === "success" ? CheckCircle2 : t.type === "error" ? XCircle : Info;
           return (

@@ -49,16 +49,16 @@ export default function GearFilterSidebar({
   };
 
   return (
-    <aside className="w-full bg-white border border-slate-200 rounded-2xl p-5 space-y-6 text-slate-800 backdrop-blur-md sticky top-20">
+    <aside className="w-full bg-white border border-black/5 rounded-2xl p-5 space-y-6 text-black backdrop-blur-md sticky top-20">
       {/* Header */}
-      <div className="flex items-center justify-between pb-4 border-b border-slate-200">
+      <div className="flex items-center justify-between pb-4 border-b border-black/5">
         <div className="flex items-center gap-2">
-          <SlidersHorizontal className="w-5 h-5 text-emerald-600" />
-          <h3 className="font-bold text-base text-slate-900">Filter Gear</h3>
+          <SlidersHorizontal className="w-5 h-5 text-black/60" />
+          <h3 className="font-bold text-base text-black">Filter Gear</h3>
         </div>
         <button
           onClick={handleReset}
-          className="text-xs text-slate-500 hover:text-emerald-600 flex items-center gap-1 transition-colors"
+          className="text-xs text-black/60 hover:text-black flex items-center gap-1 transition-colors"
           title="Reset all filters"
         >
           <RotateCcw className="w-3.5 h-3.5" />
@@ -68,8 +68,8 @@ export default function GearFilterSidebar({
 
       {/* Search Input */}
       <div className="space-y-2">
-        <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-          <Search className="w-3.5 h-3.5 text-emerald-600" /> Search
+        <label className="text-xs font-semibold uppercase tracking-wider text-black/60 flex items-center gap-1.5">
+          <Search className="w-3.5 h-3.5 text-black/60" /> Search
         </label>
         <div className="relative">
           <input
@@ -80,16 +80,16 @@ export default function GearFilterSidebar({
               setSearch(e.target.value);
               applyFilters({ search: e.target.value });
             }}
-            className="w-full pl-9 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors"
+            className="w-full pl-9 pr-4 py-2.5 bg-white border border-black/5 rounded-xl text-sm text-black placeholder-black/60 focus:outline-none focus:border-[#dad8f9] transition-colors"
           />
-          <Search className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
+          <Search className="w-4 h-4 text-black/60 absolute left-3 top-3" />
         </div>
       </div>
 
       {/* Category Filter */}
       <div className="space-y-2.5">
-        <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-          <Tag className="w-3.5 h-3.5 text-emerald-600" /> Category
+        <label className="text-xs font-semibold uppercase tracking-wider text-black/60 flex items-center gap-1.5">
+          <Tag className="w-3.5 h-3.5 text-black/60" /> Category
         </label>
         <div className="space-y-1 max-h-48 overflow-y-auto pr-1 custom-scrollbar">
           <button
@@ -99,12 +99,12 @@ export default function GearFilterSidebar({
             }}
             className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-colors flex items-center justify-between ${
               selectedCategory === ""
-                ? "bg-emerald-100 text-emerald-600 font-semibold border border-emerald-200"
-                : "text-slate-700 hover:bg-slate-100"
+                    ? "bg-[#dad8f9] text-black font-semibold border border-black/5"
+                : "text-black/60 hover:bg-black/5"
             }`}
           >
             <span>All Categories</span>
-            {selectedCategory === "" && <Check className="w-3.5 h-3.5 text-emerald-600" />}
+            {selectedCategory === "" && <Check className="w-3.5 h-3.5 text-black/60" />}
           </button>
 
           {categories.map((cat) => {
@@ -119,12 +119,12 @@ export default function GearFilterSidebar({
                 }}
                 className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-colors flex items-center justify-between ${
                   isSelected
-                    ? "bg-emerald-100 text-emerald-600 font-semibold border border-emerald-200"
-                    : "text-slate-700 hover:bg-slate-100"
+                ? "bg-[#dad8f9] text-black font-semibold border border-black/5"
+                    : "text-black/60 hover:bg-black/5"
                 }`}
               >
                 <span>{cat.name}</span>
-                {isSelected && <Check className="w-3.5 h-3.5 text-emerald-600" />}
+                {isSelected && <Check className="w-3.5 h-3.5 text-black/60" />}
               </button>
             );
           })}
@@ -132,12 +132,12 @@ export default function GearFilterSidebar({
       </div>
 
       {/* Price Range Slider */}
-      <div className="space-y-3 pt-2 border-t border-slate-200">
+      <div className="space-y-3 pt-2 border-t border-black/5">
         <div className="flex items-center justify-between">
-          <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-            <DollarSign className="w-3.5 h-3.5 text-emerald-600" /> Max Price / Day
+          <label className="text-xs font-semibold uppercase tracking-wider text-black/60 flex items-center gap-1.5">
+            <DollarSign className="w-3.5 h-3.5 text-black/60" /> Max Price / Day
           </label>
-          <span className="text-xs font-bold text-emerald-600">${maxPrice}</span>
+          <span className="text-xs font-bold text-black">${maxPrice}</span>
         </div>
         <input
           type="range"
@@ -149,22 +149,22 @@ export default function GearFilterSidebar({
             setMaxPrice(e.target.value);
             applyFilters({ price: e.target.value });
           }}
-          className="w-full accent-emerald-500 cursor-pointer h-1.5 bg-slate-100 rounded-lg"
+          className="w-full accent-[#dad8f9] cursor-pointer h-1.5 bg-black/5 rounded-lg"
         />
-        <div className="flex justify-between text-[11px] text-slate-500">
+        <div className="flex justify-between text-[11px] text-black/60">
           <span>$10/day</span>
           <span>$150/day</span>
         </div>
       </div>
 
       {/* Rental Dates Filter */}
-      <div className="space-y-3 pt-2 border-t border-slate-200">
-        <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-          <Calendar className="w-3.5 h-3.5 text-emerald-600" /> Availability Dates
+      <div className="space-y-3 pt-2 border-t border-black/5">
+        <label className="text-xs font-semibold uppercase tracking-wider text-black/60 flex items-center gap-1.5">
+          <Calendar className="w-3.5 h-3.5 text-black/60" /> Availability Dates
         </label>
         <div className="grid grid-cols-2 gap-2">
           <div>
-            <span className="text-[11px] text-slate-500 block mb-1">Start Date</span>
+            <span className="text-[11px] text-black/60 block mb-1">Start Date</span>
             <input
               type="date"
               value={startDate}
@@ -173,11 +173,11 @@ export default function GearFilterSidebar({
                 setStartDate(e.target.value);
                 applyFilters({ startDate: e.target.value });
               }}
-              className="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg text-xs text-slate-800 focus:outline-none focus:border-emerald-500"
+              className="w-full px-2.5 py-1.5 bg-white border border-black/5 rounded-lg text-xs text-black focus:outline-none focus:border-[#dad8f9]"
             />
           </div>
           <div>
-            <span className="text-[11px] text-slate-500 block mb-1">End Date</span>
+            <span className="text-[11px] text-black/60 block mb-1">End Date</span>
             <input
               type="date"
               value={endDate}
@@ -186,15 +186,15 @@ export default function GearFilterSidebar({
                 setEndDate(e.target.value);
                 applyFilters({ endDate: e.target.value });
               }}
-              className="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg text-xs text-slate-800 focus:outline-none focus:border-emerald-500"
+              className="w-full px-2.5 py-1.5 bg-white border border-black/5 rounded-lg text-xs text-black focus:outline-none focus:border-[#dad8f9]"
             />
           </div>
         </div>
       </div>
 
       {/* Brand Selection */}
-      <div className="space-y-2.5 pt-2 border-t border-slate-200">
-        <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+      <div className="space-y-2.5 pt-2 border-t border-black/5">
+        <label className="text-xs font-semibold uppercase tracking-wider text-black/60">
           Brand Filter
         </label>
         <select
@@ -203,7 +203,7 @@ export default function GearFilterSidebar({
             setSelectedBrand(e.target.value);
             applyFilters({ brand: e.target.value });
           }}
-          className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 focus:outline-none focus:border-emerald-500"
+          className="w-full px-3 py-2 bg-white border border-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-[#dad8f9]"
         >
           <option value="">All Brands</option>
           {availableBrands.map((b) => (

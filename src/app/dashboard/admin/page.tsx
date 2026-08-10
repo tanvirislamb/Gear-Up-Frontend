@@ -88,7 +88,7 @@ export default function AdminDashboard() {
     .reduce((sum, r) => sum + Number(r.totalAmount || 0), 0);
 
   const stats = [
-    { label: "Total Users", value: users.length, icon: Users, color: "text-emerald-600" },
+    { label: "Total Users", value: users.length, icon: Users, color: "text-black/60" },
     { label: "Gear Listed", value: gear.length, icon: Package, color: "text-blue-600" },
     { label: "Rental Orders", value: rentals.length, icon: ShoppingCart, color: "text-purple-600" },
     { label: "Revenue (booked)", value: `$${revenue.toFixed(2)}`, icon: DollarSign, color: "text-amber-600" },
@@ -97,18 +97,18 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Admin Dashboard</h1>
-        <p className="text-xs text-slate-500 mt-1">Platform overview & user moderation</p>
+        <h1 className="text-2xl font-extrabold text-black tracking-tight">Admin Dashboard</h1>
+        <p className="text-xs text-black/60 mt-1">Platform overview & user moderation</p>
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((s) => (
-          <div key={s.label} className="bg-white border border-slate-200 rounded-2xl p-4">
+          <div key={s.label} className="bg-white border border-black/5 rounded-2xl p-4">
             <div className={`flex items-center gap-2 text-xs font-semibold ${s.color} mb-2`}>
               <s.icon className="w-4 h-4" />
               {s.label}
             </div>
-            <div className="text-2xl font-black text-slate-900 truncate">{s.value}</div>
+            <div className="text-2xl font-black text-black truncate">{s.value}</div>
           </div>
         ))}
       </div>
@@ -116,30 +116,30 @@ export default function AdminDashboard() {
       {/* User management */}
       <section className="space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <UserCheck className="w-5 h-5 text-emerald-600" /> User Management
+          <h2 className="text-lg font-bold text-black flex items-center gap-2">
+            <UserCheck className="w-5 h-5 text-black/60" /> User Management
           </h2>
           <div className="relative">
-            <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-black/60 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search users…"
-              className="w-full sm:w-64 bg-white border border-slate-200 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-900 placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+              className="w-full sm:w-64 bg-white border border-black/5 rounded-xl pl-9 pr-3 py-2 text-sm text-black placeholder-black/60 focus:outline-none focus:border-[#dad8f9]"
             />
           </div>
         </div>
 
         {loading ? (
           <div className="flex justify-center py-20">
-            <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
+            <Loader2 className="w-8 h-8 animate-spin text-black/60" />
           </div>
         ) : (
           <>
-            <div className="overflow-x-auto rounded-2xl border border-slate-200">
+            <div className="overflow-x-auto rounded-2xl border border-black/5">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-white text-left text-[11px] uppercase tracking-wide text-slate-500">
+                  <tr className="bg-white text-left text-[11px] uppercase tracking-wide text-black/60">
                     <th className="px-4 py-3 font-semibold">Name</th>
                     <th className="px-4 py-3 font-semibold">Email</th>
                     <th className="px-4 py-3 font-semibold">Role</th>
@@ -148,20 +148,20 @@ export default function AdminDashboard() {
                     <th className="px-4 py-3 font-semibold text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200">
+                <tbody className="divide-y divide-black/5">
                   {pageItems.map((u) => (
-                    <tr key={u.id} className="bg-white hover:bg-slate-50 transition-colors">
+                    <tr key={u.id} className="bg-white hover:bg-black/3 transition-colors">
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-slate-100 text-emerald-600 font-bold text-xs flex items-center justify-center">
+                          <div className="w-8 h-8 rounded-full bg-black/5 text-black/60 font-bold text-xs flex items-center justify-center">
                             {u.name.substring(0, 2).toUpperCase()}
                           </div>
-                          <span className="font-semibold text-slate-900">{u.name}</span>
+                          <span className="font-semibold text-black">{u.name}</span>
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-slate-700">{u.email}</td>
+                      <td className="px-4 py-3 text-black/60">{u.email}</td>
                       <td className="px-4 py-3">
-                        <span className="inline-flex px-2.5 py-1 rounded-full text-[11px] font-bold uppercase bg-slate-100 text-slate-700">
+                        <span className="inline-flex px-2.5 py-1 rounded-full text-[11px] font-bold uppercase bg-black/5 text-black/60">
                           {u.role}
                         </span>
                       </td>
@@ -169,7 +169,7 @@ export default function AdminDashboard() {
                         <span
                           className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold ${
                             u.status === "ACTIVE"
-                              ? "bg-emerald-50 text-emerald-600"
+                              ? "bg-[#dad8f9] text-black"
                               : "bg-rose-50 text-rose-600"
                           }`}
                         >
@@ -181,7 +181,7 @@ export default function AdminDashboard() {
                           {u.status}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-slate-500 text-xs">
+                      <td className="px-4 py-3 text-black/60 text-xs">
                         {u.createdAt ? new Date(u.createdAt).toLocaleDateString() : "—"}
                       </td>
                       <td className="px-4 py-3 text-right">
@@ -191,7 +191,7 @@ export default function AdminDashboard() {
                           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold ${
                             u.status === "ACTIVE"
                               ? "bg-rose-50 text-rose-600 hover:bg-rose-100"
-                              : "bg-emerald-50 text-emerald-600 hover:bg-emerald-100"
+                              : "bg-[#dad8f9] text-black hover:bg-[#dad8f9]/70"
                           } disabled:opacity-60`}
                         >
                           {busyId === u.id ? (
@@ -216,17 +216,17 @@ export default function AdminDashboard() {
                 <button
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page <= 1}
-                  className="p-2 rounded-lg bg-white border border-slate-200 text-slate-700 hover:text-slate-900 disabled:opacity-30"
+                  className="p-2 rounded-lg bg-white border border-black/5 text-black/60 hover:text-black disabled:opacity-30"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
-                <span className="text-xs text-slate-500">
+                <span className="text-xs text-black/60">
                   Page {page} of {totalPages}
                 </span>
                 <button
                   onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                   disabled={page >= totalPages}
-                  className="p-2 rounded-lg bg-white border border-slate-200 text-slate-700 hover:text-slate-900 disabled:opacity-30"
+                  className="p-2 rounded-lg bg-white border border-black/5 text-black/60 hover:text-black disabled:opacity-30"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>

@@ -100,8 +100,8 @@ export default function GearForm({ mode, initial }: GearFormProps) {
   }
 
   const input =
-    "w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors";
-  const label = "block text-xs font-medium text-slate-700 mb-1.5";
+    "w-full bg-white border border-black/5 rounded-xl px-3.5 py-2.5 text-sm text-black placeholder-black/60 focus:outline-none focus:border-[#dad8f9] transition-colors";
+  const label = "block text-xs font-medium text-black/60 mb-1.5";
   const errMsg = "text-[11px] text-rose-600 mt-1.5";
 
   return (
@@ -171,7 +171,7 @@ export default function GearForm({ mode, initial }: GearFormProps) {
             <img
               src={form.image}
               alt="Preview"
-              className="mt-2 h-24 w-32 object-cover rounded-xl border border-slate-200"
+              className="mt-2 h-24 w-32 object-cover rounded-xl border border-black/5"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.opacity = "0.3";
               }}
@@ -225,7 +225,7 @@ export default function GearForm({ mode, initial }: GearFormProps) {
         <button
           type="submit"
           disabled={submitting}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-bold disabled:opacity-60 shadow-lg shadow-emerald-500/20"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black text-sm font-bold disabled:opacity-60 shadow-lg shadow-[#dad8f9]/20"
         >
           {submitting ? (
             <Loader2 className="w-4 h-4 animate-spin" />
@@ -237,7 +237,7 @@ export default function GearForm({ mode, initial }: GearFormProps) {
         <button
           type="button"
           onClick={() => router.push("/dashboard/provider")}
-          className="px-4 py-3 rounded-xl bg-slate-100 text-slate-700 text-sm font-semibold hover:bg-slate-200"
+          className="px-4 py-3 rounded-xl bg-black/5 text-black/60 text-sm font-semibold hover:bg-black/5"
         >
           Cancel
         </button>

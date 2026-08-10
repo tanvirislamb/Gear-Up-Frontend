@@ -4,8 +4,8 @@ const STYLES: Record<string, string> = {
   PLACED: "bg-amber-50 text-amber-600 border-amber-200",
   CONFIRMED: "bg-blue-50 text-blue-600 border-blue-200",
   PAID: "bg-purple-50 text-purple-600 border-purple-200",
-  PICKED_UP: "bg-emerald-50 text-emerald-600 border-emerald-200",
-  RETURNED: "bg-slate-100 text-slate-700 border-slate-300/30",
+  PICKED_UP: "bg-[#dad8f9] text-black border-black/5",
+  RETURNED: "bg-black/5 text-black/60 border-black/5",
   CANCELLED: "bg-rose-50 text-rose-600 border-rose-200",
 };
 
@@ -14,7 +14,7 @@ export function StatusBadge({ status }: { status: string }) {
   return (
     <span
       className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold border uppercase tracking-wide ${
-        STYLES[status] || "bg-slate-100 text-slate-700 border-slate-300/30"
+        STYLES[status] || "bg-black/5 text-black/60 border-black/5"
       }`}
     >
       {label}

@@ -28,28 +28,28 @@ export default function AdminRentalsPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-[#dad8f9] text-black flex items-center justify-center">
           <ShoppingCart className="w-5 h-5" />
         </div>
         <div>
-          <h1 className="text-xl font-extrabold text-slate-900">Content Moderation — Rentals</h1>
-          <p className="text-xs text-slate-500">All rental orders across the platform</p>
+          <h1 className="text-xl font-extrabold text-black">Content Moderation — Rentals</h1>
+          <p className="text-xs text-black/60">All rental orders across the platform</p>
         </div>
       </div>
 
       {loading ? (
         <div className="flex justify-center py-20">
-          <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-black/60" />
         </div>
       ) : rentals.length === 0 ? (
-        <div className="bg-white border border-slate-200 rounded-2xl p-10 text-center text-sm text-slate-500">
+        <div className="bg-white border border-black/5 rounded-2xl p-10 text-center text-sm text-black/60">
           No rental orders found.
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-slate-200">
+        <div className="overflow-x-auto rounded-2xl border border-black/5">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-white text-left text-[11px] uppercase tracking-wide text-slate-500">
+              <tr className="bg-white text-left text-[11px] uppercase tracking-wide text-black/60">
                 <th className="px-4 py-3 font-semibold">Order</th>
                 <th className="px-4 py-3 font-semibold">Customer</th>
                 <th className="px-4 py-3 font-semibold">Gear</th>
@@ -58,26 +58,26 @@ export default function AdminRentalsPage() {
                 <th className="px-4 py-3 font-semibold">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-200">
+            <tbody className="divide-y divide-black/5">
               {rentals.map((r) => (
-                <tr key={r.id} className="bg-white hover:bg-slate-50 transition-colors">
+                <tr key={r.id} className="bg-white hover:bg-black/3 transition-colors">
                   <td className="px-4 py-3">
-                    <div className="font-mono text-xs text-slate-700">{r.id}</div>
-                    <div className="text-[11px] text-slate-500">Qty {r.quantity}</div>
+                    <div className="font-mono text-xs text-black/60">{r.id}</div>
+                    <div className="text-[11px] text-black/60">Qty {r.quantity}</div>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="text-slate-900 font-medium">{r.customer?.name || "—"}</div>
-                    <div className="text-[11px] text-slate-500">{r.customer?.email || ""}</div>
+                    <div className="text-black font-medium">{r.customer?.name || "—"}</div>
+                    <div className="text-[11px] text-black/60">{r.customer?.email || ""}</div>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="text-slate-800">{r.gearItem?.name || "—"}</div>
-                    <div className="text-[11px] text-slate-500">{r.gearItem?.brand || ""}</div>
+                    <div className="text-black">{r.gearItem?.name || "—"}</div>
+                    <div className="text-[11px] text-black/60">{r.gearItem?.brand || ""}</div>
                   </td>
-                  <td className="px-4 py-3 text-slate-700">
+                  <td className="px-4 py-3 text-black/60">
                     <div>{formatDate(r.startDate)}</div>
-                    <div className="text-[11px] text-slate-500">→ {formatDate(r.endDate)}</div>
+                    <div className="text-[11px] text-black/60">→ {formatDate(r.endDate)}</div>
                   </td>
-                  <td className="px-4 py-3 text-slate-800 font-semibold">
+                  <td className="px-4 py-3 text-black font-semibold">
                     ${Number(r.totalAmount).toFixed(2)}
                   </td>
                   <td className="px-4 py-3">
