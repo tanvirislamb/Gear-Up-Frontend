@@ -114,13 +114,25 @@ export async function logoutUser() {
 }
 
 // ---- Rentals ----
+function toIsoDateTime(value: string): string {
+  if (!value) return value;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return new Date(`${value}T00:00:00`).toISOString();
+  }
+  return value;
+}
+
 export async function createRental(body: {
   gearItemId: string;
   quantity: number;
   startDate: string;
   endDate: string;
 }) {
-  return post<RentalOrder>("/rentals", body);
+  return post<RentalOrder>("/rentals", {
+    ...body,
+    startDate: toIsoDateTime(body.startDate),
+    endDate: toIsoDateTime(body.endDate),
+  });
 }
 
 export async function fetchMyOrders(): Promise<RentalOrder[]> {

@@ -10,6 +10,14 @@ function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
+function toIsoDateTime(value: string) {
+  if (!value) return value;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return new Date(`${value}T00:00:00`).toISOString();
+  }
+  return value;
+}
+
 function CheckoutContent() {
   const params = useSearchParams();
   const router = useRouter();
@@ -28,7 +36,7 @@ function CheckoutContent() {
       const res = await fetch('/api/rentals', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ gearItemId: gearId, quantity: qty, startDate, endDate })
+        body: JSON.stringify({ gearItemId: gearId, quantity: qty, startDate: toIsoDateTime(startDate), endDate: toIsoDateTime(endDate) })
       });
       const json = await res.json();
       if (!res.ok) {
