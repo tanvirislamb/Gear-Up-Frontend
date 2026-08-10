@@ -53,7 +53,7 @@ function CheckoutContent() {
           <ArrowLeft className="w-4 h-4" /> Back to Gear
         </Link>
 
-        <div className="bg-white border border-black/5 rounded-3xl p-8 sm:p-10 shadow-2xl space-y-6">
+        <div className="bg-white border border-black/5 rounded-3xl p-8 sm:p-10 space-y-6">
           {/* Header */}
           <div className="flex items-center gap-3">
             <div className="w-11 h-11 rounded-xl bg-[#dad8f9] text-black flex items-center justify-center font-bold">
@@ -105,7 +105,7 @@ function CheckoutContent() {
           <button
             onClick={handlePlaceOrder}
             disabled={loading}
-            className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl font-extrabold text-sm bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black shadow-lg shadow-[#dad8f9]/30 hover:shadow-[#dad8f9]/50 transition-all duration-200 active:scale-[0.99] disabled:opacity-70 group"
+            className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl font-extrabold text-sm bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black transition-all duration-200 active:scale-[0.99] disabled:opacity-70 group"
           >
             {loading ? (
               <>
