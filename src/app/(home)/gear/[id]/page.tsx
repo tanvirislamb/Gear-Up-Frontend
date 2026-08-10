@@ -40,7 +40,7 @@ export default async function GearDetailPage({ params }: GearDetailPageProps) {
         {/* Left Column */}
         <div className="lg:col-span-7 space-y-8">
           {/* Hero Image */}
-          <div className="relative aspect-[16/10] w-full rounded-3xl overflow-hidden bg-white border border-black/5 shadow-2xl">
+          <div className="relative aspect-[16/10] w-full rounded-3xl overflow-hidden bg-white border border-black/5">
             {hasImage ? (
               <Image
                 src={gear.image!}
