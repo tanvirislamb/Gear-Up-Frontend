@@ -21,6 +21,10 @@ const Navbar = () => {
   const user = auth?.user || null
   const logout = auth?.logout
 
+  const initials = user
+    ? user.name.trim().split(/\s+/).slice(0, 2).map((w) => w[0]?.toUpperCase() || "").join("")
+    : ""
+
   const dashboardHref = user
     ? user.role === "PROVIDER"
       ? "/dashboard/provider"
@@ -82,6 +86,9 @@ const Navbar = () => {
 
             {user ? (
               <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#dad8f9] text-black flex items-center justify-center text-sm font-bold border border-black/5">
+                  {initials}
+                </div>
                 <div className="text-sm text-black mr-2">
                   <div className="font-semibold">{user.name}</div>
                   <div className="text-xs text-black/60">{user.email}</div>
@@ -141,9 +148,14 @@ const Navbar = () => {
 
           <div className="pt-4 flex flex-col gap-2">
             {user ? (
-              <div className="p-3 rounded-lg bg-white">
-                <div className="font-semibold text-sm">{user.name}</div>
-                <div className="text-xs text-black/60">{user.email}</div>
+              <div className="p-3 rounded-lg bg-white flex items-center gap-3">
+                <div className="w-10 h-10 shrink-0 rounded-full bg-[#dad8f9] text-black flex items-center justify-center text-sm font-bold border border-black/5">
+                  {initials}
+                </div>
+                <div className="min-w-0">
+                  <div className="font-semibold text-sm">{user.name}</div>
+                  <div className="text-xs text-black/60">{user.email}</div>
+                </div>
                 <button onClick={async () => {
                   if (logout) await logout()
                   router.push("/")
