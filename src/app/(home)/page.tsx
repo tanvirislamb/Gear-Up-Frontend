@@ -47,7 +47,7 @@ export default async function HomePage() {
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <Link
                   href="/gear"
-                  className="w-full sm:w-auto px-8 py-4 rounded-2xl text-sm font-extrabold bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black shadow-xl shadow-[#dad8f9]/30 hover:shadow-[#dad8f9]/50 transition-all duration-200 flex items-center justify-center gap-2 group active:scale-[0.98]"
+                  className="w-full sm:w-auto px-8 py-4 rounded-2xl text-sm font-extrabold bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black transition-all duration-200 flex items-center justify-center gap-2 group active:scale-[0.98]"
                 >
                   <span>Explore All Gear</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
