@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthProvider";
 import { useToast } from "@/context/ToastProvider";
-import { RentalOrder, Payment } from "@/types/gear";
-import { fetchMyOrders, fetchMyPayments, submitReview } from "@/services/api";
+import { RentalOrder } from "@/types/gear";
+import { fetchMyOrders, submitReview } from "@/services/api";
 import { StatusBadge } from "@/component/StatusBadge";
 import {
   CreditCard,
@@ -68,9 +68,8 @@ function ReviewForm({ order, onDone }: { order: RentalOrder; onDone: () => void 
             aria-label={`${n} stars`}
           >
             <Star
-              className={`w-5 h-5 ${
-                n <= rating ? "fill-amber-400 text-amber-600" : "text-black/60"
-              }`}
+              className={`w-5 h-5 ${n <= rating ? "fill-amber-400 text-amber-600" : "text-black/60"
+                }`}
             />
           </button>
         ))}
@@ -99,16 +98,14 @@ export default function CustomerDashboard() {
   const { success, error } = useToast();
   const router = useRouter();
   const [orders, setOrders] = useState<RentalOrder[]>([]);
-  const [payments, setPayments] = useState<Payment[]>([]);
   const [loading, setLoading] = useState(true);
   const [reviewOrderId, setReviewOrderId] = useState<string | null>(null);
   const [payingId, setPayingId] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
-    const [o, p] = await Promise.all([fetchMyOrders(), fetchMyPayments()]);
+    const o = await fetchMyOrders();
     setOrders(o);
-    setPayments(p);
     setLoading(false);
   }, []);
 
@@ -153,18 +150,17 @@ export default function CustomerDashboard() {
             Customer Dashboard
           </h1>
           <p className="text-xs text-black/60 mt-1">
-            Track your rental orders and payments
+            Track your rental orders
           </p>
         </div>
       </div>
 
       {/* Stat cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
         {[
           { label: "Active Rentals", value: activeCount, icon: Calendar, color: "text-black/60" },
           { label: "Awaiting Payment", value: payableCount, icon: Wallet, color: "text-blue-600" },
           { label: "Completed Returns", value: returnedCount, icon: BadgeCheck, color: "text-black/60" },
-          { label: "Total Payments", value: payments.length, icon: CreditCard, color: "text-purple-600" },
         ].map((s) => (
           <div
             key={s.label}
@@ -270,55 +266,6 @@ export default function CustomerDashboard() {
                               }}
                             />
                           )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </section>
-
-          {/* Payment history */}
-          <section className="space-y-3">
-            <h2 className="text-lg font-bold text-black">Payment History</h2>
-            {payments.length === 0 ? (
-              <div className="bg-white border border-black/5 rounded-2xl p-10 text-center">
-                <CreditCard className="w-10 h-10 text-black/60 mx-auto mb-3" />
-                <p className="text-sm text-black/60">No payments yet.</p>
-              </div>
-            ) : (
-              <div className="overflow-x-auto rounded-2xl border border-black/5">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="bg-white text-left text-[11px] uppercase tracking-wide text-black/60">
-                      <th className="px-4 py-3 font-semibold">Date</th>
-                      <th className="px-4 py-3 font-semibold">Order</th>
-                      <th className="px-4 py-3 font-semibold">Amount</th>
-                      <th className="px-4 py-3 font-semibold">Method</th>
-                      <th className="px-4 py-3 font-semibold">Status</th>
-                      <th className="px-4 py-3 font-semibold">Transaction ID</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-black/5">
-                    {payments.map((p) => (
-                      <tr key={p.id} className="bg-white hover:bg-black/3 transition-colors">
-                        <td className="px-4 py-3 text-black/60">{formatDate(p.createdAt)}</td>
-                        <td className="px-4 py-3">
-                          <div className="text-black font-medium">
-                            {p.rentalOrder?.gearItem?.name || "Order"}
-                          </div>
-                          <div className="text-[11px] text-black/60">{p.rentalOrderId}</div>
-                        </td>
-                        <td className="px-4 py-3 text-black font-semibold">
-                          ${Number(p.amount).toFixed(2)}
-                        </td>
-                        <td className="px-4 py-3 text-black/60">{p.method}</td>
-                        <td className="px-4 py-3">
-                          <StatusBadge status={p.status} />
-                        </td>
-                        <td className="px-4 py-3 text-black/60 text-xs font-mono truncate max-w-[160px]">
-                          {p.transactionId || "—"}
                         </td>
                       </tr>
                     ))}

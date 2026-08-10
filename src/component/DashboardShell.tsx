@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useAuth } from "@/context/AuthProvider";
+import React from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useAuth } from "@/context/AuthProvider"
 import {
   LayoutDashboard,
   Package,
@@ -15,18 +15,20 @@ import {
   LogOut,
   Loader2,
   AlertTriangle,
-} from "lucide-react";
-import { Role } from "@/types/gear";
+  CreditCard,
+} from "lucide-react"
+import { Role } from "@/types/gear"
 
 interface NavItem {
   href: string;
   label: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<{ className?: string }>
 }
 
 const NAV: Record<Role, NavItem[]> = {
   CUSTOMER: [
     { href: "/dashboard/customer", label: "Overview & Orders", icon: LayoutDashboard },
+    { href: "/dashboard/customer/payments", label: "Payments", icon: CreditCard },
   ],
   PROVIDER: [
     { href: "/dashboard/provider", label: "Overview & Inventory", icon: LayoutDashboard },
@@ -43,19 +45,19 @@ const NAV: Record<Role, NavItem[]> = {
 function sectionOf(role: Role, pathname: string): string {
   return pathname.startsWith(`/dashboard/${role.toLowerCase()}`)
     ? role.toLowerCase()
-    : "";
+    : ""
 }
 
 export default function DashboardShell({ children }: { children: React.ReactNode }) {
-  const { user, loading, logout } = useAuth();
-  const pathname = usePathname();
+  const { user, loading, logout } = useAuth()
+  const pathname = usePathname()
 
   if (loading) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-black/60" />
       </div>
-    );
+    )
   }
 
   if (!user) {
@@ -68,17 +70,17 @@ export default function DashboardShell({ children }: { children: React.ReactNode
           Please sign in to view your dashboard.
         </Link>
       </div>
-    );
+    )
   }
 
-  const role: Role = (user.role as Role) || "CUSTOMER";
-  const section = sectionOf(role, pathname);
+  const role: Role = (user.role as Role) || "CUSTOMER"
+  const section = sectionOf(role, pathname)
   const denied =
     pathname !== `/dashboard/${role.toLowerCase()}` &&
     !pathname.startsWith(`/dashboard/${role.toLowerCase()}/`) &&
-    pathname.startsWith("/dashboard");
+    pathname.startsWith("/dashboard")
 
-  const items = NAV[role];
+  const items = NAV[role]
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -107,25 +109,24 @@ export default function DashboardShell({ children }: { children: React.ReactNode
 
             <nav className="space-y-1">
               {items.map((item) => {
-                const Icon = item.icon;
+                const Icon = item.icon
                 const active =
                   pathname === item.href ||
                   (item.href !== `/dashboard/${role.toLowerCase()}` &&
-                    pathname.startsWith(item.href));
+                    pathname.startsWith(item.href))
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
-                      active
+                    className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${active
                         ? "bg-[#dad8f9] text-black border border-black/5"
                         : "text-black/60 hover:text-black hover:bg-black/5 border border-transparent"
-                    }`}
+                      }`}
                   >
                     <Icon className="w-4 h-4" />
                     {item.label}
                   </Link>
-                );
+                )
               })}
             </nav>
 
@@ -138,7 +139,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
               </Link>
               <button
                 onClick={async () => {
-                  await logout();
+                  await logout()
                 }}
                 className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-black/60 hover:text-rose-600 hover:bg-rose-50"
               >
@@ -152,5 +153,5 @@ export default function DashboardShell({ children }: { children: React.ReactNode
         <main className="flex-1 min-w-0">{children}</main>
       </div>
     </div>
-  );
+  )
 }
