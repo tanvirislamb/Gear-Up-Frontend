@@ -64,7 +64,7 @@ export default function PayOrderPage() {
     1,
     Math.ceil(
       (new Date(order.endDate).getTime() - new Date(order.startDate).getTime()) /
-        (1000 * 60 * 60 * 24)
+      (1000 * 60 * 60 * 24)
     )
   );
 
@@ -126,7 +126,7 @@ export default function PayOrderPage() {
           <button
             onClick={handlePay}
             disabled={paying}
-            className="w-full py-3.5 rounded-2xl bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-60 shadow-lg shadow-[#dad8f9]/30"
+            className="w-full py-3.5 rounded-2xl bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-60"
           >
             <CreditCard className="w-4 h-4" />
             {paying ? "Creating secure checkout…" : "Pay with Stripe"}
