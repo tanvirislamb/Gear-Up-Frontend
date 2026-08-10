@@ -1,21 +1,22 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/component/navbar";
-import Footer from "@/component/Footer";
-import { AuthProvider } from "@/context/AuthProvider";
-import { ToastProvider } from "@/context/ToastProvider";
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
+import Navbar from "@/component/navbar"
+import Footer from "@/component/Footer"
+import { AuthProvider } from "@/context/AuthProvider"
+import { ToastProvider } from "@/context/ToastProvider"
+import SplashScreen from "@/component/SplashScreen"
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-});
+})
 
 export const metadata: Metadata = {
   title: "GearUp",
   description: "GearUp is a modern platform to rent sports equipment, outdoor gear, bikes, tents, kayaks, skis, and climbing tools from verified local providers.",
   keywords: ["outdoor gear rental", "sports equipment rental", "bike rental", "tent rental", "kayak rental", "GearUp"],
-};
+}
 
 export default function RootLayout({
   children,
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans selection:bg-[#dad8f9]/60 selection:text-black">
         <AuthProvider>
           <ToastProvider>
+            <SplashScreen />
             <Navbar />
             <main className="flex-grow pt-15">{children}</main>
             <Footer />
@@ -34,5 +36,5 @@ export default function RootLayout({
         </AuthProvider>
       </body>
     </html>
-  );
+  )
 }
