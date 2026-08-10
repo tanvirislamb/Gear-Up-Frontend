@@ -15,7 +15,7 @@ export default function PaymentSuccess() {
         <div className="pt-2">
           <Link
             href="/dashboard/customer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-extrabold bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black shadow-lg shadow-[#dad8f9]/30 transition-all group"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-extrabold bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black transition-all group"
           >
             <span>Go to Dashboard</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
