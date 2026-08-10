@@ -31,9 +31,9 @@ function LoginContent() {
   }, [state.success])
 
   return (
-    <div className="min-h-[calc(100vh-65px)] mt-15 flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
+    <div className="min-h-[calc(100vh-65px)] flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
 
-      <div className="w-full max-w-md rounded-3xl overflow-hidden shadow relative z-10">
+      <div className="w-full max-w-md rounded-3xl overflow-hidden md:shadow relative z-10">
         <div className="p-8 lg:p-10">
           <div className="flex items-center justify-center gap-3 mb-8">
             <div className="w-11 h-11 rounded-xl bg-[#dad8f9] text-black flex items-center justify-center font-bold">

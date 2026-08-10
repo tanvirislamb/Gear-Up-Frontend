@@ -28,7 +28,7 @@ export default function RootLayout({
         <AuthProvider>
           <ToastProvider>
             <Navbar />
-            <main className="flex-grow">{children}</main>
+            <main className="flex-grow pt-15">{children}</main>
             <Footer />
           </ToastProvider>
         </AuthProvider>
