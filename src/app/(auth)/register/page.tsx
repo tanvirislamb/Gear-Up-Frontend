@@ -28,7 +28,7 @@ function RegisterContent() {
       (async () => {
         try {
           if (auth?.refreshUser) await auth.refreshUser();
-        } catch {}
+        } catch { }
         router.push(
           redirect
             ? decodeURIComponent(redirect)
@@ -57,11 +57,9 @@ function RegisterContent() {
   ];
 
   return (
-    <div className="min-h-[calc(100vh-65px)] flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-black/3 relative overflow-hidden">
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#dad8f9]/60 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#dad8f9]/20 rounded-full blur-3xl pointer-events-none" />
+    <div className="min-h-[calc(100vh-65px)] flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
 
-      <div className="w-full max-w-lg rounded-3xl overflow-hidden border border-black/5 bg-white shadow-2xl backdrop-blur relative z-10">
+      <div className="w-full max-w-lg rounded-3xl overflow-hidden bg-white md:shadow relative z-10">
         <div className="p-8 lg:p-10">
           <div className="flex items-center gap-3 mb-8">
             <div className="w-11 h-11 rounded-xl bg-[#dad8f9] text-black flex items-center justify-center font-bold">
@@ -103,11 +101,10 @@ function RegisterContent() {
                         key={r.value}
                         type="button"
                         onClick={() => setSelectedRole(r.value)}
-                        className={`relative p-4 rounded-2xl border text-left transition-all ${
-                          active
-                            ? "border-black/10 bg-[#dad8f9]"
-                            : "border-black/5 bg-white hover:border-black/10"
-                        }`}
+                        className={`relative p-4 rounded-2xl border text-left transition-all ${active
+                          ? "border-black/10 bg-[#dad8f9]"
+                          : "border-black/5 bg-white hover:border-black/10"
+                          }`}
                       >
                         <input type="hidden" name="role" value={selectedRole} />
                         {active && (
@@ -133,7 +130,7 @@ function RegisterContent() {
                   name="name"
                   type="text"
                   required
-                  placeholder="e.g. John Doe"
+                  placeholder="name"
                   className="w-full bg-black/3 rounded-xl px-3.5 py-2.5 text-sm text-black placeholder-black/40 focus:outline-none"
                 />
                 {state.errors?.name && (
@@ -147,7 +144,7 @@ function RegisterContent() {
                   name="email"
                   type="email"
                   required
-                  placeholder="name@example.com"
+                  placeholder="email"
                   className="w-full bg-black/3 rounded-xl px-3.5 py-2.5 text-sm text-black placeholder-black/40 focus:outline-none"
                 />
                 {state.errors?.email && (
