@@ -150,7 +150,7 @@ export default function GearCatalogPage() {
         {/* Main Content Area */}
         <div className="lg:col-span-3 space-y-6">
           {/* Results Summary Bar */}
-          <div className="flex items-center justify-between bg-white border border-black/5 rounded-2xl px-5 py-3 text-xs text-black/60">
+          <div className="flex items-center justify-between bg-white border border-black/3 shadow-sm rounded-2xl px-5 py-3 text-xs text-black/60">
             <span className="font-semibold">
               Showing <span className="text-black/60 font-bold">{gearItems.length}</span> of{" "}
               <span className="text-black font-bold">{meta.total}</span> gear items
@@ -202,7 +202,7 @@ export default function GearCatalogPage() {
               <button
                 onClick={() => handlePageChange(meta.page - 1)}
                 disabled={meta.page <= 1}
-                className="p-2.5 rounded-xl bg-white border border-black/5 text-black/60 hover:text-black disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                className="p-2.5 rounded-xl bg-white border border-black/5 shadow-sm text-black/60 hover:text-black disabled:opacity-30 disabled:shadow-none disabled:cursor-not-allowed transition-colors"
                 title="Previous Page"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -215,11 +215,10 @@ export default function GearCatalogPage() {
                   <button
                     key={pageNum}
                     onClick={() => handlePageChange(pageNum)}
-                    className={`w-10 h-10 rounded-xl text-xs font-bold transition-all ${
-                      isActive
-                        ? "bg-[#dad8f9] text-black shadow-md shadow-[#dad8f9]/20"
-                        : "bg-white border border-black/5 text-black/60 hover:bg-black/5"
-                    }`}
+                    className={`w-10 h-10 rounded-xl text-xs font-bold transition-all ${isActive
+                      ? "bg-[#dad8f9] text-black shadow-md shadow-[#dad8f9]/20"
+                      : "bg-white border border-black/5 text-black/60 hover:bg-black/5"
+                      }`}
                   >
                     {pageNum}
                   </button>
@@ -229,7 +228,7 @@ export default function GearCatalogPage() {
               <button
                 onClick={() => handlePageChange(meta.page + 1)}
                 disabled={meta.page >= meta.totalPages}
-                className="p-2.5 rounded-xl bg-white border border-black/5 text-black/60 hover:text-black disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                className="p-2.5 rounded-xl bg-white border border-black/5 shadow-sm text-black/60 hover:text-black disabled:opacity-30 disabled:shadow-none disabled:cursor-not-allowed transition-colors"
                 title="Next Page"
               >
                 <ChevronRight className="w-4 h-4" />

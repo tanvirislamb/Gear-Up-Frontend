@@ -49,7 +49,7 @@ export default function GearFilterSidebar({
   };
 
   return (
-    <aside className="w-full bg-white border border-black/5 rounded-2xl p-5 space-y-6 text-black backdrop-blur-md sticky top-20">
+    <aside className="w-full bg-white border border-black/3 shadow-sm rounded-2xl p-5 space-y-6 text-black backdrop-blur-md sticky top-20">
       {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b border-black/5">
         <div className="flex items-center gap-2">
@@ -80,7 +80,7 @@ export default function GearFilterSidebar({
               setSearch(e.target.value);
               applyFilters({ search: e.target.value });
             }}
-            className="w-full pl-9 pr-4 py-2.5 bg-white border border-black/5 rounded-xl text-sm text-black placeholder-black/60 focus:outline-none focus:border-[#dad8f9] transition-colors"
+            className="w-full pl-9 pr-4 py-2.5 bg-black/5 rounded-xl text-sm text-black placeholder-black/60 focus:outline-none focus:border-[#dad8f9] transition-colors"
           />
           <Search className="w-4 h-4 text-black/60 absolute left-3 top-3" />
         </div>
@@ -97,11 +97,10 @@ export default function GearFilterSidebar({
               setSelectedCategory("");
               applyFilters({ catagory: "" });
             }}
-            className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-colors flex items-center justify-between ${
-              selectedCategory === ""
-                    ? "bg-[#dad8f9] text-black font-semibold border border-black/5"
-                : "text-black/60 hover:bg-black/5"
-            }`}
+            className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-colors flex items-center justify-between ${selectedCategory === ""
+              ? "bg-[#dad8f9] text-black font-semibold"
+              : "text-black/60 hover:bg-black/5"
+              }`}
           >
             <span>All Categories</span>
             {selectedCategory === "" && <Check className="w-3.5 h-3.5 text-black/60" />}
@@ -117,11 +116,10 @@ export default function GearFilterSidebar({
                   setSelectedCategory(val);
                   applyFilters({ catagory: val });
                 }}
-                className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-colors flex items-center justify-between ${
-                  isSelected
-                ? "bg-[#dad8f9] text-black font-semibold border border-black/5"
-                    : "text-black/60 hover:bg-black/5"
-                }`}
+                className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-colors flex items-center justify-between ${isSelected
+                  ? "bg-[#dad8f9] text-black font-semibold"
+                  : "text-black/60 hover:bg-black/5"
+                  }`}
               >
                 <span>{cat.name}</span>
                 {isSelected && <Check className="w-3.5 h-3.5 text-black/60" />}
@@ -173,7 +171,7 @@ export default function GearFilterSidebar({
                 setStartDate(e.target.value);
                 applyFilters({ startDate: e.target.value });
               }}
-              className="w-full px-2.5 py-1.5 bg-white border border-black/5 rounded-lg text-xs text-black focus:outline-none focus:border-[#dad8f9]"
+              className="w-full px-2.5 py-1.5 bg-black/5 rounded-lg text-xs text-black focus:outline-none focus:border-[#dad8f9]"
             />
           </div>
           <div>
@@ -186,7 +184,7 @@ export default function GearFilterSidebar({
                 setEndDate(e.target.value);
                 applyFilters({ endDate: e.target.value });
               }}
-              className="w-full px-2.5 py-1.5 bg-white border border-black/5 rounded-lg text-xs text-black focus:outline-none focus:border-[#dad8f9]"
+              className="w-full px-2.5 py-1.5 bg-black/5 rounded-lg text-xs text-black focus:outline-none focus:border-[#dad8f9]"
             />
           </div>
         </div>
@@ -203,7 +201,7 @@ export default function GearFilterSidebar({
             setSelectedBrand(e.target.value);
             applyFilters({ brand: e.target.value });
           }}
-          className="w-full px-3 py-2 bg-white border border-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-[#dad8f9]"
+          className="w-full px-3 py-2 bg-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-[#dad8f9]"
         >
           <option value="">All Brands</option>
           {availableBrands.map((b) => (
