@@ -1,22 +1,22 @@
-"use client";
+"use client"
 
-import React, { useCallback, useEffect, useState } from "react";
-import { useToast } from "@/context/ToastProvider";
-import { RentalOrder } from "@/types/gear";
-import { fetchProviderOrders, updateOrderStatus } from "@/services/api";
-import { StatusBadge } from "@/component/StatusBadge";
-import { Loader2, ShoppingCart, Check, Truck, PackageCheck, XCircle } from "lucide-react";
+import React, { useCallback, useEffect, useState } from "react"
+import { useToast } from "@/context/ToastProvider"
+import { RentalOrder } from "@/types/gear"
+import { fetchProviderOrders, updateOrderStatus } from "@/services/api"
+import { StatusBadge } from "@/component/StatusBadge"
+import { Loader2, ShoppingCart, Check, Truck, PackageCheck, XCircle } from "lucide-react"
 
 interface Action {
-  status: string;
-  label: string;
-  icon: React.ComponentType<{ className?: string }>;
-  style: string;
+  status: string
+  label: string
+  icon: React.ComponentType<{ className?: string }>
+  style: string
 }
 
 function actionsFor(status: string): Action[] {
   const base =
-    "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-colors";
+    "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-colors"
   switch (status) {
     case "PLACED":
       return [
@@ -32,7 +32,7 @@ function actionsFor(status: string): Action[] {
           icon: XCircle,
           style: `${base} bg-rose-50 text-rose-600 hover:bg-rose-500/25`,
         },
-      ];
+      ]
     case "PAID":
       return [
         {
@@ -41,7 +41,7 @@ function actionsFor(status: string): Action[] {
           icon: Truck,
           style: `${base} bg-[#dad8f9] text-black hover:bg-[#dad8f9]/70`,
         },
-      ];
+      ]
     case "PICKED_UP":
       return [
         {
@@ -50,45 +50,45 @@ function actionsFor(status: string): Action[] {
           icon: PackageCheck,
           style: `${base} bg-black/5 text-black/60 hover:bg-black/5`,
         },
-      ];
+      ]
     default:
-      return [];
+      return []
   }
 }
 
 function formatDate(iso?: string | null) {
-  if (!iso) return "—";
-  return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  if (!iso) return "—"
+  return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
 }
 
 export default function ProviderOrdersPage() {
-  const { success, error } = useToast();
-  const [orders, setOrders] = useState<RentalOrder[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [busyId, setBusyId] = useState<string | null>(null);
+  const { success, error } = useToast()
+  const [orders, setOrders] = useState<RentalOrder[]>([])
+  const [loading, setLoading] = useState(true)
+  const [busyId, setBusyId] = useState<string | null>(null)
 
   const load = useCallback(async () => {
-    setLoading(true);
-    const o = await fetchProviderOrders();
-    setOrders(o);
-    setLoading(false);
-  }, []);
+    setLoading(true)
+    const o = await fetchProviderOrders()
+    setOrders(o)
+    setLoading(false)
+  }, [])
 
   useEffect(() => {
-    load();
-  }, [load]);
+    load()
+  }, [load])
 
   async function handleStatus(order: RentalOrder, status: string) {
-    setBusyId(order.id);
-    const res = await updateOrderStatus(order.id, status);
-    setBusyId(null);
+    setBusyId(order.id)
+    const res = await updateOrderStatus(order.id, status)
+    setBusyId(null)
     if (res?.success) {
-      success(`Order marked as ${status.replace(/_/g, " ")}`);
+      success(`Order marked as ${status.replace(/_/g, " ")}`)
       setOrders((prev) =>
         prev.map((o) => (o.id === order.id ? { ...o, status: status as RentalOrder["status"] } : o))
-      );
+      )
     } else {
-      error(res?.message || "Failed to update order");
+      error(res?.message || "Failed to update order")
     }
   }
 
@@ -109,15 +109,15 @@ export default function ProviderOrdersPage() {
           <Loader2 className="w-8 h-8 animate-spin text-black/60" />
         </div>
       ) : orders.length === 0 ? (
-        <div className="bg-white border border-black/5 rounded-2xl p-10 text-center">
+        <div className="bg-white border border-black/3 shadow-sm rounded-2xl p-10 text-center">
           <ShoppingCart className="w-10 h-10 text-black/60 mx-auto mb-3" />
           <p className="text-sm text-black/60">No orders for your gear yet.</p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-black/5">
+        <div className="overflow-x-auto rounded-2xl border border-black/3 shadow-sm">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-white text-left text-[11px] uppercase tracking-wide text-black/60">
+              <tr className="bg-black/5 text-left text-[11px] uppercase tracking-wide text-black/60">
                 <th className="px-4 py-3 font-semibold">Customer</th>
                 <th className="px-4 py-3 font-semibold">Gear</th>
                 <th className="px-4 py-3 font-semibold">Dates</th>
@@ -170,12 +170,12 @@ export default function ProviderOrdersPage() {
                       </div>
                     </td>
                   </tr>
-                );
+                )
               })}
             </tbody>
           </table>
         </div>
       )}
     </div>
-  );
+  )
 }
