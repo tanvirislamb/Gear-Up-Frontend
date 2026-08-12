@@ -1,13 +1,13 @@
-"use client";
+"use client"
 
-import React, { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useAuth } from "@/context/AuthProvider";
-import { useToast } from "@/context/ToastProvider";
-import { RentalOrder } from "@/types/gear";
-import { fetchMyOrders, submitReview } from "@/services/api";
-import { StatusBadge } from "@/component/StatusBadge";
+import React, { useCallback, useEffect, useState } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@/context/AuthProvider"
+import { useToast } from "@/context/ToastProvider"
+import { RentalOrder } from "@/types/gear"
+import { fetchMyOrders, submitReview } from "@/services/api"
+import { StatusBadge } from "@/component/StatusBadge"
 import {
   CreditCard,
   Loader2,
@@ -16,38 +16,38 @@ import {
   Calendar,
   Wallet,
   BadgeCheck,
-} from "lucide-react";
+} from "lucide-react"
 
 function formatDate(iso?: string | null) {
-  if (!iso) return "—";
+  if (!iso) return "—"
   return new Date(iso).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
     day: "numeric",
-  });
+  })
 }
 
 function ReviewForm({ order, onDone }: { order: RentalOrder; onDone: () => void }) {
-  const { success, error } = useToast();
-  const [rating, setRating] = useState(5);
-  const [comment, setComment] = useState("");
-  const [submitting, setSubmitting] = useState(false);
+  const { success, error } = useToast()
+  const [rating, setRating] = useState(5)
+  const [comment, setComment] = useState("")
+  const [submitting, setSubmitting] = useState(false)
 
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setSubmitting(true);
+    e.preventDefault()
+    setSubmitting(true)
     const res = await submitReview({
       id: order.id,
       gearItemId: order.gearItemId,
       rating,
       comment: comment.trim() || undefined,
-    });
-    setSubmitting(false);
+    })
+    setSubmitting(false)
     if (res?.success) {
-      success("Review submitted. Thank you!");
-      onDone();
+      success("Review submitted. Thank you!")
+      onDone()
     } else {
-      error(res?.message || "Failed to submit review");
+      error(res?.message || "Failed to submit review")
     }
   }
 
@@ -91,56 +91,56 @@ function ReviewForm({ order, onDone }: { order: RentalOrder; onDone: () => void 
         {submitting ? "Submitting…" : "Submit Review"}
       </button>
     </form>
-  );
+  )
 }
 
 export default function CustomerDashboard() {
-  const { user } = useAuth();
-  const { success, error } = useToast();
-  const router = useRouter();
-  const [orders, setOrders] = useState<RentalOrder[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [reviewOrderId, setReviewOrderId] = useState<string | null>(null);
-  const [payingId, setPayingId] = useState<string | null>(null);
+  const { user } = useAuth()
+  const { success, error } = useToast()
+  const router = useRouter()
+  const [orders, setOrders] = useState<RentalOrder[]>([])
+  const [loading, setLoading] = useState(true)
+  const [reviewOrderId, setReviewOrderId] = useState<string | null>(null)
+  const [payingId, setPayingId] = useState<string | null>(null)
 
   const load = useCallback(async () => {
-    setLoading(true);
-    const o = await fetchMyOrders();
-    setOrders(o);
-    setLoading(false);
-  }, []);
+    setLoading(true)
+    const o = await fetchMyOrders()
+    setOrders(o)
+    setLoading(false)
+  }, [])
 
   useEffect(() => {
-    load();
-  }, [load]);
+    load()
+  }, [load])
 
   async function handlePay(order: RentalOrder) {
-    if (order.status !== "CONFIRMED") return;
-    setPayingId(order.id);
+    if (order.status !== "CONFIRMED") return
+    setPayingId(order.id)
     try {
       const res = await fetch("/api/payments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ rentalOrderId: order.id, method: "STRIPE" }),
       });
-      const json = await res.json();
+      const json = await res.json()
       if (!res.ok || !json?.data?.sessionUrl) {
-        error(json?.message || "Failed to create payment session");
-        setPayingId(null);
-        return;
+        error(json?.message || "Failed to create payment session")
+        setPayingId(null)
+        return
       }
-      window.location.href = json.data.sessionUrl;
+      window.location.href = json.data.sessionUrl
     } catch {
-      error("Network error while creating payment");
-      setPayingId(null);
+      error("Network error while creating payment")
+      setPayingId(null)
     }
   }
 
   const activeCount = orders.filter(
     (o) => !["RETURNED", "CANCELLED"].includes(o.status)
-  ).length;
-  const payableCount = orders.filter((o) => o.status === "CONFIRMED").length;
-  const returnedCount = orders.filter((o) => o.status === "RETURNED").length;
+  ).length
+  const payableCount = orders.filter((o) => o.status === "CONFIRMED").length
+  const returnedCount = orders.filter((o) => o.status === "RETURNED").length
 
   return (
     <div className="space-y-8">
@@ -165,7 +165,7 @@ export default function CustomerDashboard() {
         ].map((s) => (
           <div
             key={s.label}
-            className="bg-white border border-black/5 rounded-2xl p-4"
+            className="bg-white shadow-sm border border-black/2 rounded-2xl p-4"
           >
             <div className={`flex items-center gap-2 text-xs font-semibold ${s.color} mb-2`}>
               <s.icon className="w-4 h-4" />
@@ -196,10 +196,10 @@ export default function CustomerDashboard() {
                 </p>
               </div>
             ) : (
-              <div className="overflow-x-auto rounded-2xl border border-black/5">
+              <div className="overflow-x-auto rounded-2xl shadow-sm">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="bg-white text-left text-[11px] uppercase tracking-wide text-black/60">
+                    <tr className="bg-black/5 text-left text-[11px] uppercase tracking-wide text-black/60">
                       <th className="px-4 py-3 font-semibold">Gear</th>
                       <th className="px-4 py-3 font-semibold">Dates</th>
                       <th className="px-4 py-3 font-semibold">Qty</th>
@@ -262,8 +262,8 @@ export default function CustomerDashboard() {
                             <ReviewForm
                               order={order}
                               onDone={() => {
-                                setReviewOrderId(null);
-                                load();
+                                setReviewOrderId(null)
+                                load()
                               }}
                             />
                           )}
@@ -278,5 +278,5 @@ export default function CustomerDashboard() {
         </>
       )}
     </div>
-  );
+  )
 }

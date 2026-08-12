@@ -1,43 +1,43 @@
-"use client";
+"use client"
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useToast } from "@/context/ToastProvider";
-import { RentalOrder } from "@/types/gear";
-import { fetchOrderById, createPayment } from "@/services/api";
-import { StatusBadge } from "@/component/StatusBadge";
-import { CreditCard, Loader2, ArrowLeft, Calendar, ShieldCheck } from "lucide-react";
+import React, { useEffect, useState } from "react"
+import Link from "next/link"
+import { useParams } from "next/navigation"
+import { useToast } from "@/context/ToastProvider"
+import { RentalOrder } from "@/types/gear"
+import { fetchOrderById, createPayment } from "@/services/api"
+import { StatusBadge } from "@/component/StatusBadge"
+import { CreditCard, Loader2, ArrowLeft, Calendar, ShieldCheck } from "lucide-react"
 
 export default function PayOrderPage() {
-  const params = useParams<{ id: string }>();
-  const id = params.id;
-  const { success, error } = useToast();
-  const [order, setOrder] = useState<RentalOrder | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [paying, setPaying] = useState(false);
+  const params = useParams<{ id: string }>()
+  const id = params.id
+  const { success, error } = useToast()
+  const [order, setOrder] = useState<RentalOrder | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [paying, setPaying] = useState(false)
 
   useEffect(() => {
     fetchOrderById(id).then((o) => {
-      setOrder(o);
-      setLoading(false);
-    });
-  }, [id]);
+      setOrder(o)
+      setLoading(false)
+    })
+  }, [id])
 
   async function handlePay() {
-    if (!order) return;
-    setPaying(true);
+    if (!order) return
+    setPaying(true)
     try {
-      const res = await createPayment(order.id);
+      const res = await createPayment(order.id)
       if (!res?.success || !res.data?.sessionUrl) {
-        error(res?.message || "Failed to create payment session");
-        setPaying(false);
-        return;
+        error(res?.message || "Failed to create payment session")
+        setPaying(false)
+        return
       }
-      window.location.href = res.data.sessionUrl;
+      window.location.href = res.data.sessionUrl
     } catch {
-      error("Network error while creating payment");
-      setPaying(false);
+      error("Network error while creating payment")
+      setPaying(false)
     }
   }
 
@@ -46,7 +46,7 @@ export default function PayOrderPage() {
       <div className="flex justify-center py-20">
         <Loader2 className="w-8 h-8 animate-spin text-black/60" />
       </div>
-    );
+    )
   }
 
   if (!order) {
@@ -57,7 +57,7 @@ export default function PayOrderPage() {
           Back to dashboard
         </Link>
       </div>
-    );
+    )
   }
 
   const days = Math.max(
@@ -66,14 +66,14 @@ export default function PayOrderPage() {
       (new Date(order.endDate).getTime() - new Date(order.startDate).getTime()) /
       (1000 * 60 * 60 * 24)
     )
-  );
+  )
 
-  const paid = ["PAID", "PICKED_UP", "RETURNED"].includes(order.status);
+  const paid = ["PAID", "PICKED_UP", "RETURNED"].includes(order.status)
   const title = paid
     ? "Order Details"
     : order.status === "CANCELLED"
       ? "Order Details"
-      : "Confirm & Pay";
+      : "Confirm & Pay"
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
@@ -152,5 +152,5 @@ export default function PayOrderPage() {
         )}
       </div>
     </div>
-  );
+  )
 }
