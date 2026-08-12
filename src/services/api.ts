@@ -21,11 +21,17 @@ function getBase() {
   return EXTERNAL_API;
 }
 
-async function request<T>(path: string, init?: RequestInit): Promise<ApiEnvelope<T> | null> {
+async function request<T>(
+  path: string,
+  init?: RequestInit,
+  options?: { revalidate?: number }
+): Promise<ApiEnvelope<T> | null> {
   try {
     const res = await fetch(`${getBase()}${path}`, {
       ...init,
-      cache: "no-store",
+      ...(options?.revalidate
+        ? { next: { revalidate: options.revalidate } }
+        : { cache: "no-store" }),
     });
     const json = await res.json();
     return json;
@@ -48,6 +54,12 @@ export async function fetchCategories(): Promise<Category[]> {
   return json?.data || [];
 }
 
+const CACHE_TTL = 5 * 60 * 1000;
+const listCache = new Map<
+  string,
+  { value: { data: GearItem[]; meta: PaginatedMeta }; expiresAt: number }
+>();
+
 export async function fetchGearList(
   filters?: GearQueryFilters
 ): Promise<{ data: GearItem[]; meta: PaginatedMeta }> {
@@ -62,6 +74,13 @@ export async function fetchGearList(
     if (filters?.limit) query.set("limit", filters.limit || "10");
 
     const qs = query.toString();
+    const cacheKey = qs;
+
+    const cached = listCache.get(cacheKey);
+    if (cached && cached.expiresAt > Date.now()) {
+      return cached.value;
+    }
+
     const url = `${getBase()}/gear${qs ? `?${qs}` : ""}`;
 
     const res = await fetch(url, { cache: "no-store" });
@@ -69,21 +88,27 @@ export async function fetchGearList(
 
     const json = await res.json();
 
+    let result = empty;
     if (json.data) {
       if (Array.isArray(json.data)) {
-        return {
+        result = {
           data: json.data,
           meta: json.meta || { page: 1, limit: 10, total: json.data.length, totalPages: 1 },
         };
       } else if (json.data.data && Array.isArray(json.data.data)) {
-        return {
+        result = {
           data: json.data.data,
           meta: json.data.meta || { page: 1, limit: 10, total: json.data.data.length, totalPages: 1 },
         };
       }
     }
 
-    return empty;
+    for (const [key, entry] of listCache) {
+      if (entry.expiresAt <= Date.now()) listCache.delete(key);
+    }
+    listCache.set(cacheKey, { value: result, expiresAt: Date.now() + CACHE_TTL });
+
+    return result;
   } catch (error) {
     console.error("Error fetching gear list:", error);
     return empty;
@@ -91,7 +116,7 @@ export async function fetchGearList(
 }
 
 export async function fetchGearById(id: string): Promise<GearItem | null> {
-  const json = await request<GearItem>(`/gear/${id}`);
+  const json = await request<GearItem>(`/gear/${id}`, undefined, { revalidate: 300 });
   return json?.data || null;
 }
 

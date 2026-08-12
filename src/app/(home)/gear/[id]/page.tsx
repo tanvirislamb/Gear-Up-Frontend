@@ -9,7 +9,7 @@ interface GearDetailPageProps {
   params: Promise<{ id: string }>;
 }
 
-export const revalidate = 0;
+export const revalidate = 300;
 
 export default async function GearDetailPage({ params }: GearDetailPageProps) {
   const { id } = await params;
