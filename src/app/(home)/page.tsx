@@ -132,7 +132,7 @@ export default async function HomePage() {
               <Link
                 key={cat.id}
                 href={`/gear?catagory=${encodeURIComponent(cat.name)}`}
-                className="group p-5 rounded-2xl bg-white border border-black/5 hover:shadow-xl hover:shadow-[#dad8f9]/10 transition-all duration-300 flex flex-col items-center text-center space-y-3"
+                className="group p-5 rounded-2xl bg-white shadow-sm transition-all duration-300 flex flex-col items-center text-center space-y-3"
               >
                 <div className="w-12 h-12 rounded-xl bg-black/5 text-black/60 group-hover:bg-[#dad8f9] group-hover:text-black flex items-center justify-center transition-colors duration-300">
                   <IconComp className="w-6 h-6" />
@@ -171,7 +171,7 @@ export default async function HomePage() {
       </section>
 
       <section id="how-it-works" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-        <div className="bg-white border border-black/5 rounded-3xl p-8 sm:p-12 text-center space-y-12">
+        <div className="bg-white border border-black/3 shadow-md rounded-3xl p-8 sm:p-12 text-center space-y-12">
           <div className="max-w-2xl mx-auto space-y-3">
             <span className="text-xs font-bold text-black/60 uppercase tracking-wider">Simple Process</span>
             <h2 className="text-3xl font-extrabold text-black tracking-tight">How GearUp Works</h2>
