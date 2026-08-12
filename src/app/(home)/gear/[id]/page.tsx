@@ -70,8 +70,8 @@ export default async function GearDetailPage({ params }: GearDetailPageProps) {
               <span className="font-bold text-black/60 bg-white px-3 py-1 rounded-full border border-black/5">
                 Brand: {gear.brand}
               </span>
-              <div className="flex items-center gap-1.5 text-[#B8B5E8] font-bold">
-                <Star className="w-4 h-4 fill-[#B8B5E8]" />
+              <div className="flex items-center gap-1.5 text-primary font-bold">
+                <Star className="w-4 h-4 fill-primary" />
                 <span>{gear.rating || 4.8}</span>
                 <span className="text-black/60">({gear.reviews?.length || 0} reviews)</span>
               </div>
@@ -148,8 +148,8 @@ export default async function GearDetailPage({ params }: GearDetailPageProps) {
                           <span className="text-[10px] text-black/60">{rev.createdAt || ""}</span>
                         </div>
                       </div>
-                      <div className="flex items-center gap-1 text-[#B8B5E8] text-xs font-bold">
-                        <Star className="w-3.5 h-3.5 fill-[#B8B5E8]" />
+                      <div className="flex items-center gap-1 text-primary text-xs font-bold">
+                        <Star className="w-3.5 h-3.5 fill-primary" />
                         <span>{rev.rating}</span>
                       </div>
                     </div>
