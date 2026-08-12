@@ -186,7 +186,7 @@ export default function CustomerDashboard() {
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-black">Rental Orders</h2>
             {orders.length === 0 ? (
-              <div className="bg-white border border-black/5 rounded-2xl p-10 text-center">
+              <div className="bg-white shadow-sm border border-black/3 rounded-2xl p-10 text-center">
                 <PackageX className="w-10 h-10 text-black/60 mx-auto mb-3" />
                 <p className="text-sm text-black/60">
                   No orders yet.{" "}

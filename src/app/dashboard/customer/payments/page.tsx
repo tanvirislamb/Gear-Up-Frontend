@@ -70,7 +70,7 @@ export default function CustomerPaymentsPage() {
           { label: "Completed", value: payments.filter((p) => p.status === "COMPLETED").length, icon: CreditCard, color: "text-black/60" },
           { label: "Pending", value: pendingCount, icon: Loader2, color: "text-amber-600" },
         ].map((s) => (
-          <div key={s.label} className="bg-white border border-black/5 rounded-2xl p-4">
+          <div key={s.label} className="bg-white shadow-sm border border-black/3 rounded-2xl p-4">
             <div className={`flex items-center gap-2 text-xs font-semibold ${s.color} mb-2`}>
               <s.icon className="w-4 h-4" />
               {s.label}
@@ -85,15 +85,15 @@ export default function CustomerPaymentsPage() {
           <Loader2 className="w-8 h-8 animate-spin text-black/60" />
         </div>
       ) : payments.length === 0 ? (
-        <div className="bg-white border border-black/5 rounded-2xl p-10 text-center">
+        <div className="bg-white shadow-sm border border-black/3 rounded-2xl p-10 text-center">
           <CreditCard className="w-10 h-10 text-black/60 mx-auto mb-3" />
           <p className="text-sm text-black/60">No payments yet.</p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-black/5">
+        <div className="overflow-x-auto rounded-2xl shadow-sm border border-black/3">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-white text-left text-[11px] uppercase tracking-wide text-black/60">
+              <tr className="bg-black/5 text-left text-[11px] uppercase tracking-wide text-black/60">
                 <th className="px-4 py-3 font-semibold">Date</th>
                 <th className="px-4 py-3 font-semibold">Order</th>
                 <th className="px-4 py-3 font-semibold">Amount</th>
