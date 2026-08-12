@@ -37,6 +37,7 @@ function ReviewForm({ order, onDone }: { order: RentalOrder; onDone: () => void 
     e.preventDefault();
     setSubmitting(true);
     const res = await submitReview({
+      id: order.id,
       gearItemId: order.gearItemId,
       rating,
       comment: comment.trim() || undefined,

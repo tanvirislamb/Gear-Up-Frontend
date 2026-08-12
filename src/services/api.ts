@@ -190,6 +190,7 @@ export async function fetchPaymentById(id: string): Promise<Payment | null> {
 
 // ---- Reviews ----
 export async function submitReview(body: {
+  id: string;
   gearItemId: string;
   rating: number;
   comment?: string;
