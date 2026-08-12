@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-black/1 text-black/60 border-t border-black/2 mt-auto">
       <div className="border-b border-black/5 bg-white py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="flex items-center gap-3.5 p-4 rounded-xl bg-white border border-black/5">
+          <div className="flex items-center gap-3.5 p-4 rounded-xl bg-white border border-black/3 shadow-md">
             <div className="w-10 h-10 rounded-xl bg-[#dad8f9] text-black flex items-center justify-center shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
@@ -16,7 +16,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3.5 p-4 rounded-xl bg-white border border-black/5">
+          <div className="flex items-center gap-3.5 p-4 rounded-xl bg-white border border-black/3 shadow-md">
             <div className="w-10 h-10 rounded-xl bg-black/5 text-black/60 flex items-center justify-center shrink-0">
               <Truck className="w-5 h-5" />
             </div>
@@ -26,7 +26,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3.5 p-4 rounded-xl bg-white border border-black/5">
+          <div className="flex items-center gap-3.5 p-4 rounded-xl bg-white border border-black/3 shadow-md">
             <div className="w-10 h-10 rounded-xl bg-[#dad8f9] text-black flex items-center justify-center shrink-0">
               <Clock className="w-5 h-5" />
             </div>
@@ -36,7 +36,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3.5 p-4 rounded-xl bg-white border border-black/5">
+          <div className="flex items-center gap-3.5 p-4 rounded-xl bg-white border border-black/3 shadow-md">
             <div className="w-10 h-10 rounded-xl bg-black/5 text-black/60 flex items-center justify-center shrink-0">
               <HeartHandshake className="w-5 h-5" />
             </div>
