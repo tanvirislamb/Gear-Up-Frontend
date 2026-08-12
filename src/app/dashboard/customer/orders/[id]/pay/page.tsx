@@ -84,7 +84,7 @@ export default function PayOrderPage() {
         <ArrowLeft className="w-4 h-4" /> Back to Dashboard
       </Link>
 
-      <div className="bg-white border border-black/5 rounded-3xl p-6 sm:p-8 space-y-5">
+      <div className="bg-white shadow-sm border border-black/3 rounded-3xl p-6 sm:p-8 space-y-5">
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-extrabold text-black">{title}</h1>
           <StatusBadge status={order.status} />
@@ -136,7 +136,7 @@ export default function PayOrderPage() {
             Payment is only available once the provider confirms your order.
           </div>
         ) : paid ? (
-          <div className="text-center text-sm text-black bg-[#dad8f9] border border-black/5 rounded-2xl py-3 flex items-center justify-center gap-2">
+          <div className="text-center text-sm text-black bg-[#dad8f9] rounded-2xl py-3 flex items-center justify-center gap-2">
             <ShieldCheck className="w-4 h-4" /> Payment received — thank you!
           </div>
         ) : order.status === "CANCELLED" ? (
