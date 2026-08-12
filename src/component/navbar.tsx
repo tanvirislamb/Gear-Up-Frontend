@@ -106,13 +106,6 @@ const Navbar = () => {
                 >
                   Sign In
                 </Link>
-
-                <Link
-                  href={`/login?redirect=${encodeURIComponent(loginRedirect)}`}
-                  className="px-4 py-2 rounded-xl text-sm font-semibold bg-[#dad8f9] text-black"
-                >
-                  Get Started
-                </Link>
               </>
             )}
           </div>
