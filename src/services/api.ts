@@ -50,7 +50,7 @@ function post<T>(path: string, body: unknown): Promise<ApiEnvelope<T> | null> {
 }
 
 export async function fetchCategories(): Promise<Category[]> {
-  const json = await request<Category[]>("/categories");
+  const json = await request<Category[]>("/categories", undefined, { revalidate: 300 });
   return json?.data || [];
 }
 
@@ -83,7 +83,7 @@ export async function fetchGearList(
 
     const url = `${getBase()}/gear${qs ? `?${qs}` : ""}`;
 
-    const res = await fetch(url, { cache: "no-store" });
+    const res = await fetch(url, { next: { revalidate: 300 } });
     if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
 
     const json = await res.json();

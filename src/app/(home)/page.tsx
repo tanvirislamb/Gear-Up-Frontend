@@ -4,7 +4,7 @@ import { fetchCategories, fetchGearList } from "@/services/api"
 import GearCard from "@/component/GearCard"
 import { ArrowRight, Mountain, ShieldCheck, Calendar, Sparkles, CheckCircle2, Bike, Tent, Waves, Snowflake, Dumbbell, Compass } from "lucide-react"
 
-export const dynamic = "force-dynamic"
+export const revalidate = 300;
 
 export default async function HomePage() {
   const categories = await fetchCategories()
