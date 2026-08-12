@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react"
 import { CreditCard, Loader2, Wallet } from "lucide-react"
 import { Payment } from "@/types/gear"
-import { fetchMyPayments } from "@/services/api"
+import { fetchMyPayments, createPayment } from "@/services/api"
 import { StatusBadge } from "@/component/StatusBadge"
+import { useToast } from "@/context/ToastProvider"
 
 function formatDate(iso?: string | null) {
   if (!iso) return "—";
@@ -16,8 +17,10 @@ function formatDate(iso?: string | null) {
 }
 
 export default function CustomerPaymentsPage() {
+  const { error } = useToast();
   const [payments, setPayments] = useState<Payment[]>([])
   const [loading, setLoading] = useState(true)
+  const [payingId, setPayingId] = useState<string | null>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -30,6 +33,22 @@ export default function CustomerPaymentsPage() {
       cancelled = true
     }
   }, [])
+
+  async function handlePay(payment: Payment) {
+    setPayingId(payment.id)
+    try {
+      const res = await createPayment(payment.rentalOrderId)
+      if (!res?.success || !res.data?.sessionUrl) {
+        error(res?.message || "Failed to create payment session")
+        setPayingId(null)
+        return
+      }
+      window.location.href = res.data.sessionUrl
+    } catch {
+      error("Network error while creating payment")
+      setPayingId(null)
+    }
+  }
 
   const totalPaid = payments
     .filter((p) => p.status === "COMPLETED")
@@ -81,6 +100,7 @@ export default function CustomerPaymentsPage() {
                 <th className="px-4 py-3 font-semibold">Method</th>
                 <th className="px-4 py-3 font-semibold">Status</th>
                 <th className="px-4 py-3 font-semibold">Transaction ID</th>
+                <th className="px-4 py-3 font-semibold text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-black/5">
@@ -102,6 +122,18 @@ export default function CustomerPaymentsPage() {
                   </td>
                   <td className="px-4 py-3 text-black/60 text-xs font-mono truncate max-w-[160px]">
                     {p.transactionId || "—"}
+                  </td>
+                  <td className="px-4 py-3 text-right">
+                    {p.status !== "COMPLETED" && p.rentalOrder?.status === "CONFIRMED" && (
+                      <button
+                        onClick={() => handlePay(p)}
+                        disabled={payingId === p.id}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#dad8f9] text-black text-[11px] font-bold hover:bg-[#dad8f9]/70 disabled:opacity-60"
+                      >
+                        <CreditCard className="w-3.5 h-3.5" />
+                        {payingId === p.id ? "Redirecting…" : "Pay Now"}
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}
