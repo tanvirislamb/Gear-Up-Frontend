@@ -60,7 +60,7 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
   };
 
   return (
-    <div className="bg-white border border-black/5 rounded-3xl p-6 space-y-6 text-black">
+    <div className="bg-white border border-black/3 shadow-sm rounded-3xl p-6 space-y-6 text-black">
       {/* Rate Header */}
       <div className="flex items-baseline justify-between border-b border-black/5 pb-5">
         <div>
@@ -100,7 +100,7 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
               value={startDate}
               onChange={(e) => handleStartDateChange(e.target.value)}
               disabled={!isAvailable}
-              className="w-full px-3 py-2 bg-white border border-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-[#dad8f9] transition-colors disabled:opacity-50"
+              className="w-full px-3 py-2 bg-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-[#dad8f9] transition-colors disabled:opacity-50"
             />
           </div>
 
@@ -112,7 +112,7 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
               value={endDate}
               onChange={(e) => handleEndDateChange(e.target.value)}
               disabled={!isAvailable}
-              className="w-full px-3 py-2 bg-white border border-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-[#dad8f9] transition-colors disabled:opacity-50"
+              className="w-full px-3 py-2 bg-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-[#dad8f9] transition-colors disabled:opacity-50"
             />
           </div>
         </div>
@@ -153,7 +153,7 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
       )}
 
       {/* Price Summary Breakdown */}
-      <div className="bg-white border border-black/5 rounded-2xl p-4 space-y-2.5">
+      <div className="bg-black/3 rounded-2xl p-4 space-y-2.5">
         <div className="flex justify-between text-xs text-black/60">
           <span>${gear.rentalPrice} × {rentalDays} {rentalDays === 1 ? "day" : "days"}</span>
           <span>${gear.rentalPrice * rentalDays}</span>
@@ -184,14 +184,14 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
       {isAvailable ? (
         <button
           onClick={() => {
-            const checkoutUrl = `/checkout?gearId=${gear.id}&startDate=${startDate}&endDate=${endDate}&qty=${quantity}`;
+            const checkoutUrl = `/checkout?gearId=${gear.id}&startDate=${startDate}&endDate=${endDate}&qty=${quantity}`
             if (user) {
-              router.push(checkoutUrl);
+              router.push(checkoutUrl)
             } else {
-              router.push(`/login?redirect=${encodeURIComponent(checkoutUrl)}`);
+              router.push(`/login?redirect=${encodeURIComponent(checkoutUrl)}`)
             }
           }}
-          className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl font-extrabold text-sm bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black transition-all duration-200 active:scale-[0.99] group"
+          className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl font-extrabold text-sm bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black transition-all duration-200 active:scale-[0.99] group cursor-pointer"
         >
           <span>{user ? "Proceed to Book Rental" : "Login to Book Rental"}</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -199,7 +199,7 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
       ) : (
         <button
           disabled
-          className="w-full py-4 px-6 rounded-2xl font-bold text-sm bg-black/5 text-black/60 cursor-not-allowed text-center"
+          className="w-full py-4 px-6 rounded-2xl font-bold text-sm bg-black/3 shadow-sm text-black/60 cursor-not-allowed text-center"
         >
           Currently Out of Stock
         </button>
@@ -216,5 +216,5 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
         </span>
       </div>
     </div>
-  );
+  )
 }

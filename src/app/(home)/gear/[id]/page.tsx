@@ -40,7 +40,7 @@ export default async function GearDetailPage({ params }: GearDetailPageProps) {
         {/* Left Column */}
         <div className="lg:col-span-7 space-y-8">
           {/* Hero Image */}
-          <div className="relative aspect-[16/10] w-full rounded-3xl overflow-hidden bg-white border border-black/5">
+          <div className="relative aspect-[16/10] w-full rounded-3xl overflow-hidden bg-white border border-black/3 shadow-sm">
             {hasImage ? (
               <Image
                 src={gear.image!}
@@ -70,8 +70,8 @@ export default async function GearDetailPage({ params }: GearDetailPageProps) {
               <span className="font-bold text-black/60 bg-white px-3 py-1 rounded-full border border-black/5">
                 Brand: {gear.brand}
               </span>
-              <div className="flex items-center gap-1.5 text-amber-600 font-bold">
-                <Star className="w-4 h-4 fill-amber-400" />
+              <div className="flex items-center gap-1.5 text-[#B8B5E8] font-bold">
+                <Star className="w-4 h-4 fill-[#B8B5E8]" />
                 <span>{gear.rating || 4.8}</span>
                 <span className="text-black/60">({gear.reviews?.length || 0} reviews)</span>
               </div>
@@ -82,21 +82,21 @@ export default async function GearDetailPage({ params }: GearDetailPageProps) {
           </div>
 
           {/* Specs */}
-          <div className="bg-white border border-black/5 rounded-3xl p-6 sm:p-8 space-y-4">
+          <div className="bg-white border border-black/3 shadow-sm rounded-3xl p-6 sm:p-8 space-y-4">
             <h3 className="text-xs font-bold text-black uppercase tracking-wider">
               Equipment Specifications & Overview
             </h3>
             <p className="text-sm text-black/60 leading-relaxed">{gear.description}</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-black/5 text-xs">
-              <div className="p-3 rounded-xl bg-white border border-black/5">
+              <div className="p-3 rounded-xl bg-black/5">
                 <span className="text-black/60 block">Condition</span>
                 <span className="text-black font-semibold mt-0.5 block">Inspected / Verified</span>
               </div>
-              <div className="p-3 rounded-xl bg-white border border-black/5">
+              <div className="p-3 rounded-xl bg-black/5">
                 <span className="text-black/60 block">Total Stock</span>
                 <span className="text-black font-semibold mt-0.5 block">{gear.stock} Units</span>
               </div>
-              <div className="p-3 rounded-xl bg-white border border-black/5">
+              <div className="p-3 rounded-xl bg-black/5">
                 <span className="text-black/60 block">Insurance</span>
                 <span className="text-black font-semibold mt-0.5 block">Damage Protected</span>
               </div>
@@ -104,7 +104,7 @@ export default async function GearDetailPage({ params }: GearDetailPageProps) {
           </div>
 
           {/* Provider Card */}
-          <div className="bg-white border border-black/5 rounded-3xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="bg-black/5 shadow-sm rounded-3xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-[#dad8f9] text-black flex items-center justify-center">
                 <Building2 className="w-6 h-6" />
@@ -119,8 +119,8 @@ export default async function GearDetailPage({ params }: GearDetailPageProps) {
                 <p className="text-xs text-black/60 mt-0.5">{providerEmail}</p>
               </div>
             </div>
-            <div className="text-xs text-black/60 font-medium bg-black/3 px-4 py-2 rounded-xl border border-black/5">
-              ⭐ Verified Provider
+            <div className="text-xs text-black/80 font-extrabold bg-black/10 px-4 py-2 rounded-xl">
+              Verified Provider
             </div>
           </div>
 
@@ -137,7 +137,7 @@ export default async function GearDetailPage({ params }: GearDetailPageProps) {
             {gear.reviews && gear.reviews.length > 0 ? (
               <div className="space-y-4">
                 {gear.reviews.map((rev, idx) => (
-                  <div key={rev.id || idx} className="bg-white border border-black/5 rounded-2xl p-5 space-y-2">
+                  <div key={rev.id || idx} className="bg-white border border-black/3 shadow-sm rounded-2xl p-5 space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-full bg-black/5 text-black/60 font-bold text-xs flex items-center justify-center">
@@ -148,8 +148,8 @@ export default async function GearDetailPage({ params }: GearDetailPageProps) {
                           <span className="text-[10px] text-black/60">{rev.createdAt || ""}</span>
                         </div>
                       </div>
-                      <div className="flex items-center gap-1 text-amber-600 text-xs font-bold">
-                        <Star className="w-3.5 h-3.5 fill-amber-400" />
+                      <div className="flex items-center gap-1 text-[#B8B5E8] text-xs font-bold">
+                        <Star className="w-3.5 h-3.5 fill-[#B8B5E8]" />
                         <span>{rev.rating}</span>
                       </div>
                     </div>
@@ -160,7 +160,7 @@ export default async function GearDetailPage({ params }: GearDetailPageProps) {
                 ))}
               </div>
             ) : (
-              <div className="bg-white border border-black/5 rounded-2xl p-6 text-center text-xs text-black/60">
+              <div className="bg-white border border-black/3 shadow-sm rounded-2xl p-6 text-center text-xs text-black/60">
                 No customer reviews yet for this listing.
               </div>
             )}
