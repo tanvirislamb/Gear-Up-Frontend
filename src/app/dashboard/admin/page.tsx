@@ -103,7 +103,7 @@ export default function AdminDashboard() {
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((s) => (
-          <div key={s.label} className="bg-white border border-black/5 rounded-2xl p-4">
+          <div key={s.label} className="bg-white border border-black/3 shadow-sm rounded-2xl p-4">
             <div className={`flex items-center gap-2 text-xs font-semibold ${s.color} mb-2`}>
               <s.icon className="w-4 h-4" />
               {s.label}
@@ -125,7 +125,7 @@ export default function AdminDashboard() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search users…"
-              className="w-full sm:w-64 bg-white border border-black/5 rounded-xl pl-9 pr-3 py-2 text-sm text-black placeholder-black/60 focus:outline-none focus:border-[#dad8f9]"
+              className="w-full sm:w-64 bg-black/5 rounded-xl pl-9 pr-3 py-2 text-sm text-black placeholder-black/60 focus:outline-none focus:border-[#dad8f9]"
             />
           </div>
         </div>
@@ -136,10 +136,10 @@ export default function AdminDashboard() {
           </div>
         ) : (
           <>
-            <div className="overflow-x-auto rounded-2xl border border-black/5">
+            <div className="overflow-x-auto rounded-2xl border border-black/3 shadow-sm">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-white text-left text-[11px] uppercase tracking-wide text-black/60">
+                  <tr className="bg-black/5 text-left text-[11px] uppercase tracking-wide text-black/60">
                     <th className="px-4 py-3 font-semibold">Name</th>
                     <th className="px-4 py-3 font-semibold">Email</th>
                     <th className="px-4 py-3 font-semibold">Role</th>
@@ -167,11 +167,10 @@ export default function AdminDashboard() {
                       </td>
                       <td className="px-4 py-3">
                         <span
-                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold ${
-                            u.status === "ACTIVE"
-                              ? "bg-[#dad8f9] text-black"
-                              : "bg-rose-50 text-rose-600"
-                          }`}
+                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold ${u.status === "ACTIVE"
+                            ? "bg-[#dad8f9] text-black"
+                            : "bg-rose-50 text-rose-600"
+                            }`}
                         >
                           {u.status === "ACTIVE" ? (
                             <ShieldCheck className="w-3 h-3" />
@@ -188,11 +187,10 @@ export default function AdminDashboard() {
                         <button
                           onClick={() => toggleStatus(u)}
                           disabled={busyId === u.id}
-                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold ${
-                            u.status === "ACTIVE"
-                              ? "bg-rose-50 text-rose-600 hover:bg-rose-100"
-                              : "bg-[#dad8f9] text-black hover:bg-[#dad8f9]/70"
-                          } disabled:opacity-60`}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold ${u.status === "ACTIVE"
+                            ? "bg-rose-50 text-rose-600 hover:bg-rose-100"
+                            : "bg-[#dad8f9] text-black hover:bg-[#dad8f9]/70"
+                            } disabled:opacity-60`}
                         >
                           {busyId === u.id ? (
                             <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -216,7 +214,7 @@ export default function AdminDashboard() {
                 <button
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page <= 1}
-                  className="p-2 rounded-lg bg-white border border-black/5 text-black/60 hover:text-black disabled:opacity-30"
+                  className="p-2 rounded-lg bg-white border border-black/5 shadow-sm text-black/60 hover:text-black disabled:shadow-none disabled:opacity-30"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
@@ -226,7 +224,7 @@ export default function AdminDashboard() {
                 <button
                   onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                   disabled={page >= totalPages}
-                  className="p-2 rounded-lg bg-white border border-black/5 text-black/60 hover:text-black disabled:opacity-30"
+                  className="p-2 rounded-lg bg-white border border-black/5 shadow-sm text-black/60 hover:text-black disabled:shadow-none disabled:opacity-30"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
