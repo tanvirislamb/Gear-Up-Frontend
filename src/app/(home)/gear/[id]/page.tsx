@@ -106,13 +106,13 @@ export default async function GearDetailPage({ params }: GearDetailPageProps) {
           {/* Provider Card */}
           <div className="bg-black/5 shadow-sm rounded-3xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#dad8f9] text-black flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-primary text-black flex items-center justify-center">
                 <Building2 className="w-6 h-6" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
                   <h4 className="font-bold text-base text-black">{providerName}</h4>
-                  <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-[#dad8f9] text-black px-2 py-0.5 rounded-full">
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-primary text-black px-2 py-0.5 rounded-full">
                     <ShieldCheck className="w-3 h-3" /> Verified
                   </span>
                 </div>

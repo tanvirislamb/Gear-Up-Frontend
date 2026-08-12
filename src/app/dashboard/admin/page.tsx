@@ -125,7 +125,7 @@ export default function AdminDashboard() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search users…"
-              className="w-full sm:w-64 bg-black/5 rounded-xl pl-9 pr-3 py-2 text-sm text-black placeholder-black/60 focus:outline-none focus:border-[#dad8f9]"
+              className="w-full sm:w-64 bg-black/5 rounded-xl pl-9 pr-3 py-2 text-sm text-black placeholder-black/60 focus:outline-none focus:border-primary"
             />
           </div>
         </div>
@@ -168,7 +168,7 @@ export default function AdminDashboard() {
                       <td className="px-4 py-3">
                         <span
                           className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold ${u.status === "ACTIVE"
-                            ? "bg-[#dad8f9] text-black"
+                            ? "bg-primary text-black"
                             : "bg-rose-50 text-rose-600"
                             }`}
                         >
@@ -189,7 +189,7 @@ export default function AdminDashboard() {
                           disabled={busyId === u.id}
                           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold ${u.status === "ACTIVE"
                             ? "bg-rose-50 text-rose-600 hover:bg-rose-100"
-                            : "bg-[#dad8f9] text-black hover:bg-[#dad8f9]/70"
+                            : "bg-primary text-black hover:bg-primary/70"
                             } disabled:opacity-60`}
                         >
                           {busyId === u.id ? (

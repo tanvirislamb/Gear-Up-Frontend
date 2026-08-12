@@ -69,7 +69,7 @@ function ReviewForm({ order, onDone }: { order: RentalOrder; onDone: () => void 
             aria-label={`${n} stars`}
           >
             <Star
-              className={`w-5 h-5 ${n <= rating ? "fill-[#dad8f9] text-[#dad8f9]" : "text-black/40"
+              className={`w-5 h-5 ${n <= rating ? "fill-primary text-primary" : "text-black/40"
                 }`}
             />
           </button>
@@ -81,12 +81,12 @@ function ReviewForm({ order, onDone }: { order: RentalOrder; onDone: () => void 
         onChange={(e) => setComment(e.target.value)}
         placeholder="Share your experience"
         rows={2}
-        className="w-full bg-black/5 rounded-xl px-3 py-2 text-sm text-black placeholder-black/60 focus:outline-none focus:border-[#dad8f9]"
+        className="w-full bg-black/5 rounded-xl px-3 py-2 text-sm text-black placeholder-black/60 focus:outline-none focus:border-primary"
       />
       <button
         type="submit"
         disabled={submitting}
-        className="px-4 py-2 rounded-xl bg-[#dad8f9] text-black text-xs font-bold hover:bg-[#dad8f9]/70 disabled:opacity-60"
+        className="px-4 py-2 rounded-xl bg-primary text-black text-xs font-bold hover:bg-primary/70 disabled:opacity-60"
       >
         {submitting ? "Submitting…" : "Submit Review"}
       </button>
@@ -233,7 +233,7 @@ export default function CustomerDashboard() {
                             <button
                               onClick={() => handlePay(order)}
                               disabled={payingId === order.id}
-                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#dad8f9] text-black text-[11px] font-bold hover:bg-[#dad8f9]/70 disabled:opacity-60"
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary text-black text-[11px] font-bold hover:bg-primary/70 disabled:opacity-60"
                             >
                               <CreditCard className="w-3.5 h-3.5" />
                               {payingId === order.id ? "Redirecting…" : "Pay Now"}

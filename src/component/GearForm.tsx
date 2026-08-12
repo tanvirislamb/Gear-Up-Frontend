@@ -100,7 +100,7 @@ export default function GearForm({ mode, initial }: GearFormProps) {
   }
 
   const input =
-    "w-full bg-black/5 rounded-xl px-3.5 py-2.5 text-sm text-black placeholder-black/60 focus:outline-none focus:border-[#dad8f9] transition-colors";
+    "w-full bg-black/5 rounded-xl px-3.5 py-2.5 text-sm text-black placeholder-black/60 focus:outline-none focus:border-primary transition-colors";
   const label = "block text-xs font-medium text-black/60 mb-1.5";
   const errMsg = "text-[11px] text-rose-600 mt-1.5";
 
@@ -225,7 +225,7 @@ export default function GearForm({ mode, initial }: GearFormProps) {
         <button
           type="submit"
           disabled={submitting}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black text-sm font-bold disabled:opacity-60"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-primary/70 text-black text-sm font-bold disabled:opacity-60"
         >
           {submitting ? (
             <Loader2 className="w-4 h-4 animate-spin" />

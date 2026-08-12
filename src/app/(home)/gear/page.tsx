@@ -179,7 +179,7 @@ export default function GearCatalogPage() {
           ) : (
             /* Empty State */
             <div className="bg-white border border-black/5 rounded-3xl p-12 text-center space-y-4">
-              <div className="w-16 h-16 rounded-2xl bg-[#dad8f9] text-black flex items-center justify-center mx-auto">
+              <div className="w-16 h-16 rounded-2xl bg-primary text-black flex items-center justify-center mx-auto">
                 <PackageSearch className="w-8 h-8" />
               </div>
               <h3 className="text-lg font-bold text-black">No Equipment Found</h3>
@@ -188,7 +188,7 @@ export default function GearCatalogPage() {
               </p>
               <button
                 onClick={() => handleFilterChange({ search: "", catagory: "", brand: "", price: "100", page: "1" })}
-                className="px-5 py-2.5 rounded-xl text-xs font-bold bg-[#dad8f9] text-black hover:bg-[#dad8f9]/70 transition-colors inline-flex items-center gap-1.5"
+                className="px-5 py-2.5 rounded-xl text-xs font-bold bg-primary text-black hover:bg-primary/70 transition-colors inline-flex items-center gap-1.5"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Reset All Filters</span>
@@ -216,7 +216,7 @@ export default function GearCatalogPage() {
                     key={pageNum}
                     onClick={() => handlePageChange(pageNum)}
                     className={`w-10 h-10 rounded-xl text-xs font-bold transition-all ${isActive
-                      ? "bg-[#dad8f9] text-black shadow-md shadow-[#dad8f9]/20"
+                      ? "bg-primary text-black shadow-md shadow-primary/20"
                       : "bg-white border border-black/5 text-black/60 hover:bg-black/5"
                       }`}
                   >

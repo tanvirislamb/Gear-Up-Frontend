@@ -80,7 +80,7 @@ export default function GearFilterSidebar({
               setSearch(e.target.value);
               applyFilters({ search: e.target.value });
             }}
-            className="w-full pl-9 pr-4 py-2.5 bg-black/5 rounded-xl text-sm text-black placeholder-black/60 focus:outline-none focus:border-[#dad8f9] transition-colors"
+            className="w-full pl-9 pr-4 py-2.5 bg-black/5 rounded-xl text-sm text-black placeholder-black/60 focus:outline-none focus:border-primary transition-colors"
           />
           <Search className="w-4 h-4 text-black/60 absolute left-3 top-3" />
         </div>
@@ -98,7 +98,7 @@ export default function GearFilterSidebar({
               applyFilters({ catagory: "" });
             }}
             className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-colors flex items-center justify-between ${selectedCategory === ""
-              ? "bg-[#dad8f9] text-black font-semibold"
+              ? "bg-primary text-black font-semibold"
               : "text-black/60 hover:bg-black/5"
               }`}
           >
@@ -117,7 +117,7 @@ export default function GearFilterSidebar({
                   applyFilters({ catagory: val });
                 }}
                 className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-colors flex items-center justify-between ${isSelected
-                  ? "bg-[#dad8f9] text-black font-semibold"
+                  ? "bg-primary text-black font-semibold"
                   : "text-black/60 hover:bg-black/5"
                   }`}
               >
@@ -147,7 +147,7 @@ export default function GearFilterSidebar({
             setMaxPrice(e.target.value);
             applyFilters({ price: e.target.value });
           }}
-          className="w-full accent-[#dad8f9] cursor-pointer h-1.5 bg-black/5 rounded-lg"
+          className="w-full accent-primary cursor-pointer h-1.5 bg-black/5 rounded-lg"
         />
         <div className="flex justify-between text-[11px] text-black/60">
           <span>$10/day</span>
@@ -171,7 +171,7 @@ export default function GearFilterSidebar({
                 setStartDate(e.target.value);
                 applyFilters({ startDate: e.target.value });
               }}
-              className="w-full px-2.5 py-1.5 bg-black/5 rounded-lg text-xs text-black focus:outline-none focus:border-[#dad8f9]"
+              className="w-full px-2.5 py-1.5 bg-black/5 rounded-lg text-xs text-black focus:outline-none focus:border-primary"
             />
           </div>
           <div>
@@ -184,7 +184,7 @@ export default function GearFilterSidebar({
                 setEndDate(e.target.value);
                 applyFilters({ endDate: e.target.value });
               }}
-              className="w-full px-2.5 py-1.5 bg-black/5 rounded-lg text-xs text-black focus:outline-none focus:border-[#dad8f9]"
+              className="w-full px-2.5 py-1.5 bg-black/5 rounded-lg text-xs text-black focus:outline-none focus:border-primary"
             />
           </div>
         </div>
@@ -201,7 +201,7 @@ export default function GearFilterSidebar({
             setSelectedBrand(e.target.value);
             applyFilters({ brand: e.target.value });
           }}
-          className="w-full px-3 py-2 bg-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-[#dad8f9]"
+          className="w-full px-3 py-2 bg-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-primary"
         >
           <option value="">All Brands</option>
           {availableBrands.map((b) => (

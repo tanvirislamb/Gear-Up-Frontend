@@ -126,7 +126,7 @@ export default function PayOrderPage() {
           <button
             onClick={handlePay}
             disabled={paying}
-            className="w-full py-3.5 rounded-2xl bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-60"
+            className="w-full py-3.5 rounded-2xl bg-primary hover:bg-primary/70 text-black font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-60"
           >
             <CreditCard className="w-4 h-4" />
             {paying ? "Creating secure checkout…" : "Pay with Stripe"}
@@ -136,7 +136,7 @@ export default function PayOrderPage() {
             Payment is only available once the provider confirms your order.
           </div>
         ) : paid ? (
-          <div className="text-center text-sm text-black bg-[#dad8f9] rounded-2xl py-3 flex items-center justify-center gap-2">
+          <div className="text-center text-sm text-black bg-primary rounded-2xl py-3 flex items-center justify-center gap-2">
             <ShieldCheck className="w-4 h-4" /> Payment received — thank you!
           </div>
         ) : order.status === "CANCELLED" ? (

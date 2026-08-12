@@ -39,7 +39,7 @@ function actionsFor(status: string): Action[] {
           status: "PICKED_UP",
           label: "Mark Picked Up",
           icon: Truck,
-          style: `${base} bg-[#dad8f9] text-black hover:bg-[#dad8f9]/70`,
+          style: `${base} bg-primary text-black hover:bg-primary/70`,
         },
       ]
     case "PICKED_UP":
@@ -95,7 +95,7 @@ export default function ProviderOrdersPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-[#dad8f9] text-black flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-primary text-black flex items-center justify-center">
           <ShoppingCart className="w-5 h-5" />
         </div>
         <div>

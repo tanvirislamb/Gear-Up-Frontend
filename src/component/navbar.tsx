@@ -47,7 +47,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-xl bg-[#dad8f9] p-2 text-white flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-xl bg-primary p-2 text-white flex items-center justify-center font-bold">
               <Mountain className="w-6 h-6 stroke-[2.5]" />
             </div>
             <div className="flex flex-col">
@@ -66,7 +66,7 @@ const Navbar = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className={"px-4 py-2 rounded-xl text-sm font-medium text-black/60 hover:text-black hover:bg-[#dad8f9] transition-colors"}>
+                className={"px-4 py-2 rounded-xl text-sm font-medium text-black/60 hover:text-black hover:bg-primary transition-colors"}>
                 {link.title}
               </Link>
             ))}
@@ -86,7 +86,7 @@ const Navbar = () => {
 
             {user ? (
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#dad8f9] text-black flex items-center justify-center text-sm font-bold border border-black/5">
+                <div className="w-10 h-10 rounded-full bg-primary text-black flex items-center justify-center text-sm font-bold border border-black/5">
                   {initials}
                 </div>
                 <div className="text-sm text-black mr-2">
@@ -142,7 +142,7 @@ const Navbar = () => {
           <div className="pt-4 flex flex-col gap-2">
             {user ? (
               <div className="p-3 rounded-lg bg-white flex items-center gap-3">
-                <div className="w-10 h-10 shrink-0 rounded-full bg-[#dad8f9] text-black flex items-center justify-center text-sm font-bold border border-black/5">
+                <div className="w-10 h-10 shrink-0 rounded-full bg-primary text-black flex items-center justify-center text-sm font-bold border border-black/5">
                   {initials}
                 </div>
                 <div className="min-w-0">
@@ -168,7 +168,7 @@ const Navbar = () => {
                 <Link
                   href={`/login?redirect=${encodeURIComponent(loginRedirect)}`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center px-4 py-2.5 rounded-2xl text-sm font-semibold bg-[#dad8f9] text-black"
+                  className="w-full text-center px-4 py-2.5 rounded-2xl text-sm font-semibold bg-primary text-black"
                 >
                   Get Started
                 </Link>

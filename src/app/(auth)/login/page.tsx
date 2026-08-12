@@ -36,7 +36,7 @@ function LoginContent() {
       <div className="w-full max-w-md rounded-3xl overflow-hidden md:shadow relative z-10">
         <div className="p-8 lg:p-10">
           <div className="flex items-center justify-center gap-3 mb-8">
-            <div className="w-11 h-11 rounded-xl bg-[#dad8f9] text-black flex items-center justify-center font-bold">
+            <div className="w-11 h-11 rounded-xl bg-primary text-black flex items-center justify-center font-bold">
               <Mountain className="w-6 h-6" />
             </div>
             <div>
@@ -46,7 +46,7 @@ function LoginContent() {
           </div>
 
           {state.success ? (
-            <div className="bg-[#dad8f9] border border-black/5 text-black/60 p-6 rounded-2xl text-center space-y-3">
+            <div className="bg-primary border border-black/5 text-black/60 p-6 rounded-2xl text-center space-y-3">
               <div className="w-12 h-12 mx-auto rounded-full bg-black/5 flex items-center justify-center">
                 <ShieldCheck className="w-6 h-6" />
               </div>
@@ -92,7 +92,7 @@ function LoginContent() {
               <button
                 type="submit"
                 disabled={isPending}
-                className="w-full py-3 px-4 bg-[#dad8f9] text-black font-bold text-sm rounded-xl flex items-center justify-center gap-2 disabled:opacity-70"
+                className="w-full py-3 px-4 bg-primary text-black font-bold text-sm rounded-xl flex items-center justify-center gap-2 disabled:opacity-70"
               >
                 {isPending ? (
                   <span className="animate-spin w-4 h-4 border-2 border-black/10 border-t-transparent rounded-full" />

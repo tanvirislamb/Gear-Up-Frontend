@@ -73,7 +73,7 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
         <div className="text-right">
           <span className="text-xs text-black/60 block mb-1">Availability</span>
           {isAvailable ? (
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-[#dad8f9] text-black border border-black/5">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-primary text-black border border-black/5">
               <span className="w-1.5 h-1.5 rounded-full bg-black mr-1.5" />
               {gear.availableQty} Units In Stock
             </span>
@@ -100,7 +100,7 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
               value={startDate}
               onChange={(e) => handleStartDateChange(e.target.value)}
               disabled={!isAvailable}
-              className="w-full px-3 py-2 bg-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-[#dad8f9] transition-colors disabled:opacity-50"
+              className="w-full px-3 py-2 bg-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-primary transition-colors disabled:opacity-50"
             />
           </div>
 
@@ -112,7 +112,7 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
               value={endDate}
               onChange={(e) => handleEndDateChange(e.target.value)}
               disabled={!isAvailable}
-              className="w-full px-3 py-2 bg-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-[#dad8f9] transition-colors disabled:opacity-50"
+              className="w-full px-3 py-2 bg-black/5 rounded-xl text-xs text-black focus:outline-none focus:border-primary transition-colors disabled:opacity-50"
             />
           </div>
         </div>
@@ -191,7 +191,7 @@ export default function RentNowWidget({ gear }: RentNowWidgetProps) {
               router.push(`/login?redirect=${encodeURIComponent(checkoutUrl)}`)
             }
           }}
-          className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl font-extrabold text-sm bg-[#dad8f9] hover:bg-[#dad8f9]/70 text-black transition-all duration-200 active:scale-[0.99] group cursor-pointer"
+          className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl font-extrabold text-sm bg-primary hover:bg-primary/70 text-black transition-all duration-200 active:scale-[0.99] group cursor-pointer"
         >
           <span>{user ? "Proceed to Book Rental" : "Login to Book Rental"}</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
