@@ -88,7 +88,7 @@ export default function ProviderDashboard() {
           { label: "Pending Approval", value: pendingOrders, icon: AlertCircle, color: "text-amber-600" },
           { label: "Active Rentals", value: activeRentals, icon: Package, color: "text-purple-600" },
         ].map((s) => (
-          <div key={s.label} className="bg-white border border-black/5 rounded-2xl p-4">
+          <div key={s.label} className="bg-white border border-black/3 shadow-sm rounded-2xl p-4">
             <div className={`flex items-center gap-2 text-xs font-semibold ${s.color} mb-2`}>
               <s.icon className="w-4 h-4" />
               {s.label}
@@ -103,7 +103,7 @@ export default function ProviderDashboard() {
           <Loader2 className="w-8 h-8 animate-spin text-black/60" />
         </div>
       ) : gear.length === 0 ? (
-        <div className="bg-white border border-black/5 rounded-2xl p-10 text-center">
+        <div className="bg-white border border-black/3 shadow-sm rounded-2xl p-10 text-center">
           <Package className="w-10 h-10 text-black/60 mx-auto mb-3" />
           <p className="text-sm text-black/60">
             You haven&apos;t listed any gear yet.{" "}
@@ -115,10 +115,10 @@ export default function ProviderDashboard() {
       ) : (
         <section className="space-y-3">
           <h2 className="text-lg font-bold text-black">Inventory</h2>
-          <div className="overflow-x-auto rounded-2xl border border-black/5">
+          <div className="overflow-x-auto rounded-2xl border border-black/3 shadow-sm">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-white text-left text-[11px] uppercase tracking-wide text-black/60">
+                <tr className="bg-black/5 text-left text-[11px] uppercase tracking-wide text-black/60">
                   <th className="px-4 py-3 font-semibold">Gear</th>
                   <th className="px-4 py-3 font-semibold">Category</th>
                   <th className="px-4 py-3 font-semibold">Price/day</th>
@@ -157,11 +157,10 @@ export default function ProviderDashboard() {
                     <td className="px-4 py-3 text-black/60">{g.stock}</td>
                     <td className="px-4 py-3">
                       <span
-                        className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-bold ${
-                          g.availableQty > 0
-                            ? "bg-[#dad8f9] text-black"
-                            : "bg-rose-50 text-rose-600"
-                        }`}
+                        className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-bold ${g.availableQty > 0
+                          ? "bg-[#dad8f9] text-black"
+                          : "bg-rose-50 text-rose-600"
+                          }`}
                       >
                         {g.availableQty}
                       </span>
