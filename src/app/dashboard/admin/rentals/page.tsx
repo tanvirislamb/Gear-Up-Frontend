@@ -42,14 +42,14 @@ export default function AdminRentalsPage() {
           <Loader2 className="w-8 h-8 animate-spin text-black/60" />
         </div>
       ) : rentals.length === 0 ? (
-        <div className="bg-white border border-black/5 rounded-2xl p-10 text-center text-sm text-black/60">
+        <div className="bg-white border border-black/3 shadow-sm rounded-2xl p-10 text-center text-sm text-black/60">
           No rental orders found.
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-black/5">
+        <div className="overflow-x-auto rounded-2xl border border-black/3 shadow-sm">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-white text-left text-[11px] uppercase tracking-wide text-black/60">
+              <tr className="bg-black/5 text-left text-[11px] uppercase tracking-wide text-black/60">
                 <th className="px-4 py-3 font-semibold">Order</th>
                 <th className="px-4 py-3 font-semibold">Customer</th>
                 <th className="px-4 py-3 font-semibold">Gear</th>

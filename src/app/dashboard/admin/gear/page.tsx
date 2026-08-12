@@ -36,14 +36,14 @@ export default function AdminGearPage() {
           <Loader2 className="w-8 h-8 animate-spin text-black/60" />
         </div>
       ) : gear.length === 0 ? (
-        <div className="bg-white border border-black/5 rounded-2xl p-10 text-center text-sm text-black/60">
+        <div className="bg-white border border-black/3 shadow-sm rounded-2xl p-10 text-center text-sm text-black/60">
           No gear listings found.
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-black/5">
+        <div className="overflow-x-auto rounded-2xl border border-black/3 shadow-sm">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-white text-left text-[11px] uppercase tracking-wide text-black/60">
+              <tr className="bg-black/5 text-left text-[11px] uppercase tracking-wide text-black/60">
                 <th className="px-4 py-3 font-semibold">Gear</th>
                 <th className="px-4 py-3 font-semibold">Provider</th>
                 <th className="px-4 py-3 font-semibold">Category</th>
@@ -88,11 +88,10 @@ export default function AdminGearPage() {
                   <td className="px-4 py-3 text-black/60">{g.stock}</td>
                   <td className="px-4 py-3">
                     <span
-                      className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-bold ${
-                        g.availableQty > 0
-                          ? "bg-[#dad8f9] text-black"
-                          : "bg-rose-50 text-rose-600"
-                      }`}
+                      className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-bold ${g.availableQty > 0
+                        ? "bg-[#dad8f9] text-black"
+                        : "bg-rose-50 text-rose-600"
+                        }`}
                     >
                       {g.availableQty}
                     </span>
