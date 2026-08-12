@@ -100,7 +100,7 @@ export default function GearForm({ mode, initial }: GearFormProps) {
   }
 
   const input =
-    "w-full bg-white border border-black/5 rounded-xl px-3.5 py-2.5 text-sm text-black placeholder-black/60 focus:outline-none focus:border-[#dad8f9] transition-colors";
+    "w-full bg-black/5 rounded-xl px-3.5 py-2.5 text-sm text-black placeholder-black/60 focus:outline-none focus:border-[#dad8f9] transition-colors";
   const label = "block text-xs font-medium text-black/60 mb-1.5";
   const errMsg = "text-[11px] text-rose-600 mt-1.5";
 

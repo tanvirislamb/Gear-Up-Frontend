@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import GearForm from "@/component/GearForm";
-import { PackagePlus } from "lucide-react";
+import GearForm from "@/component/GearForm"
+import { PackagePlus } from "lucide-react"
 
 export default function NewGearPage() {
   return (
@@ -16,9 +16,9 @@ export default function NewGearPage() {
         </div>
       </div>
 
-      <div className="bg-white border border-black/5 rounded-3xl p-6 sm:p-8">
+      <div className="bg-white border border-black/3 shadow-sm rounded-3xl p-6 sm:p-8">
         <GearForm mode="create" />
       </div>
     </div>
-  );
+  )
 }
