@@ -59,16 +59,16 @@ export default async function HomePage() {
             {/* Main Headline */}
             <div className="space-y-1">
               <h1 className="font-bebas text-6xl sm:text-8xl md:text-9xl font-black text-white tracking-tight uppercase leading-[0.9] drop-shadow-md">
-                RENT GEAR.
+                RENT GEAR
               </h1>
               <h1 className="font-bebas text-6xl sm:text-8xl md:text-9xl font-black text-white tracking-tight uppercase leading-[0.9] drop-shadow-md">
-                <span className="text-primary">LIVE</span> ADVENTURE.
+                <span className="text-primary">LIVE</span> ADVENTURE
               </h1>
             </div>
 
             {/* Subtitle / Paragraph */}
             <p className="text-base sm:text-lg text-slate-200 max-w-xl font-medium leading-relaxed drop-shadow-sm">
-              Top-quality outdoor & sports gear rentals for every adventure. Affordable, reliable, and ready when you are.
+              Top quality outdoor & sports gear rentals for every adventure. Affordable, reliable, and ready when you are.
             </p>
 
             {/* 4 Feature Highlights Grid */}
