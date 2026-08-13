@@ -22,7 +22,7 @@ export default async function HomePage() {
   return (
     <div className="space-y-20 pb-20">
       {/* Banner / Hero Section matching sample.png design with hero.png background */}
-      <section className="relative w-full min-h-[640px] sm:min-h-[720px] lg:min-h-[800px] flex items-center overflow-hidden bg-slate-950">
+      <section className="relative w-full min-h-[640px] md:min-h-[900px] flex items-center overflow-hidden bg-slate-950">
         <Image
           src="/hero.png"
           alt="Rent Gear. Live Adventure."
