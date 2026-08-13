@@ -86,7 +86,7 @@ const Navbar = () => {
 
             {user ? (
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary text-black flex items-center justify-center text-sm font-bold border border-black/5">
+                <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold border border-black/5">
                   {initials}
                 </div>
                 <div className="text-sm text-black mr-2">
