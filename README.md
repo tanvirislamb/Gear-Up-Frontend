@@ -166,45 +166,6 @@ GearUp enforces strict role-based access control (RBAC) at the edge using **Next
 - **Payments**: Stripe Checkout Gateway
 - **Deployment**: [Vercel](https://vercel.com/)
 
----
-
-## 🚀 Getting Started Locally
-
-### Prerequisites
-- **Node.js** >= 18.x
-- **npm**, **yarn**, or **pnpm**
-
-### Installation
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/tanvirislamb/Gear-Up-Frontend.git
-   cd Gear-Up-Frontend
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   npm install
-   # or
-   pnpm install
-   ```
-
-3. **Configure Environment Variables**:
-   Create a `.env.local` file in the root directory:
-   ```env
-   NEXT_PUBLIC_API_URL=https://gearup-sooty-one.vercel.app/api
-   ```
-
-4. **Run the development server**:
-   ```bash
-   npm run dev
-   ```
-
-5. **Open in browser**:
-   Navigate to [http://localhost:3000](http://localhost:3000).
-
----
-
 ## 📄 License
 
 This project is developed for educational and demonstration purposes as part of the Assignment 5 Frontend milestone.
