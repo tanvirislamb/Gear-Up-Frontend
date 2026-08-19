@@ -91,6 +91,7 @@ This document maps frontend components and pages to their corresponding backend 
 | `/dashboard/customer/orders` | CustomerOrdersClient, OrdersTable | `fetchMyOrders` |
 | `/dashboard/customer/orders/[id]` | OrderDetailClient, OrderTimeline, PaymentCard, ReviewForm | `fetchOrderById`, `createPayment`, `submitReview` |
 | `/dashboard/customer/payments` | PaymentsTable | `fetchMyPayments` |
+| `/dashboard/customer/payments/[id]` | PaymentDetailPage | `fetchPaymentById`, `createPayment` |
 
 ### Provider Dashboard
 | Page | Components | Actions Used |

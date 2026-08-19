@@ -1,7 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { CreditCard, Loader2, Wallet } from "lucide-react"
+import Link from "next/link"
+import { CreditCard, Loader2, Wallet, Eye } from "lucide-react"
 import { Payment } from "@/types/gear"
 import { fetchMyPayments, createPayment } from "@/services/api"
 import { StatusBadge } from "@/component/StatusBadge"
@@ -108,9 +109,12 @@ export default function CustomerPaymentsPage() {
                 <tr key={p.id} className="bg-white hover:bg-black/3 transition-colors">
                   <td className="px-4 py-3 text-black/60">{formatDate(p.paidAt || p.createdAt)}</td>
                   <td className="px-4 py-3">
-                    <div className="text-black font-medium">
+                    <Link
+                      href={`/dashboard/customer/payments/${p.id}`}
+                      className="text-black font-medium hover:underline"
+                    >
                       {p.rentalOrder?.gearItem?.name || "Order"}
-                    </div>
+                    </Link>
                     <div className="text-[11px] text-black/60">{p.rentalOrderId}</div>
                   </td>
                   <td className="px-4 py-3 text-black font-semibold">
@@ -124,16 +128,25 @@ export default function CustomerPaymentsPage() {
                     {p.transactionId || "—"}
                   </td>
                   <td className="px-4 py-3 text-right">
-                    {p.status !== "COMPLETED" && p.rentalOrder?.status === "CONFIRMED" && (
-                      <button
-                        onClick={() => handlePay(p)}
-                        disabled={payingId === p.id}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary text-white text-[11px] font-bold hover:bg-primary/70 disabled:opacity-60"
+                    <div className="flex items-center justify-end gap-2">
+                      <Link
+                        href={`/dashboard/customer/payments/${p.id}`}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/5 text-black text-[11px] font-bold hover:bg-black/10"
                       >
-                        <CreditCard className="w-3.5 h-3.5" />
-                        {payingId === p.id ? "Redirecting…" : "Pay Now"}
-                      </button>
-                    )}
+                        <Eye className="w-3.5 h-3.5" />
+                        View
+                      </Link>
+                      {p.status !== "COMPLETED" && p.rentalOrder?.status === "CONFIRMED" && (
+                        <button
+                          onClick={() => handlePay(p)}
+                          disabled={payingId === p.id}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary text-white text-[11px] font-bold hover:bg-primary/70 disabled:opacity-60"
+                        >
+                          <CreditCard className="w-3.5 h-3.5" />
+                          {payingId === p.id ? "Redirecting…" : "Pay Now"}
+                        </button>
+                      )}
+                    </div>
                   </td>
                 </tr>
               ))}
