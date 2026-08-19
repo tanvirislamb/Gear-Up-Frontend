@@ -66,7 +66,7 @@ const Navbar = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className={"px-4 py-2 rounded-xl text-sm font-medium text-black/60 hover:text-black hover:bg-primary transition-colors"}>
+                className={"px-4 py-2 rounded-xl text-sm font-medium text-black/60 hover:text-white hover:bg-primary transition-colors"}>
                 {link.title}
               </Link>
             ))}
