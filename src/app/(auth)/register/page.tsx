@@ -62,7 +62,7 @@ function RegisterContent() {
       <div className="w-full max-w-lg rounded-3xl overflow-hidden bg-white md:shadow relative z-10">
         <div className="p-8 lg:p-10">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-11 h-11 rounded-xl bg-primary text-black flex items-center justify-center font-bold">
+            <div className="w-11 h-11 rounded-xl bg-primary text-white flex items-center justify-center font-bold">
               <Mountain className="w-6 h-6" />
             </div>
             <div>
@@ -112,9 +112,9 @@ function RegisterContent() {
                             <Check className="w-3 h-3" />
                           </span>
                         )}
-                        <Icon className={`w-6 h-6 mb-2 ${active ? "text-black" : "text-black/60"}`} />
-                        <div className="text-sm font-bold text-black">{r.title}</div>
-                        <div className="text-[11px] text-black/60 mt-0.5">{r.desc}</div>
+                        <Icon className={`w-6 h-6 mb-2 ${active ? "text-white" : "text-black/60"}`} />
+                        <div className={`text-sm font-bold ${active ? "text-white" : "text-black"}`}>{r.title}</div>
+                        <div className={`text-[11px] ${active ? "text-white" : "text-black/60"}`}>{r.desc}</div>
                       </button>
                     );
                   })}
@@ -184,10 +184,10 @@ function RegisterContent() {
               <button
                 type="submit"
                 disabled={isPending}
-                className="w-full py-3 px-4 bg-primary hover:bg-primary/70 text-black font-bold text-sm rounded-xl shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+                className="w-full py-3 px-4 bg-primary hover:bg-primary/70 text-white font-bold text-sm rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-70 cursor-pointer disabled:cursor-not-allowed"
               >
                 {isPending ? (
-                  <span className="animate-spin w-4 h-4 border-2 border-black/10 border-t-transparent rounded-full" />
+                  <span className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
                 ) : (
                   <>
                     Create Account
