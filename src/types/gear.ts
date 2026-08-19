@@ -100,6 +100,7 @@ export interface RentalOrder {
   startDate: string;
   endDate: string;
   totalAmount: number;
+  createdAt?: string;
   customer?: { name: string; email: string } | null;
   gearItem?: GearItem | null;
 }
