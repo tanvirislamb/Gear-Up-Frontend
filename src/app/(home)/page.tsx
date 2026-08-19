@@ -48,7 +48,7 @@ export default async function HomePage() {
                   <path d="M4 10C25 3 60 7 120 4C180 2 250 6 320 3C332 5 338 12 335 25 C338 38 322 45 300 47C230 44 160 48 90 45C50 47 20 43 4 36C-1 28 0 18 4 10Z" />
                 </svg>
                 <div className="relative z-10 flex items-center justify-center p-1 rounded border border-white/60 bg-black/40">
-                  <Mountain className="w-4 h-4 text-primary" />
+                  <Mountain className="w-4 h-4 text-white" />
                 </div>
                 <span className="relative z-10 text-xs sm:text-sm font-black uppercase tracking-widest text-white">
                   GEAR TODAY, ADVENTURES TOMORROW

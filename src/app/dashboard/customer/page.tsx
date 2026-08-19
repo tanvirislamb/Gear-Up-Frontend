@@ -29,7 +29,7 @@ function formatDate(iso?: string | null) {
 
 function ReviewForm({ order, onDone }: { order: RentalOrder; onDone: () => void }) {
   const { success, error } = useToast()
-  const [rating, setRating] = useState(1)
+  const [rating, setRating] = useState(0)
   const [comment, setComment] = useState("")
   const [submitting, setSubmitting] = useState(false)
 
