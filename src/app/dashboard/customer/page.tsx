@@ -106,7 +106,7 @@ export default function CustomerDashboard() {
   const load = useCallback(async () => {
     setLoading(true)
     const o = await fetchMyOrders()
-    setOrders([...o].sort((a, b) => new Date(b.createdAt || b.startDate).getTime() - new Date(a.createdAt || a.startDate).getTime()))
+    setOrders(o)
     setLoading(false)
   }, [])
 
