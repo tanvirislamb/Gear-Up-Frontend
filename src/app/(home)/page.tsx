@@ -132,7 +132,7 @@ export default async function HomePage() {
                 >
                   <path d="M5 12C20 3 60 7 130 3C200 1 260 5 302 2C308 8 311 20 307 35C309 46 300 53 275 55C210 52 145 56 75 53C35 55 12 50 5 42C-1 32 0 20 5 12Z" />
                 </svg>
-                <span className="relative z-10 px-8 py-4 text-sm sm:text-base font-black text-black uppercase tracking-wider flex items-center gap-2.5">
+                <span className="relative z-10 px-8 py-4 text-sm sm:text-base font-black text-white uppercase tracking-wider flex items-center gap-2.5">
                   YOUR ADVENTURE STARTS HERE
                   <ArrowRight className="w-5 h-5 stroke-[2.5] group-hover:translate-x-1.5 transition-transform" />
                 </span>
@@ -169,7 +169,7 @@ export default async function HomePage() {
                 href={`/gear?catagory=${encodeURIComponent(cat.name)}`}
                 className="group p-5 rounded-2xl bg-white shadow-sm transition-all duration-300 flex flex-col items-center text-center space-y-3"
               >
-                <div className="w-12 h-12 rounded-xl bg-black/5 text-black/60 group-hover:bg-primary group-hover:text-black flex items-center justify-center transition-colors duration-300">
+                <div className="w-12 h-12 rounded-xl bg-black/5 text-black/60 group-hover:bg-primary group-hover:text-white flex items-center justify-center transition-colors duration-300">
                   <IconComp className="w-6 h-6" />
                 </div>
                 <h3 className="font-semibold text-sm text-black group-hover:text-black/60 transition-colors">
@@ -216,7 +216,7 @@ export default async function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
             <div className="space-y-3 p-6 rounded-2xl bg-white border border-black/5 relative">
               <span className="text-3xl font-black text-black/10 absolute top-4 right-4">01</span>
-              <div className="w-10 h-10 rounded-xl bg-primary text-black flex items-center justify-center font-bold">
+              <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold">
                 <Mountain className="w-5 h-5" />
               </div>
               <h3 className="font-bold text-base text-black">Find Your Gear</h3>
@@ -234,7 +234,7 @@ export default async function HomePage() {
 
             <div className="space-y-3 p-6 rounded-2xl bg-white border border-black/5 relative">
               <span className="text-3xl font-black text-black/10 absolute top-4 right-4">03</span>
-              <div className="w-10 h-10 rounded-xl bg-primary text-black flex items-center justify-center font-bold">
+              <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <h3 className="font-bold text-base text-black">Pickup Equipment</h3>
@@ -256,9 +256,9 @@ export default async function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-3xl bg-primary p-8 sm:p-12">
           <div className="relative z-10 max-w-2xl space-y-4">
-            <span className="text-xs font-extrabold text-black/60 uppercase tracking-widest">For Shop Owners & Gear Owners</span>
-            <h2 className="text-3xl font-black text-black">Have Outdoor Gear Sitting Idle?</h2>
-            <p className="text-sm text-black/60 leading-relaxed">
+            <span className="text-xs font-extrabold text-white/60 uppercase tracking-widest">For Shop Owners & Gear Owners</span>
+            <h2 className="text-3xl font-black text-white">Have Outdoor Gear Sitting Idle?</h2>
+            <p className="text-sm text-white/60 leading-relaxed">
               List your equipment on GearUp and earn steady passive income. Manage your inventory, approve orders, and reach thousands of adventure seekers.
             </p>
             <div className="pt-2">

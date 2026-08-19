@@ -128,7 +128,7 @@ export default function CustomerPaymentsPage() {
                       <button
                         onClick={() => handlePay(p)}
                         disabled={payingId === p.id}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary text-black text-[11px] font-bold hover:bg-primary/70 disabled:opacity-60"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary text-white text-[11px] font-bold hover:bg-primary/70 disabled:opacity-60"
                       >
                         <CreditCard className="w-3.5 h-3.5" />
                         {payingId === p.id ? "Redirecting…" : "Pay Now"}

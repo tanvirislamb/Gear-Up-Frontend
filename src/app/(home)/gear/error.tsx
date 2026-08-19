@@ -31,7 +31,7 @@ export default function GearError({
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
         <button
           onClick={() => reset()}
-          className="w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-bold bg-primary text-black hover:bg-primary/70 transition-colors inline-flex items-center justify-center gap-2"
+          className="w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-bold bg-primary text-white hover:bg-primary/70 transition-colors inline-flex items-center justify-center gap-2"
         >
           <RotateCcw className="w-4 h-4" />
           <span>Try Again</span>

@@ -46,12 +46,12 @@ function LoginContent() {
           </div>
 
           {state.success ? (
-            <div className="bg-primary border border-black/5 text-black/60 p-6 rounded-2xl text-center space-y-3">
+            <div className="bg-primary border border-black/5 text-white/60 p-6 rounded-2xl text-center space-y-3">
               <div className="w-12 h-12 mx-auto rounded-full bg-black/5 flex items-center justify-center">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <h3 className="font-semibold text-lg text-black">Login Successful!</h3>
-              <p className="text-xs text-black/60">Taking you back...</p>
+              <h3 className="font-semibold text-lg text-white">Login Successful!</h3>
+              <p className="text-xs text-white/60">Taking you back...</p>
             </div>
           ) : (
             <form action={formAction} className="space-y-4">

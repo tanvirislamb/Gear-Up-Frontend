@@ -75,7 +75,7 @@ export default function ProviderDashboard() {
         </div>
         <Link
           href="/dashboard/provider/gear/new"
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary hover:bg-primary/70 text-black text-xs font-bold"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary hover:bg-primary/70 text-white text-xs font-bold"
         >
           <PlusCircle className="w-4 h-4" /> Add Gear
         </Link>
@@ -158,7 +158,7 @@ export default function ProviderDashboard() {
                     <td className="px-4 py-3">
                       <span
                         className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-bold ${g.availableQty > 0
-                          ? "bg-primary text-black"
+                          ? "bg-primary text-white"
                           : "bg-rose-50 text-rose-600"
                           }`}
                       >

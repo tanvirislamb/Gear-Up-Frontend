@@ -22,7 +22,7 @@ export default function AdminGearPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-primary text-black flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center">
           <Package className="w-5 h-5" />
         </div>
         <div>
@@ -89,7 +89,7 @@ export default function AdminGearPage() {
                   <td className="px-4 py-3">
                     <span
                       className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-bold ${g.availableQty > 0
-                        ? "bg-primary text-black"
+                        ? "bg-primary text-white"
                         : "bg-rose-50 text-rose-600"
                         }`}
                     >

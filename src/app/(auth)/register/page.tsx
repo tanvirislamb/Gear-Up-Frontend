@@ -72,12 +72,12 @@ function RegisterContent() {
           </div>
 
           {state.success ? (
-            <div className="bg-primary border border-black/5 text-black/60 p-6 rounded-2xl text-center space-y-3">
+            <div className="bg-primary border border-black/5 text-white/60 p-6 rounded-2xl text-center space-y-3">
               <div className="w-12 h-12 mx-auto rounded-full bg-black/5 flex items-center justify-center">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <h3 className="font-semibold text-lg text-black">Account Created!</h3>
-              <p className="text-xs text-black/60">{redirect ? "Taking you back..." : "Taking you to your dashboard..."}</p>
+              <h3 className="font-semibold text-lg text-white">Account Created!</h3>
+              <p className="text-xs text-white/60">{redirect ? "Taking you back..." : "Taking you to your dashboard..."}</p>
             </div>
           ) : (
             <form action={formAction} className="space-y-4">

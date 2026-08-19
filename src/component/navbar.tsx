@@ -142,7 +142,7 @@ const Navbar = () => {
           <div className="pt-4 flex flex-col gap-2">
             {user ? (
               <div className="p-3 rounded-lg bg-white flex items-center gap-3">
-                <div className="w-10 h-10 shrink-0 rounded-full bg-primary text-black flex items-center justify-center text-sm font-bold border border-black/5">
+                <div className="w-10 h-10 shrink-0 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold border border-black/5">
                   {initials}
                 </div>
                 <div className="min-w-0">
@@ -168,7 +168,7 @@ const Navbar = () => {
                 <Link
                   href={`/login?redirect=${encodeURIComponent(loginRedirect)}`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center px-4 py-2.5 rounded-2xl text-sm font-semibold bg-primary text-black"
+                  className="w-full text-center px-4 py-2.5 rounded-2xl text-sm font-semibold bg-primary text-white"
                 >
                   Get Started
                 </Link>

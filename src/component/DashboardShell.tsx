@@ -96,7 +96,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
         <aside className="lg:w-60 shrink-0">
           <div className="bg-white shadow-sm border border-black/3 rounded-2xl p-4 lg:sticky lg:top-24">
             <div className="flex items-center gap-3 px-2 pb-4 mb-4 border-b border-black/5">
-              <div className="w-9 h-9 rounded-lg bg-primary text-black flex items-center justify-center font-bold">
+              <div className="w-9 h-9 rounded-lg bg-primary text-white flex items-center justify-center font-bold">
                 <Mountain className="w-5 h-5" />
               </div>
               <div className="min-w-0">
@@ -119,7 +119,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
                     key={item.href}
                     href={item.href}
                     className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${active
-                      ? "bg-primary"
+                      ? "bg-primary text-white"
                       : "text-black/60 hover:text-black hover:bg-black/5"
                       }`}
                   >

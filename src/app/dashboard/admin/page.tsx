@@ -168,7 +168,7 @@ export default function AdminDashboard() {
                       <td className="px-4 py-3">
                         <span
                           className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold ${u.status === "ACTIVE"
-                            ? "bg-primary text-black"
+                            ? "bg-primary text-white"
                             : "bg-rose-50 text-rose-600"
                             }`}
                         >
@@ -189,7 +189,7 @@ export default function AdminDashboard() {
                           disabled={busyId === u.id}
                           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold ${u.status === "ACTIVE"
                             ? "bg-rose-50 text-rose-600 hover:bg-rose-100"
-                            : "bg-primary text-black hover:bg-primary/70"
+                            : "bg-primary text-white hover:bg-primary/70"
                             } disabled:opacity-60`}
                         >
                           {busyId === u.id ? (

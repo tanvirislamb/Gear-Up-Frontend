@@ -47,11 +47,11 @@ export default function GearCard({ gear }: GearCardProps) {
           {isAvailable ? (
             <span
               className={`inline-flex items-center px-2.5 py-1 rounded-xl text-xs font-bold backdrop-blur-md border ${isLowStock
-                ? "bg-primary text-black border-black/5"
+                ? "bg-primary text-white border-black/5"
                 : "bg-white/50 text-black/60 border-black/5"
                 }`}
             >
-              <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${isLowStock ? "bg-black" : "bg-black/60"}`} />
+              <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${isLowStock ? "bg-white" : "bg-black/60"}`} />
               {isLowStock ? `Only ${gear.availableQty} Left` : "Available"}
             </span>
           ) : (
@@ -100,7 +100,7 @@ export default function GearCard({ gear }: GearCardProps) {
 
           <Link
             href={`/gear/${gear.id}`}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-black/5 hover:bg-primary hover:text-black text-black/60 transition-all duration-200 group/btn"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-black/5 hover:bg-primary hover:text-white text-black/60 transition-all duration-200 group/btn"
           >
             <span>Rent Now</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />

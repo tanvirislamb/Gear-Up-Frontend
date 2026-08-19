@@ -86,7 +86,7 @@ function ReviewForm({ order, onDone }: { order: RentalOrder; onDone: () => void 
       <button
         type="submit"
         disabled={submitting}
-        className="px-4 py-2 rounded-xl bg-primary text-black text-xs font-bold hover:bg-primary/70 disabled:opacity-60"
+        className="px-4 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary/70 disabled:opacity-60"
       >
         {submitting ? "Submitting…" : "Submit Review"}
       </button>
@@ -233,7 +233,7 @@ export default function CustomerDashboard() {
                             <button
                               onClick={() => handlePay(order)}
                               disabled={payingId === order.id}
-                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary text-black text-[11px] font-bold hover:bg-primary/70 disabled:opacity-60"
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary text-white text-[11px] font-bold hover:bg-primary/70 disabled:opacity-60"
                             >
                               <CreditCard className="w-3.5 h-3.5" />
                               {payingId === order.id ? "Redirecting…" : "Pay Now"}

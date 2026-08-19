@@ -225,7 +225,7 @@ export default function GearForm({ mode, initial }: GearFormProps) {
         <button
           type="submit"
           disabled={submitting}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-primary/70 text-black text-sm font-bold disabled:opacity-60"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-primary/70 text-white text-sm font-bold disabled:opacity-60"
         >
           {submitting ? (
             <Loader2 className="w-4 h-4 animate-spin" />

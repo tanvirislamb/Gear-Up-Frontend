@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${bebasNeue.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans selection:bg-primary/60 selection:text-black">
+      <body className="min-h-full flex flex-col font-sans selection:bg-primary/60 selection:text-white">
         <AuthProvider>
           <ToastProvider>
             <SplashScreen />

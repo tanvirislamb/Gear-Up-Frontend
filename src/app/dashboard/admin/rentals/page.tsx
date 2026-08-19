@@ -28,7 +28,7 @@ export default function AdminRentalsPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-primary text-black flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center">
           <ShoppingCart className="w-5 h-5" />
         </div>
         <div>

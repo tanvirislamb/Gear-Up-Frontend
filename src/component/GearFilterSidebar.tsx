@@ -98,7 +98,7 @@ export default function GearFilterSidebar({
               applyFilters({ catagory: "" });
             }}
             className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-colors flex items-center justify-between ${selectedCategory === ""
-              ? "bg-primary text-black font-semibold"
+              ? "bg-primary text-white font-semibold"
               : "text-black/60 hover:bg-black/5"
               }`}
           >
@@ -117,7 +117,7 @@ export default function GearFilterSidebar({
                   applyFilters({ catagory: val });
                 }}
                 className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-colors flex items-center justify-between ${isSelected
-                  ? "bg-primary text-black font-semibold"
+                  ? "bg-primary text-white font-semibold"
                   : "text-black/60 hover:bg-black/5"
                   }`}
               >
