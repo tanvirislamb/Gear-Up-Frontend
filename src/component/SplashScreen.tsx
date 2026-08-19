@@ -28,7 +28,7 @@ export default function SplashScreen() {
       aria-hidden={hidden}
     >
       <div className="relative flex flex-col items-center gap-4">
-        <div className="w-16 h-16 rounded-2xl bg-primary p-3 text-black flex items-center justify-center">
+        <div className="w-16 h-16 rounded-2xl bg-primary p-3 text-white flex items-center justify-center">
           <Mountain className="w-9 h-9 stroke-[2.5]" />
         </div>
         <div className="text-center">
